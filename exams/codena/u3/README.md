@@ -4,7 +4,7 @@
 
 ### Instructor: Jorge Edison Lascano
 
-### Student:Kevin Vinico Albán Cabezas
+### Student: Daniel Alexander Codena Paucar
 
-This is Repository for Exams
+This is Folder for UNIT 3 Exams
 
