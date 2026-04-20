@@ -6,5 +6,5 @@
 
 ### Student: Mateo Artieda
 
-This is Repository for Homeworks
+This is folder for UNIT 3 Exams
 
