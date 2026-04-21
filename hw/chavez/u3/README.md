@@ -4,8 +4,7 @@
 
 ### Instructor: Jorge Edison Lascano
 
-### Student: Collahuazo Brandon
+### Student: Odalys Chavez
 
-This is folder for UNIT 1 Exam
-
+This is folder for UNIT 3 Homework
 
