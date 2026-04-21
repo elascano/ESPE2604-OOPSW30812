@@ -2,4 +2,4 @@
 ## Object Oriented Programming for ESPE ESPE2604-OOPSW30812
 ### Instructor: Jorge Edison Lascano
 ### Student: Esteban Alexander Basurto Farias 
-This is Repository for Evaluations
+This is Repository for Assignments
