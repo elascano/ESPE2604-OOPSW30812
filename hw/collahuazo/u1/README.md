@@ -1,4 +1,4 @@
-# ESPE2604-OOPSW30812 
+# ESPE2604-OOPSW30812
 
 ## Object Oriented Programming for ESPE ESPE2604-OOPSW30812
 
@@ -6,4 +6,5 @@
 
 ### Student: Collahuazo Brandon
 
-This is Repository for Homeworks
+This is folder for UNIT 1 Homework
+
