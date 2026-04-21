@@ -1,5 +1,10 @@
 # ESPE2604-OOPSW30812
+
 ## Object Oriented Programming for ESPE ESPE2604-OOPSW30812
+
 ### Instructor: Jorge Edison Lascano
-### Student: 
-This is Repository for Workshops, Assignments and Evaluations
+
+### Student: Adrian Gustavo Vizcaino Saenz
+
+This is the folder for Homeworks
+
