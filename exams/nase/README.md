@@ -2,4 +2,4 @@
 ## Object Oriented Programming for ESPE ESPE2604-OOPSW30812
 ### Instructor: Jorge Edison Lascano
 ### Student: Jennyfer Nicole Nase Solorzano 
-This is Repository for Workshops, Assignments and Evaluations
+This is Repository for Exams
