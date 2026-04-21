@@ -4,6 +4,10 @@
 
 ### Instructor: Jorge Edison Lascano
 
-### Student: Ronald Tipan
+### Student
 
-This is Folder for UNIT 1 Exams
+This is repository for workshops, assignments and evaluations
+
+### Students: Ronald Tipan
+
+This is folder for exams
