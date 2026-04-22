@@ -5,6 +5,10 @@ int main() {
     int eggs = 0;
     int age;
     int poop = 0;
+    char name[50];
+
+    printf("Enter the hen's name: ");
+    scanf("%s", name);
 
     printf("Enter the hen's age: ");
     scanf("%d", &age);
@@ -23,24 +27,25 @@ int main() {
         switch(option) {
             case 1:
                 eggs++;
-                printf("The hen laid an egg\n");
+                printf("%s laid an egg\n", name);
                 break;
 
             case 2:
-                printf("The hen has laid %d eggs\n", eggs);
+                printf("%s has laid %d eggs\n", name, eggs);
                 break;
 
             case 3:
-                printf("clo clo\n");
+                printf("%s says: clo clo\n", name);
                 break;
 
             case 4:
                 poop++;
-                printf("The hen pooped\n");
+                printf("%s pooped\n", name);
                 break;
 
             case 5:
                 printf("\n--- INFORMATION ---\n");
+                printf("Name: %s\n", name);
                 printf("Age: %d years\n", age);
                 printf("Eggs: %d\n", eggs);
                 printf("Times pooped: %d\n", poop);
