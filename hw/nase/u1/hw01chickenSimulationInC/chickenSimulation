@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <string.h>
+
+
+struct MyChicken {
+    char chicken[50];   
+    int ageinmonths;        
+    int drinkwater;         
+    int eggcounter;         
+    int dailyfood; 
+    int wanderCounter;         
+};
+
+
+void cluck(struct MyChicken *c) {
+    printf("\n[%s] says: CLUCK CLUCK CLUCK!\n", c->chicken);
+}
+
+void wander(struct MyChicken *c) {
+    if (c->dailyfood <= 20) {
+        printf("\n%s is too hungry to walk!\n", c->chicken);
+    } else {
+        printf("\n%s is wandering around...\n", c->chicken);
+        c->dailyfood -=2;
+        c->wanderCounter++; 
+    }
+}
+
+void eat(struct MyChicken *c) {
+    if (c->dailyfood >= 50) { // 
+        printf("\n%s is full! She cannot eat more right now.\n", c->chicken);
+    } else {
+        printf("\n%s is eating grains.\n", c->chicken);
+        c->dailyfood += 6;
+    }
+}
+
+void drink(struct MyChicken *c) {
+    c->drinkwater++; 
+    printf("\n%s is drinking water. Total times today: %d\n", c->chicken, c->drinkwater);
+}
+
+void layAnEgg(struct MyChicken *c) {
+    if (c->ageinmonths > 4) { 
+        c->eggcounter++;
+        printf("\nSuccess! %s laid an egg. Total eggs: %d\n", c->chicken, c->eggcounter);
+    } else {
+        printf("\n%s is too young to lay eggs.\n", c->chicken);
+    }
+}
+
+void showStatus(struct MyChicken *c) {
+    printf("\n== REPORT: %s ==", c->chicken);
+    printf("\n- Age: %d months", c->ageinmonths);
+    printf("\n- Times walked: %d", c->wanderCounter); 
+    printf("\n- Water sessions: %d", c->drinkwater); 
+    printf("\n- Eggs laid: %d", c->eggcounter);
+    printf("\n- Food Level: %d", c->dailyfood); 
+}
+
+int main() {
+    
+    struct MyChicken chicken;
+    int option;
+
+    printf("Chicken Facts\n");
+
+    printf("\nEnter Chicken Name: ");
+    scanf("%s", chicken.chicken);
+    printf("Enter age (months): ");
+    scanf("%d", &chicken.ageinmonths);
+    
+    chicken.drinkwater = 0; 
+    chicken.eggcounter = 0;
+    chicken.dailyfood = 50;
+
+    do {
+        printf("\n\n-- MAIN MENU for %s --", chicken.chicken);
+        printf("\n1. Cluck\n2. Wander\n3. Eat\n4. Drink Water\n5. Lay an Egg\n6. Status Report\n0. Exit");
+        printf("\nOption: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1: cluck(&chicken); break;
+            case 2: wander(&chicken); break;
+            case 3: eat(&chicken); break;
+            case 4: drink(&chicken); break;
+            case 5: layAnEgg(&chicken); break;
+            case 6: showStatus(&chicken); break;
+        }
+    } while (option != 0);
+
+    printf("\nClosed chicken coop\n");
+    return 0;
+}
