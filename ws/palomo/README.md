@@ -7,5 +7,3 @@
 ### Student: Cristian David Palomo Otto
 
 This is Repository for Workshops
-
-    # unidad 3 
