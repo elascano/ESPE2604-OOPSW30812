@@ -6,7 +6,7 @@ package chickenfarm;
 
 /**
  *
- * @author Usuario
+ * @author Esteban Basurto
  */
 public class ChickenFarm {
 
