@@ -22,6 +22,11 @@ public class Chicken {
         this.age = age;
         this.isMolting = isMolting;
     }
+
+    @Override
+    public String toString() {
+        return "Chicken{" + "id=" + id + ", name=" + name + ", color=" + color + ", age=" + age + ", isMolting=" + isMolting + '}';
+    }
     
     
     

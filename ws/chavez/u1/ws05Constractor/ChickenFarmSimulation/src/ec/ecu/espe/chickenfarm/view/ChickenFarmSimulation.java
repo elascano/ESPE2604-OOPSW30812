@@ -14,7 +14,7 @@ public class ChickenFarmSimulation {
      public static void main(String[] args) {
         Chicken chicken;
         chicken = new Chicken(1,"Lucy","White and brown",1,true);
-        System.out.println("My chicken is -->" +chicken);
+        System.out.println("My chicken is -->" + chicken);
     }
     
 }
