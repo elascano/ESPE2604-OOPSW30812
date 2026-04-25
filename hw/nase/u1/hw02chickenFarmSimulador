@@ -1,5 +1,4 @@
-class Chicken:
-    # Este es el equivalente al constructor 'public Chicken(...)'
+class Chicken
     def __init__(self, id: int, name: str, color: str, age: int, is_molting: bool):
         self.id = id
         self.name = name
@@ -7,13 +6,9 @@ class Chicken:
         self.age = age
         self.is_molting = is_molting
 
-    # Este es el equivalente al @Override toString()
     def __str__(self):
         return f"Chicken{{id={self.id}, name={self.name}, color={self.color}, age={self.age}, isMolting={self.is_molting}}}"
 
-# --- Simulando el 'run' que tienes abajo en NetBeans ---
 if __name__ == "__main__":
-    # Creamos la gallina con los mismos datos de tu captura
     my_chicken = Chicken(1, "Lucy", "White and Brown", 1, True)
-    
     print(f"My Chicken is ---->{my_chicken}")
