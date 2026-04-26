@@ -48,3 +48,18 @@ class Chicken:
     @is_molting.setter
     def is_molting(self, value):
         self._is_molting = value
+
+    def do_stuff(self):
+        pass
+    def __cluck(self):
+        pass
+    def __wander(self):
+        pass
+    def __eat(self):
+        pass
+    def __drink(self):
+        pass
+    def __lay_egg(self):
+        pass
+    def __poop(self):
+        pass
