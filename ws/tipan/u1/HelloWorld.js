@@ -1,0 +1,1 @@
+console.log("Hello everybody, this is JavaScript Hello World from Ronald Tipan");

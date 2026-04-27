@@ -1,0 +1,14 @@
+class Chicken
+    def __init__(self, id: int, name: str, color: str, age: int, is_molting: bool):
+        self.id = id
+        self.name = name
+        self.color = color
+        self.age = age
+        self.is_molting = is_molting
+
+    def __str__(self):
+        return f"Chicken{{id={self.id}, name={self.name}, color={self.color}, age={self.age}, isMolting={self.is_molting}}}"
+
+if __name__ == "__main__":
+    my_chicken = Chicken(1, "Lucy", "White and Brown", 1, True)
+    print(f"My Chicken is ---->{my_chicken}")

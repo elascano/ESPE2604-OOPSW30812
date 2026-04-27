@@ -18,7 +18,27 @@
 *.zip
 *.tar.gz
 *.rar
+HEAD
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/ws/aimacana/u1/ws04ClassImplementation/ChickenFarm/nbproject/private/
+/ws/palomo/u1/s04ClassImplementation/ChickenFarm/nbproject/private/
+/ws/palomo/u1/s04ClassImplementation/ChickenFarm/build/
+<<<<<<< HEAD
+>>>>>>> 9ba34272b0144660899b69397f2278a2236de187
+/ws/nase/u1/ws05ChickenFarmSimulator/dist/
+/ws/nase/u1/ChickenFarmSimulator/build/
+/ws/nase/u1/ChickenFarmSimulator/nbproject/private/
+/ws/nase/u1/w5ChickenFarmSimulator/build/
+/ws/nase/u1/w5ChickenFarmSimulator/nbproject/private/
+/ws/nase/u1/w5ChickenFarmSimulator/dist/
+=======
+/ws/palomo/u1/ws05Constructor/ChickenFarmSimulator/nbproject/private/
+/ws/palomo/u1/ws05Constructor/ChickenFarmSimulator/build/
+dcf951d (.git)
+/hw/palomo/u1/hw02ChickenFarmSimulatorJavaScript/ChickenFarmSimulator/nbproject/private/
+/hw/palomo/u1/hw02ChickenFarmSimulatorJavaScript/hw02ChickenFarmSimulatorJavaScript/nbproject/private/
+>>>>>>> 1baca434cda7389d4ca821d0fccbfef4432be80d
