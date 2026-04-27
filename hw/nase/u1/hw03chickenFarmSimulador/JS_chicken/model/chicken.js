@@ -11,4 +11,4 @@ class Chicken {
         return `Chicken{id=${this.id}, name=${this.name}, color=${this.color}, age=${this.age}, isMolting=${this.isMolting}}`;
     }
 }
-module.exports = Chicken; // Importante para que main.js lo encuentre
+module.exports = Chicken; 

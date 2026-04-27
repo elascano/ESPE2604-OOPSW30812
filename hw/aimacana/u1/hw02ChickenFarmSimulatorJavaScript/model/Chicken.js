@@ -39,4 +39,15 @@ export class Chicken {
     toString() {
         return `Chicken{id=${this.id}, name=${this.name}, color=${this.color}, age=${this.age}, isMolting=${this.isMolting}}`;
     }
+    doStuff(forTime){}
+    #cluck(){}
+    #wander(){}
+    #eat(){}
+    #drink(){}
+    #poop(){
+        return null;
+    }
+    #layAnEgg(){
+        return null;
+    }
 }
