@@ -2,19 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package chickenfarmsimulator;
+package ec.edu.espe.chickenfarm.view;
 
-/**
- *
- * @author Cristian
- */
+import ec.edu.espe.chickenfarm.model.Chicken;
+
 public class ChickenFarmSimulator {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Chicken chicken = new Chicken(1, "Lucy", "white and brown", 1, true);
+        System.out.println("my chicken is --> " + chicken);
     }
-    
+}
 }
