@@ -1,0 +1,31 @@
+{
+  "name": "Central Perk",
+  "address": "123 Main St",
+  "orders": [
+    {
+      "orderId": "1",
+      "items": [
+        {
+          "orderItemId": "OI-1777871178121",
+          "quantity": 2,
+          "subtotal": 5.0,
+          "product": {
+            "productId": "1",
+            "name": "Capuchino",
+            "price": 2.5
+          }
+        },
+        {
+          "orderItemId": "OI-1777871230234",
+          "quantity": 4,
+          "subtotal": 12.0,
+          "product": {
+            "productId": "2",
+            "name": "Matcha Late",
+            "price": 3.0
+          }
+        }
+      ]
+    }
+  ]
+}
