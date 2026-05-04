@@ -1,0 +1,7 @@
+[
+  { "id": 10, "name": "Carlos Ruiz", "birth_date": "15/03/2005", "grade_avg": 3.9 },
+  { "id": 11, "name": "Ana Gomez", "birth_date": "22/07/2004", "grade_avg": 4.0 },
+  { "id": 12, "name": "Luis Fernandez", "birth_date": "10/11/2005", "grade_avg": 3.6 },
+  { "id": 13, "name": "Marta Diaz", "birth_date": "03/09/2004", "grade_avg": 3.8 },
+  { "id": 14, "name": "Pedro Castro", "birth_date": "28/12/2005", "grade_avg": 3.7 }
+]
