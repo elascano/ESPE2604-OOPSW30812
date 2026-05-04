@@ -1,0 +1,6 @@
+ec\edu\espe\Billing\model\Invoice.class
+ec\edu\espe\Billing\model\Company.class
+ec\edu\espe\Billing\model\Customer.class
+ec\edu\espe\Billing\model\Payment.class
+ec\edu\espe\Billing\model\Product.class
+ec\edu\espe\Billing\view\Main.class
