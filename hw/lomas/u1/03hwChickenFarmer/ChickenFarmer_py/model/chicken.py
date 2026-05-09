@@ -7,7 +7,7 @@ class Chicken:
         self.is_molting = is_molting
 
     def __str__(self):
-        # Convertimos el booleano True/False a Yes/No para que se vea mejor
+        
         molting_str = "Yes" if self.is_molting else "No"
         return (f"Chicken [ID={self.id}, Name={self.name}, "
                 f"Color={self.color}, Age={self.age}, Molting={molting_str}]")
