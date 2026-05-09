@@ -1,7 +1,7 @@
 import sys
 import os
 
-# Estas dos líneas son para que Python encuentre las carpetas model y controller
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from controller.chicken_controller import ChickenController
@@ -11,7 +11,7 @@ def main():
     
     print("--- Chicken Farm Simulator ---")
     
-    # Creamos un pollo de ejemplo como en tu código original
+    
     chicken = controller.create_chicken(1, "Lucy", "Brown and White", 2, False)
     
     while True:
@@ -28,7 +28,7 @@ def main():
             name = input("Enter Name: ")
             color = input("Enter Color: ")
             age = int(input("Enter Age: "))
-            # Si el usuario escribe 's', es True, de lo contrario False
+           
             molting = input("Is molting? (s/n): ").lower() == 's'
             
             chicken = controller.create_chicken(id, name, color, age, molting)
