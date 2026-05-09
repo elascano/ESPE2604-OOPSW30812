@@ -1,0 +1,38 @@
+[
+  {
+    "bundleId": "B001",
+    "name": "Combo Basico",
+    "product1": "Arroz",
+    "quantity1": 2,
+    "product2": "Atun",
+    "quantity2": 1,
+    "product3": "Tomate",
+    "quantity3": 3,
+    "bundlePrice": 6.5,
+    "profitMargin": -46.15384615384615
+  },
+  {
+    "bundleId": "B002",
+    "name": "Combo Desayuno",
+    "product1": "Mantequilla",
+    "quantity1": 1,
+    "product2": "Banano",
+    "quantity2": 4,
+    "product3": "Manzana",
+    "quantity3": 2,
+    "bundlePrice": 5.2,
+    "profitMargin": -96.15384615384613
+  },
+  {
+    "bundleId": "B003",
+    "name": "Combo Verduras",
+    "product1": "Papa",
+    "quantity1": 3,
+    "product2": "Cebolla",
+    "quantity2": 2,
+    "product3": "Tomate",
+    "quantity3": 2,
+    "bundlePrice": 4.3,
+    "profitMargin": -63.953488372093005
+  }
+]
