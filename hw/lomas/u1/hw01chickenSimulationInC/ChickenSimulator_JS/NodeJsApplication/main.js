@@ -32,7 +32,7 @@ function showMenu() {
                 return;
             default: console.log("Invalid option."); break;
         }
-        showMenu(); // Volver a mostrar el menú
+        showMenu(); 
     });
 }
 
