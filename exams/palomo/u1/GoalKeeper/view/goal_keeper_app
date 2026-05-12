@@ -15,12 +15,10 @@ public class GoalkeeperApp {
 
         ArrayList<Goalkeeper> goalkeepers = new ArrayList<>();
 
-        // Create objects
         goalkeepers.add(new Goalkeeper(1, "Manuel Neuer", 38, "Bayern Munich"));
         goalkeepers.add(new Goalkeeper(2, "Alisson Becker", 32, "Liverpool"));
         goalkeepers.add(new Goalkeeper(3, "Thibaut Courtois", 33, "Real Madrid"));
 
-        // Save JSON
         saveToJson(goalkeepers);
 
         // Read JSON
