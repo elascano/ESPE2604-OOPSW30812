@@ -1,0 +1,66 @@
+  package goalkeeperapp;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+public class GoalkeeperApp {
+
+    public static void main(String[] args) {
+
+        ArrayList<Goalkeeper> goalkeepers = new ArrayList<>();
+
+        // Create objects
+        goalkeepers.add(new Goalkeeper(1, "Manuel Neuer", 38, "Bayern Munich"));
+        goalkeepers.add(new Goalkeeper(2, "Alisson Becker", 32, "Liverpool"));
+        goalkeepers.add(new Goalkeeper(3, "Thibaut Courtois", 33, "Real Madrid"));
+
+        // Save JSON
+        saveToJson(goalkeepers);
+
+        // Read JSON
+        readFromJson();
+    }
+
+    public static void saveToJson(ArrayList<Goalkeeper> goalkeepers) {
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter("goalkeepers.json")) {
+
+            gson.toJson(goalkeepers, writer);
+
+            System.out.println("Data saved in JSON file.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readFromJson() {
+
+        Gson gson = new Gson();
+
+        try (FileReader reader = new FileReader("goalkeepers.json")) {
+
+            Type goalkeeperListType = new TypeToken<ArrayList<Goalkeeper>>(){}.getType();
+
+            ArrayList<Goalkeeper> goalkeepers =
+                    gson.fromJson(reader, goalkeeperListType);
+
+            System.out.println("\nReading data from JSON file:\n");
+
+            for (Goalkeeper gk : goalkeepers) {
+                System.out.println(gk);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
