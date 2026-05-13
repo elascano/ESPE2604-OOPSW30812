@@ -25,6 +25,25 @@ public class Person {
         return age;
     }
 
+    public Person(int id, String fullName, LocalDate bornOnDate, boolean alive) {
+        this.id = id;
+        this.fullName = fullName;
+        this.bornOnDate = bornOnDate;
+        this.alive = alive;
+    }
+
+    @Override
+    public String toString() {
+        String isAlive;
+        if(alive){
+            isAlive = "YES";
+        }else{
+            isAlive = "NO";
+        }
+        return "Person " + id + " --> Name:" + fullName + ", BirthDate:" + bornOnDate + ", alive:" + isAlive + " <--";
+    }
+    
+
     /**
      * @return the id
      */
