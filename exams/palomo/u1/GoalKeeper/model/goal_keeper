@@ -1,60 +1,18 @@
-class Portero:
-    """Representa a un portero con sus atributos básicos."""
+class Goalkeeper:
 
-    def __init__(self, id: int, nombre: str, equipo: str, nacionalidad: str):
+    def __init__(self, id, name, age, team):
         self.id = id
-        self.nombre = nombre
-        self.equipo = equipo
-        self.nacionalidad = nacionalidad
+        self.name = name
+        self.age = age
+        self.team = team
 
-    def to_dict(self) -> dict:
+    def to_dict(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "equipo": self.equipo,
-            "nacionalidad": self.nacionalidad,
+            "name": self.name,
+            "age": self.age,
+            "team": self.team
         }
 
-    def __str__(self) -> str:
-        return (
-            f"  ID           : {self.id}\n"
-            f"  Nombre       : {self.nombre}\n"
-            f"  Equipo       : {self.equipo}\n"
-            f"  Nacionalidad : {self.nacionalidad}"
-        )
-
-
-class GoalkeeperModel:
-    """Gestiona el almacenamiento y las operaciones sobre los porteros."""
-
-    def __init__(self):
-        self._porteros: list[Portero] = []
-
-
-    def obtener_todos(self) -> list[Portero]:
-        return list(self._porteros)
-
-    def buscar_por_id(self, id: int) -> Portero | None:
-        for p in self._porteros:
-            if p.id == id:
-                return p
-        return None
-
-    def id_existe(self, id: int) -> bool:
-        return self.buscar_por_id(id) is not None
-
-    def total(self) -> int:
-        return len(self._porteros)
-
-
-    def agregar(self, id: int, nombre: str, equipo: str, nacionalidad: str) -> Portero:
-        portero = Portero(id, nombre, equipo, nacionalidad)
-        self._porteros.append(portero)
-        return portero
-
-    def eliminar(self, id: int) -> bool:
-        for i, p in enumerate(self._porteros):
-            if p.id == id:
-                self._porteros.pop(i)
-                return True
-        return False
+    def __str__(self):
+        return f"ID: {self.id}, Name: {self.name}, Age: {self.age}, Team: {self.team}"
