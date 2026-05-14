@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "Matthew Smith", "birth_date": "05/12/2001", "GPA": 3.8 },
+  { "id": 2, "name": "Emily Johnson", "birth_date": "08/22/2002", "GPA": 4.0 },
+  { "id": 3, "name": "Christopher Davis", "birth_date": "01/30/2000", "GPA": 3.2 },
+  { "id": 4, "name": "Ashley Taylor", "birth_date": "11/14/2003", "GPA": 3.9 },
+  { "id": 5, "name": "Joshua Wilson", "birth_date": "03/05/2002", "GPA": 3.5 }
+]
