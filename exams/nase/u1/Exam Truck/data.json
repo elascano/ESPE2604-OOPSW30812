@@ -1,0 +1,18 @@
+{
+    "truck_id": "1",
+    "model": "Hino",
+    "max_capacity": 500,
+    "owner": "truck",
+    "inventory": [
+        {
+            "item_id": "ID-01",
+            "name": "donas",
+            "weight": 39.0
+        },
+        {
+            "item_id": "ID-01",
+            "name": "ollas",
+            "weight": 79.0
+        }
+    ]
+}
