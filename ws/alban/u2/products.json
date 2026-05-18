@@ -1,0 +1,6 @@
+[
+    {"name": "Chips", "price": 0.50},
+    {"name": "Soda", "price": 1.00},
+    {"name": "Chocolate", "price": 0.75},
+    {"name": "Cookies", "price": 0.60}
+]
