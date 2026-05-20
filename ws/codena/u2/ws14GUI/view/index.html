@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>PRODUCT MANAGEMENT SYSTEM</h1>
+
+    <div class="menu">
+
+        <button id="btnAdd">1. Add Product</button>
+
+        <button id="btnShow">
+            2. Show Products in KG
+        </button>
+
+        <button id="btnExit">
+            3. Exit Program
+        </button>
+
+    </div>
+
+    <div class="form-container">
+
+        <input type="text" id="name" placeholder="Product Name">
+
+        <input type="text" id="id" placeholder="Product ID">
+
+        <input type="number" id="price" placeholder="Price">
+
+        <input type="number" id="weight" placeholder="Weight in Pounds">
+
+    </div>
+
+    <div id="message"></div>
+
+    <div id="products"></div>
+
+    <script src="renderer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Potatoe",
+    "id": "1",
+    "price": 2,
+    "weightLb": 1
+  },
+  {
+    "name": "Tomatoes",
+    "id": "2",
+    "price": 2,
+    "weightLb": 3
+  },
+  {
+    "name": "Coca Cola",
+    "id": 4,
+    "price": 2.5,
+    "weightLb": 4
+  },
+  {
+    "name": "French Fries",
+    "id": 9.8,
+    "price": 5,
+    "weightLb": 3
+  },
+  {
+    "name": "Deja",
+    "id": 10,
+    "price": 1,
+    "weightLb": 1.5
+  },
+  {
+    "name": "Book",
+    "id": 11,
+    "price": 0,
+    "weightLb": 4
+  }
+]
