@@ -1,0 +1,12 @@
+{
+    "name": "EmployeesSalary",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Christopher Lomas,Polimorphismus ,@ESPE",
+    "contributors": [],
+    "dependencies": {},
+    "scripts": {
+        "start": "node ec\/edu\/espe\/view\/main.js"
+    }
+
+}
