@@ -1,0 +1,20 @@
+[
+  {
+    "id": "123",
+    "name": "Lomas",
+    "clockIn": "12:23",
+    "clockOut": "4:30",
+    "role": "Inspector",
+    "salary": 2.73827832E8
+  },
+  {
+    "id": "456",
+    "name": "Edison",
+    "clockIn": "7:45",
+    "clockOut": "8:45",
+    "role": "Teacher",
+    "salary": 3000.0
+  }
+  
+
+]
