@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "product": "Laptop",
+    "price": 850.0,
+    "vat": 0.0,
+    "total": 0.0
+  },
+  {
+    "id": 2,
+    "product": "Desktop PC",
+    "price": 1200.0,
+    "vat": 0.0,
+    "total": 0.0
+  },
+  {
+    "id": 3,
+    "product": "Optical Mouse",
+    "price": 25.5,
+    "vat": 0.0,
+    "total": 0.0
+  },
+  {
+    "id": 4,
+    "product": "16GB RAM Stick",
+    "price": 65.0,
+    "vat": 0.0,
+    "total": 0.0
+  },
+  {
+    "id": 5,
+    "product": "24-inch Monitor",
+    "price": 180.0,
+    "vat": 0.0,
+    "total": 0.0
+  }
+]
