@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "firstName": "brandon",
+    "lastName": "Collahuazo",
+    "phoneNumber": "0984005252"
+  },
+  {
+    "id": "1",
+    "firstName": "brandon",
+    "lastName": "collahuazo",
+    "phoneNumber": "09845"
+  },
+  {
+    "id": "2",
+    "firstName": "pepe",
+    "lastName": "granoble",
+    "phoneNumber": "05894"
+  },
+  {
+    "id": "5",
+    "firstName": "gonzales",
+    "lastName": "martines",
+    "phoneNumber": "098456"
+  }
+]

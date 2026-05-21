@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ProductPomds-impl" basedir="..">
+    <property file="nbproject/project.properties"/>
+    <property name="src.dir"    value="src"/>
+    <property name="build.dir"  value="build"/>
+    <property name="dist.dir"   value="dist"/>
+    <property name="main.class" value="ec.edu.espe.productpomds.MainApp"/>
+
+    <target name="default" depends="run"/>
+
+    <target name="init">
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="data"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes"
+               source="1.8" target="1.8" encoding="UTF-8" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/ProductPomds.jar" basedir="${build.dir}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${main.class}" classpath="${build.dir}/classes" fork="true">
+            <jvmarg value="-Dfile.encoding=UTF-8"/>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>

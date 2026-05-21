@@ -1,0 +1,57 @@
+[
+  {
+    "idNumber": "1754274569",
+    "name": "Andres sanchez",
+    "age": 19,
+    "career": "Software Engineering",
+    "grades": [
+      12.0,
+      16.0,
+      14.0
+    ]
+  },
+  {
+    "idNumber": "1754276769",
+    "name": "Ronald tipan",
+    "age": 19,
+    "career": "Medicine",
+    "grades": [
+      13.0,
+      16.0,
+      12.0
+    ]
+  },
+  {
+    "idNumber": "1754238934",
+    "name": "Alexander ttipantiza",
+    "age": 19,
+    "career": "Software Engineering",
+    "grades": [
+      14.0,
+      14.0,
+      18.0
+    ]
+  },
+  {
+    "idNumber": "1712135426",
+    "name": "Daniela Sanchez",
+    "age": 20,
+    "career": "Business",
+    "grades": [
+      12.0,
+      13.0,
+      14.0
+    ]
+  },
+  {
+    "idNumber": "4534326",
+    "name": "Juan",
+    "age": 20,
+    "career": "Software Engineering",
+    "grades": [
+      12.2,
+      16.0,
+      14.2
+    ]
+  }
+]

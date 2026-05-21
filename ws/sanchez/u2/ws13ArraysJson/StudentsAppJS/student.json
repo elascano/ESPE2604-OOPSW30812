@@ -1,0 +1,35 @@
+[
+    {
+        "first_name": "andres",
+        "last_name": "sanchez",
+        "subject": "software",
+        "age": 20,
+        "grades": [
+            12,
+            13,
+            18
+        ]
+    },
+    {
+        "first_name": "Daniela ",
+        "last_name": "Sanchez",
+        "subject": "Civil",
+        "age": 20,
+        "grades": [
+            15,
+            18,
+            19
+        ]
+    },
+    {
+        "first_name": "Alexander ",
+        "last_name": "Tipan",
+        "subject": "23",
+        "age": 23,
+        "grades": [
+            12,
+            15,
+            19
+        ]
+    }
+]
