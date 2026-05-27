@@ -1,0 +1,7 @@
+{
+  "name": "taxeslib",
+  "version": "1.0.0",
+  "description": "Librería para el cálculo de impuestos",
+  "main": "utils/tax.js",
+  "author": "Alexander Tipantiza"
+}
