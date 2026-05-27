@@ -1,0 +1,5 @@
+com\mycompany\storeproducts\StoreProducts.class
+ec\edu\espe\StoreProducts\model\JsonManager.class
+ec\edu\espe\StoreProducts\model\Product.class
+ec\edu\espe\StoreProducts\model\Store.class
+ec\edu\espe\StoreProducts\view\StoreProductsGUI.class
