@@ -1,0 +1,12 @@
+{
+    "name": "CollectionsJs",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Joel Sanchez, The Softwarriors, @ESPE",
+    "contributors": [],
+    "dependencies": {},
+    "scripts": {
+        "start": "node view/CollectionsApp.js"
+    },
+    "type": "module"
+}

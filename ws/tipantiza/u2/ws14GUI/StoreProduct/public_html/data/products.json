@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Laptop",
+    "categoria": "Tecnología",
+    "precio": 450
+  },
+  {
+    "id": 2,
+    "nombre": "Pan",
+    "categoria": "Alimentos",
+    "precio": 0.12
+  },
+  {
+    "id": 3,
+    "nombre": "Tecno Pova 6",
+    "categoria": "Tecnologìa",
+    "precio": 350
+  }
+]

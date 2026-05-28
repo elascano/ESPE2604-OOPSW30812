@@ -1,0 +1,18 @@
+class Goalkeeper:
+
+    def __init__(self, id, name, age, team):
+        self.id = id
+        self.name = name
+        self.age = age
+        self.team = team
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "age": self.age,
+            "team": self.team
+        }
+
+    def __str__(self):
+        return f"ID: {self.id}, Name: {self.name}, Age: {self.age}, Team: {self.team}"

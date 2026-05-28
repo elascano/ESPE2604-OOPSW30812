@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+Test set: ec.edu.espe.calculator.controller.BasicOperationTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.052 s <<< FAILURE! -- in ec.edu.espe.calculator.controller.BasicOperationTest
+ec.edu.espe.calculator.controller.BasicOperationTest.testAdd -- Time elapsed: 0.024 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <3.6> but was: <3.6000001>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:118)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:113)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:860)
+	at ec.edu.espe.calculator.controller.BasicOperationTest.testAdd(BasicOperationTest.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+ec.edu.espe.calculator.controller.BasicOperationTest.testSubtract -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2.4> but was: <2.3999999>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:118)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:113)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:860)
+	at ec.edu.espe.calculator.controller.BasicOperationTest.testSubtract(BasicOperationTest.java:50)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+ec.edu.espe.calculator.controller.BasicOperationTest.testSomeMethod -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at ec.edu.espe.calculator.controller.BasicOperationTest.testSomeMethod(BasicOperationTest.java:22)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

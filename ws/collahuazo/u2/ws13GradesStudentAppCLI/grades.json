@@ -1,0 +1,22 @@
+[
+  {
+    "studentId": "1",
+    "value": 14.0
+  },
+  {
+    "studentId": "1",
+    "value": 15.0
+  },
+  {
+    "studentId": "2",
+    "value": 15.0
+  },
+  {
+    "studentId": "2",
+    "value": 10.0
+  },
+  {
+    "studentId": "2",
+    "value": 5.0
+  }
+]

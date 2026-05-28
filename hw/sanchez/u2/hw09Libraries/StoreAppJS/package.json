@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "taxeslib": "file:../TaxesLibJS/taxeslib-1.0.0.tgz"
+  }
+}

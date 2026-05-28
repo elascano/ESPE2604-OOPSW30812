@@ -1,0 +1,8 @@
+{
+    "name": "taxeslib",
+    "version": "1.0.0",
+    "description": "Tax calculation library",
+    "main": "utils/Tax.js",
+    "author": "Joel Sanchez",
+    "license": "MIT"
+}

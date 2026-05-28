@@ -1,0 +1,20 @@
+# Created at 2026-05-27T10:58:32.733
+D:\POO\JAVA\calculator\target\surefire-reports\TEST-ec.edu.espe.calculator.controller.BasicOperationTest.xml (Acceso denegado)
+java.io.FileNotFoundException: D:\POO\JAVA\calculator\target\surefire-reports\TEST-ec.edu.espe.calculator.controller.BasicOperationTest.xml (Acceso denegado)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:184)
+	at org.apache.maven.plugin.surefire.report.StatelessXmlReporter.getOutputStream(StatelessXmlReporter.java:364)
+	at org.apache.maven.plugin.surefire.report.StatelessXmlReporter.testSetCompleted(StatelessXmlReporter.java:150)
+	at org.apache.maven.plugin.surefire.report.StatelessXmlReporter.testSetCompleted(StatelessXmlReporter.java:85)
+	at org.apache.maven.plugin.surefire.report.TestSetRunListener.testSetCompleted(TestSetRunListener.java:193)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$TestSetCompletedListener.handle(ForkClient.java:143)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$TestSetCompletedListener.handle(ForkClient.java:127)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkedProcessEventNotifier.notifyEvent(ForkedProcessEventNotifier.java:197)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.handleEvent(ForkClient.java:303)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.handleEvent(ForkClient.java:59)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:86)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
