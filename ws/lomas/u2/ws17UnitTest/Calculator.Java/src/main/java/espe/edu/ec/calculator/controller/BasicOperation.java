@@ -1,24 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package espe.edu.ec.calculator.controller;
 
 /**
- *
- * @author <Didier Elbay ,object Polymorphismus,@ESPE>
+ * @author Christopher Lomas, CodeBros, @ESPE
  */
 public class BasicOperation {
-    public static float add (float addend1,float addend2) {
-        float sum;
-        sum=addend1 + addend2;
-        return sum;
+
+    public static float add(float addend1, float addend2) {
+        return addend1 + addend2;
     }
-    public static float subtract(float minuend,float subtrahend) {
-        float difference;
-        difference=minuend-subtrahend;
-        return difference;
-        
+
+    public static float subtract(float minuend, float subtrahend) {
+        return minuend - subtrahend;
     }
-    
 }
