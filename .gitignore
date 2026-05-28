@@ -17,76 +17,12 @@
 *.ear
 *.tar.gz
 *.rar
-HEAD
 
-HEAD
+node_modules/
+jspm_packages/
+web_modules/
 
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
-/ws/aimacana/u1/ws04ClassImplementation/ChickenFarm/nbproject/private/
-/ws/palomo/u1/s04ClassImplementation/ChickenFarm/nbproject/private/
-/ws/palomo/u1/s04ClassImplementation/ChickenFarm/build/
-HEAD
-9ba34272b0144660899b69397f2278a2236de187
-/ws/nase/u1/ws05ChickenFarmSimulator/dist/
-/ws/nase/u1/ChickenFarmSimulator/build/
-/ws/nase/u1/ChickenFarmSimulator/nbproject/private/
-/ws/nase/u1/w5ChickenFarmSimulator/build/
-/ws/nase/u1/w5ChickenFarmSimulator/nbproject/private/
-/ws/nase/u1/w5ChickenFarmSimulator/dist/
-/ws/palomo/u1/ws05Constructor/ChickenFarmSimulator/nbproject/private/
-/ws/palomo/u1/ws05Constructor/ChickenFarmSimulator/build/
-dcf951d (.git)
-/hw/palomo/u1/hw02ChickenFarmSimulatorJavaScript/ChickenFarmSimulator/nbproject/private/
-/hw/palomo/u1/hw02ChickenFarmSimulatorJavaScript/hw02ChickenFarmSimulatorJavaScript/nbproject/private/
-1baca434cda7389d4ca821d0fccbfef4432be80d
-/ws/palomo/u1/New Folder/ws07ChickenCoops/nbproject/private/
-/ws/palomo/u1/New Folder/ws07ChickenCoops/build/
-/ws/palomo/u1/New Folder/ws07ChickenCoops/dist/
-/ws/nase/u1/ws7ChickenCoops/ChickenCoops/build/
-/ws/nase/u1/ws7ChickenCoops/ChickenCoops/dist/
-/hw/nase/u1/hw04fromthekeyboard/fromthekeyboard/nbproject/private/
-/hw/nase/u1/hw04fromthekeyboard/fromthekeyboard/build/
-HEAD
-/hw/nase/u1/hw04fromthekeyboard/ProjectCSV/nbproject/private/
-/hw/nase/u1/hw04fromthekeyboard/ProjectCSV/build/
-/hw/nase/u1/hw04fromthekeyboard/firsttimemothersJSON/nbproject/private/
-/hw/nase/u1/hw04fromthekeyboard/firsttimemothersJSON/build/
-/hw/nase/u1/hw04fromthekeyboard/firsttimemothersJSON/dist/
-/hw/nase/u1/hw06GSONandCSV/firsttimemothersJSON/build/
-/hw/nase/u1/hw06GSONandCSV/firsttimemothersJSON/dist/
-/hw/nase/u1/hw06GSONandCSV/firsttimemothersJSON/nbproject/private/
-/hw/palomo/u1/hw06CSVandJSON V1.0/PROjectCSV/nbproject/private/
-/hw/palomo/u1/hw06CSVandJSON V1.0/PROjectCSV/dist/
-/hw/palomo/u1/hw06CSVandJSON V1.0/PROjectCSV/build/
-/hw/palomo/u1/hw06CSVandJSON V1.0/ProjectJSON/ProjectJSON/nbproject/private/
-/hw/palomo/u1/hw06CSVandJSON V1.0/ProjectJSON/ProjectJSON/build/
-bd240ed (use of csv and gson in the code of the project)
-/hw/palomo/u1/hw06CSVandJSON V1.0/ProjectJSON/ProjectJSON/dist/
-/ws/palomo/u1/ws08Collections/Collections/nbproject/private/
-/hw/palomo/u1/hw06CSVandJSON V1.0/ProjectJSON/collections/nbproject/private/
-/ws/palomo/u1/ws08Collections/Collections/build/
-/ws/palomo/u1/ws08Collections/Collections.Java/build/
-/ws/palomo/u1/ws08Collections/Collections.Java/nbproject/private/
-a1d7d27 (Ws08Collections)
-/hw/codena/u1/hw04Arrays/JavaScript/nbproject/private/
-/ws/palomo/u1/ws08Collections/product-pomds/nbproject/private/
-/ws/palomo/u2/ws15StudentGUI/ProductPomds/nbproject/private/
-/ws/palomo/u2/ws15StudentGUI/ProductPomds/build/
-HEAD
-/ws/palomo/u2/ws16/StoreApp/nbproject/private/
-/ws/palomo/u2/ws16/TaxesLib/nbproject/private/
-/ws/artieda/u2/ws16/StoreApp/StoreApp/nbproject/private/
-/ws/artieda/u2/ws16/TaxesLib/TaxesLib/nbproject/private/
-d6df348f9604e54d886a06ebc8e60b637397d9de
-/hw/palomo/u2/hw09StoreApp/JavaScript/StoreApp/nbproject/private/
-/ws/palomo/u1/ws08Collections/texLib/nbproject/private/
-HEAD
-/ws/palomo/u2/ws17UnitTest/Java/calculator/nbproject/
-/ws/palomo/u2/ws17UnitTest/Java/calculator/target/
-/ws/aimacana/u2/ws17UnitTest/calculator/nbproject/
-/ws/aimacana/u2/ws17UnitTest/calculator/target/
-/ws/artieda/u2/ws17UnitTest/calculator/target/
-9046dc9a52e558edf9b3c8db968e326462fce771
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
