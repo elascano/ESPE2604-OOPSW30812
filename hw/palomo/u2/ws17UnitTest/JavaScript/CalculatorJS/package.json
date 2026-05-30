@@ -1,0 +1,14 @@
+{
+  "name": "CalculatorJS",
+  "version": "1.0.0",
+  "description": "Proyecto de Calculadora con Jest",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Cristian",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
