@@ -1,1 +1,0 @@
-Hello everybody, this is the Python HelloWorld from Esteban Basurto
