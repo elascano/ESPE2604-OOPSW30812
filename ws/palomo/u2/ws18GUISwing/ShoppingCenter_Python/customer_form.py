@@ -1,7 +1,6 @@
 """
 customer_form.py
-Interfaz gráfica del formulario Customer (equivalente al Java Swing)
-@author Cristian (convertido a Python con tkinter)
+@author Cristian 
 """
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -20,38 +19,31 @@ class CustomerForm:
         self._build_ui()
 
     def _build_ui(self):
-        # Título
         tk.Label(self.root, text="CUSTOMER", bg="#d4d0c8",
                  font=("Arial", 11)).place(x=160, y=20)
 
-        # ID
         tk.Label(self.root, text="id", bg="#d4d0c8").place(x=50, y=65)
         self.entry_id = tk.Entry(self.root, width=10,
                                  highlightbackground="blue", highlightthickness=1)
         self.entry_id.place(x=180, y=63)
 
-        # First Name
         tk.Label(self.root, text="Firts Name", bg="#d4d0c8").place(x=50, y=105)
         self.entry_first = tk.Entry(self.root, width=18)
         self.entry_first.place(x=180, y=103)
 
-        # Last Name
         tk.Label(self.root, text="Last Name", bg="#d4d0c8").place(x=50, y=145)
         self.entry_last = tk.Entry(self.root, width=18)
         self.entry_last.place(x=180, y=143)
 
-        # Gender
         tk.Label(self.root, text="Gender", bg="#d4d0c8").place(x=50, y=185)
         self.combo_gender = ttk.Combobox(self.root, values=["Male", "Female"], width=10, state="readonly")
         self.combo_gender.set("Male")
         self.combo_gender.place(x=180, y=183)
 
-        # Money Spent
         tk.Label(self.root, text="Money Spent", bg="#d4d0c8").place(x=50, y=225)
         self.spin_money = tk.Spinbox(self.root, from_=0, to=99999, width=10)
         self.spin_money.place(x=180, y=223)
 
-        # Age (slider)
         tk.Label(self.root, text="Age", bg="#d4d0c8").place(x=50, y=265)
         self.age_var = tk.IntVar()
         self.slider_age = tk.Scale(self.root, from_=0, to=100, orient=tk.HORIZONTAL,
@@ -59,7 +51,6 @@ class CustomerForm:
                                    length=180, showvalue=True)
         self.slider_age.place(x=180, y=255)
 
-        # Type of Customer
         tk.Label(self.root, text="Type of customer", bg="#d4d0c8").place(x=50, y=315)
         self.combo_type = ttk.Combobox(self.root,
                                        values=["Frequent", "New", "VIP", "Regular"],
@@ -67,7 +58,6 @@ class CustomerForm:
         self.combo_type.set("Frequent")
         self.combo_type.place(x=180, y=313)
 
-        # Hobbies (listbox multi-select)
         tk.Label(self.root, text="Hobbies:", bg="#d4d0c8").place(x=50, y=355)
         hobbies_list = ["Play Music", "Listening to Music", "Play Soccer",
                         "Play an Instrument", "Paint", "Study English"]
@@ -77,7 +67,6 @@ class CustomerForm:
             self.listbox_hobbies.insert(tk.END, h)
         self.listbox_hobbies.place(x=180, y=353)
 
-        # Botones
         btn_style = {"width": 8, "bg": "#d4d0c8", "relief": "raised"}
         tk.Button(self.root, text="Insert", command=self.insert_customer,
                   **btn_style).place(x=70, y=490)
