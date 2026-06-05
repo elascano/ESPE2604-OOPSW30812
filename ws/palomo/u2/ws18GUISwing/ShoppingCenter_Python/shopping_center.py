@@ -1,7 +1,6 @@
 """
 shopping_center.py
-Punto de entrada principal - abre la ventana Customer
-@author Cristian (convertido a Python)
+@author Cristian
 """
 import tkinter as tk
 from customer_form import CustomerForm
