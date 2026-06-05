@@ -1,7 +1,6 @@
 """
 customer.py
-Modelo de cliente para el Shopping Center
-@author Cristian (convertido a Python)
+@author Cristian 
 """
 
 
@@ -18,7 +17,6 @@ class Customer:
         self.__type_customer = type_customer
         self.__hobbies = hobbies if hobbies is not None else []
 
-    # --- Getters ---
     def get_id(self) -> int:
         return self.__id
 
@@ -43,7 +41,6 @@ class Customer:
     def get_hobbies(self) -> list:
         return self.__hobbies
 
-    # --- Setters ---
     def set_id(self, id: int):
         self.__id = id
 
