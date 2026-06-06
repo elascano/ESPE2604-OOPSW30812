@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const BillingController = require('../controller/billingController');
 
-// Individual imports from the model folder
+
 const Person = require('../model/person');
 const Product = require('../model/product');
 const Payment = require('../model/payment');
@@ -14,7 +14,7 @@ class BillingView {
     }
 
     async start() {
-        // Connect to MongoDB
+        
         const connected = await this.controller.connectToDatabase();
         if (!connected) {
             console.log("Could not start UI due to database connection failure.");
@@ -25,7 +25,7 @@ class BillingView {
     }
 
     launchNativeGUI() {
-        // Generates a dynamic layout UI equivalent to your Java Swing UI
+       
         const guiScript = `
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -125,7 +125,7 @@ window.mainloop()
         const tempPath = path.join(__dirname, 'temp_gui.py');
         fs.writeFileSync(tempPath, guiScript);
 
-        // Run the GUI process and capture event actions
+       
         const pythonTarget = process.platform === 'win32' ? 'python' : 'python3';
         const guiProcess = exec(`${pythonTarget} "${tempPath}"`);
 
@@ -152,7 +152,7 @@ window.mainloop()
                     console.log("\n--- [Node.js MVC] Payment Loaded ---", res);
                 }
             } catch (e) {
-                // Ignore non-JSON output line noise
+               
             }
         });
 
