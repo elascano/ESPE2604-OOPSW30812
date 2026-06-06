@@ -55,5 +55,5 @@ class BillingController {
     }
 }
 
-// Ensure the class is exported correctly
+
 module.exports = BillingController;
