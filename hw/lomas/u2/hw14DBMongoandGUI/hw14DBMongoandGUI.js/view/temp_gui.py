@@ -9,7 +9,7 @@ window.title("Billing Management System (Node.js MVC Bridge)")
 window.geometry("520x680")
 window.resizable(False, False)
 
-# --- PANEL 1: PERSON ---
+
 frame_person = tk.LabelFrame(window, text=" Person Management ", padx=15, pady=10)
 frame_person.pack(padx=15, pady=10, fill="x")
 
@@ -25,7 +25,7 @@ tk.Label(frame_person, text="EMAIL:").grid(row=2, column=0, sticky="w", pady=5)
 txt_person_email = tk.Entry(frame_person, width=22)
 txt_person_email.grid(row=2, column=1, pady=5, padx=5)
 
-# --- PANEL 2: PRODUCT ---
+
 frame_product = tk.LabelFrame(window, text=" Product Management ", padx=15, pady=10)
 frame_product.pack(padx=15, pady=10, fill="x")
 
@@ -41,7 +41,7 @@ tk.Label(frame_product, text="PRICE:").grid(row=2, column=0, sticky="w", pady=5)
 spn_product_price = tk.Spinbox(frame_product, from_=0.0, to=10000.0, increment=0.5, width=20)
 spn_product_price.grid(row=2, column=1, pady=5, padx=5)
 
-# --- PANEL 3: PAYMENT ---
+
 frame_payment = tk.LabelFrame(window, text=" Payment Management ", padx=15, pady=10)
 frame_payment.pack(padx=15, pady=10, fill="x")
 
@@ -62,7 +62,6 @@ def send_to_node(action_type, payload):
     print(json.dumps({"action": action_type, "data": payload}))
     sys.stdout.flush()
 
-# Route actions back to Node Controller
 def save_person():
     send_to_node("SAVE_PERSON", {"id": txt_person_id.get(), "name": txt_person_name.get(), "email": txt_person_email.get()})
     messagebox.showinfo("Message", "Person processing request sent to Node.js!")
