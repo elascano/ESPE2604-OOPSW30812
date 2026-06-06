@@ -1,0 +1,12 @@
+ec\edu\espe\schoolsystem\dao\CourseDAO.class
+ec\edu\espe\schoolsystem\controller\CourseController.class
+ec\edu\espe\schoolsystem\controller\StudentController.class
+ec\edu\espe\schoolsystem\dao\TeacherDAO.class
+ec\edu\espe\schoolsystem\controller\TeacherController.class
+ec\edu\espe\schoolsystem\model\Teacher.class
+ec\edu\espe\schoolsystem\model\Course.class
+ec\edu\espe\schoolsystem\SchoolSystem.class
+ec\edu\espe\schoolsystem\model\Student.class
+ec\edu\espe\schoolsystem\view\FrmSchoolSystem.class
+ec\edu\espe\schoolsystem\dao\StudentDAO.class
+ec\edu\espe\schoolsystem\dao\MongoConnection.class
