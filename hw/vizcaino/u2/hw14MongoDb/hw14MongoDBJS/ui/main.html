@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Management System</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        .tab {
+            overflow: hidden;
+        }
+
+        .tab button {
+            padding: 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .tabcontent {
+            display: none;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        input {
+            margin: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Management System</h1>
+
+<div class="tab">
+
+    <button onclick="openTab('backups')">Backups</button>
+    <button onclick="openTab('reservations')">Reservations</button>
+    <button onclick="openTab('combos')">Combos</button>
+
+</div>
+
+<div id="backups" class="tabcontent">
+
+    <h2>Backups</h2>
+
+    <input id="backupId" placeholder="ID">
+    <input id="backupFileName" placeholder="File Name">
+    <input id="backupStatus" placeholder="Status">
+    <input id="backupDate" placeholder="Date">
+
+    <button id="addBackup">Add</button>
+    <button id="deleteBackup">Delete</button>
+    <button id="refreshBackup">Refresh</button>
+
+    <table id="backupTable">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>File Name</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+</div>
+
+<div id="reservations" class="tabcontent">
+
+    <h2>Reservations</h2>
+
+    <input id="reservationId" placeholder="ID">
+    <input id="customerName" placeholder="Customer Name">
+    <input id="phone" placeholder="Phone">
+    <input id="reservationStatus" placeholder="Status">
+
+    <button id="addReservation">Add</button>
+    <button id="deleteReservation">Delete</button>
+    <button id="refreshReservation">Refresh</button>
+
+    <table id="reservationTable">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Phone</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+</div>
+
+<div id="combos" class="tabcontent">
+
+    <h2>Combos</h2>
+
+    <input id="comboId" placeholder="ID">
+    <input id="comboName" placeholder="Name">
+    <input id="comboDescription" placeholder="Description">
+    <input id="comboPrice" placeholder="Price">
+
+    <button id="addCombo">Add</button>
+    <button id="deleteCombo">Delete</button>
+    <button id="refreshCombo">Refresh</button>
+
+    <table id="comboTable">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+function openTab(tabName) {
+
+    let tabs =
+    document.getElementsByClassName("tabcontent");
+
+    for(let i = 0; i < tabs.length; i++) {
+
+        tabs[i].style.display = "none";
+
+    }
+
+    document.getElementById(tabName)
+    .style.display = "block";
+}
+
+openTab("backups");
+
+</script>
+
+<script src="../renderer/app.js"></script>
+
+</body>
+
+</html>
