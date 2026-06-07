@@ -16,7 +16,7 @@ import com.mongodb.client.MongoDatabase;
 public class MongoConnection {
 
     private static final String URI =
-            "mongodb+srv://daniel:daniel1234@cluster0.zfwd5wx.mongodb.net/?appName=Cluster0";
+            "URI";
 
     private static final String DATABASE =
             "SchoolSystem";

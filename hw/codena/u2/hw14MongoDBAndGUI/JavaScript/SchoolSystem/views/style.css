@@ -1,0 +1,47 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    padding: 20px;
+}
+
+fieldset {
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+}
+
+.form-container {
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.fields {
+
+    display: grid;
+
+    grid-template-columns: 100px 350px;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+button {
+
+    width: 120px;
+
+    height: 40px;
+}
