@@ -1,0 +1,38 @@
+[
+  {
+    "motherId": "1712345678",
+    "firstName": "Sofia",
+    "lastName": "Gomez",
+    "id": "Not registered",
+    "weight": 3200,
+    "height": 50,
+    "birthDate": "2024-01-10",
+    "disability": false,
+    "gestationPeriod": 39,
+    "months": 5
+  },
+  {
+    "motherId": "1798765432",
+    "firstName": "Not registered",
+    "lastName": "Not registered",
+    "id": "Not registered",
+    "weight": 0,
+    "height": 0,
+    "birthDate": "Pending",
+    "disability": false,
+    "gestationPeriod": 28,
+    "months": 0
+  },
+  {
+    "motherId": "1756781234",
+    "firstName": "Lucas",
+    "lastName": "Paredes",
+    "id": "B-003",
+    "weight": 2900,
+    "height": 48,
+    "birthDate": "2023-09-20",
+    "disability": false,
+    "gestationPeriod": 37,
+    "months": 8
+  }
+]
