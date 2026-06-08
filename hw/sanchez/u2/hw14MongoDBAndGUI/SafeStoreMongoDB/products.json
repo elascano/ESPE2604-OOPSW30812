@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "Vaso plastico 9oz",
+    "wholesalePrice": 0.15,
+    "retailPrice": 0.25,
+    "stock": 500,
+    "minStock": 100,
+    "expiryDate": "2026-06-25"
+  },
+  {
+    "id": 2,
+    "name": "Vaso plastico 12oz",
+    "wholesalePrice": 0.2,
+    "retailPrice": 0.35,
+    "stock": 400,
+    "minStock": 80,
+    "expiryDate": "2026-06-20"
+  },
+  {
+    "id": 3,
+    "name": "Vaso plastico 16oz",
+    "wholesalePrice": 0.25,
+    "retailPrice": 0.45,
+    "stock": 300,
+    "minStock": 60,
+    "expiryDate": "2026-07-15"
+  },
+  {
+    "id": 4,
+    "name": "Cuchara plastica",
+    "wholesalePrice": 0.05,
+    "retailPrice": 0.1,
+    "stock": 1000,
+    "minStock": 200,
+    "expiryDate": "2026-06-10"
+  },
+  {
+    "id": 5,
+    "name": "Cuchara de madera",
+    "wholesalePrice": 0.08,
+    "retailPrice": 0.15,
+    "stock": 600,
+    "minStock": 120,
+    "expiryDate": "2026-06-08"
+  },
+  {
+    "id": 6,
+    "name": "Tarrina mediana 500ml",
+    "wholesalePrice": 0.3,
+    "retailPrice": 0.5,
+    "stock": 200,
+    "minStock": 40,
+    "expiryDate": "2026-07-20"
+  },
+  {
+    "id": 7,
+    "name": "Tarrina grande 1000ml",
+    "wholesalePrice": 0.45,
+    "retailPrice": 0.75,
+    "stock": 150,
+    "minStock": 30,
+    "expiryDate": "2026-06-18"
+  },
+  {
+    "id": 8,
+    "name": "Funda de papel pequena",
+    "wholesalePrice": 0.08,
+    "retailPrice": 0.15,
+    "stock": 800,
+    "minStock": 150,
+    "expiryDate": "2026-08-10"
+  },
+  {
+    "id": 9,
+    "name": "Funda de papel grande",
+    "wholesalePrice": 0.12,
+    "retailPrice": 0.2,
+    "stock": 600,
+    "minStock": 120,
+    "expiryDate": "2026-06-28"
+  },
+  {
+    "id": 10,
+    "name": "Sorbete plastico",
+    "wholesalePrice": 0.03,
+    "retailPrice": 0.05,
+    "stock": 2000,
+    "minStock": 400,
+    "expiryDate": "2026-06-07"
+  },
+  {
+    "id": 11,
+    "name": "Sorbete de papel",
+    "wholesalePrice": 0.04,
+    "retailPrice": 0.08,
+    "stock": 1500,
+    "minStock": 300,
+    "expiryDate": "2026-06-12"
+  }
+]

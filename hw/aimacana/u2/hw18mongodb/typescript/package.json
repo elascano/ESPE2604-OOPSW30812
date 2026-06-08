@@ -1,0 +1,15 @@
+{
+  "name": "mongodb-ts",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "mongodb": "^6.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.7.0"
+  }
+}
