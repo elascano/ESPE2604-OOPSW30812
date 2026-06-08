@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MothersApp (Node.js MVC Version)</title>
+    <style>
+        body {
+            background-color: #d3d3d3; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+        }
+        .top-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        fieldset {
+            background-color: #e0e0e0;
+            border: 2px solid #a0a0a0;
+            border-radius: 4px;
+            padding: 15px;
+            flex: 1;
+        }
+        legend {
+            font-weight: bold;
+            font-size: 14px;
+            padding: 0 5px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .form-group label {
+            width: 100px;
+            font-size: 13px;
+        }
+        .form-group input {
+            flex: 1;
+            padding: 4px;
+            font-size: 13px;
+            border: 1px solid #999;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        button {
+            font-weight: bold;
+            font-size: 12px;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #707070;
+            border-radius: 2px;
+        }
+        button:active {
+            background-color: #c8c8c8;
+        }
+        .full-width {
+            width: 100%;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-container">
+        
+        <fieldset>
+            <legend> Mother </legend>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="mother_name">
+            </div>
+            <div class="form-group">
+                <label>LastName:</label>
+                <input type="text" id="mother_lastname">
+            </div>
+            <div class="form-group">
+                <label>Id:</label>
+                <input type="text" id="mother_id">
+            </div>
+            <div class="form-group">
+                <label>WeightKg:</label>
+                <input type="text" id="mother_weight">
+            </div>
+            <div class="form-group">
+                <label>BirthDate:</label>
+                <input type="text" id="mother_birthdate">
+            </div>
+            <div class="form-group">
+                <label>Height:</label>
+                <input type="text" id="mother_height">
+            </div>
+            <div class="button-group">
+                <button onclick="loadMother()">Load Mother</button>
+                <button onclick="saveMother()">Save Mother</button>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend> Baby </legend>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="baby_name">
+            </div>
+            <div class="form-group">
+                <label>LastName:</label>
+                <input type="text" id="baby_lastname">
+            </div>
+            <div class="form-group">
+                <label>Weightg:</label>
+                <input type="text" id="baby_weight">
+            </div>
+            <div class="form-group">
+                <label>BirthDate:</label>
+                <input type="text" id="baby_birthdate">
+            </div>
+            <div class="form-group">
+                <label>Height:</label>
+                <input type="text" id="baby_height">
+            </div>
+            <div class="button-group" style="justify-content: flex-end; gap: 10px;">
+                <button onclick="loadBaby()">Load Baby</button>
+                <button onclick="saveBaby()">Save Baby</button>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <fieldset class="full-width">
+        <legend> Medical appointment reminder </legend>
+        <div class="row">
+            <div class="form-group" style="flex: 1;">
+                <label style="width: 130px;">AppointmentDate:</label>
+                <input type="text" id="app_date">
+            </div>
+            <div class="form-group" style="flex: 2;">
+                <label style="width: 130px;">Recommendations:</label>
+                <input type="text" id="app_recom">
+            </div>
+            <button onclick="loadAppointment()">Load Appointment</button>
+            <button onclick="saveAppointment()">Save Appointment</button>
+        </div>
+    </fieldset>
+
+    <script>
+        const val = (id) => document.getElementById(id).value.trim();
+        const setVal = (id, value) => document.getElementById(id).value = value || '';
+
+    
+        async function saveMother() {
+            const payload = {
+                motherData: {
+                    id: val('mother_id'),
+                    firstName: val('mother_name'),
+                    lastName: val('mother_lastname'),
+                    birthDate: val('mother_birthdate'),
+                    weight: val('mother_weight'),
+                    height: val('mother_height')
+                },
+                babyData: {
+                    firstName: val('baby_name'),
+                    lastName: val('baby_lastname'),
+                    weight: val('baby_weight'),
+                    height: val('baby_height'),
+                    birthDate: val('baby_birthdate')
+                }
+            };
+
+            const res = await fetch('/api/save-mother', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            alert(data.error ? "Error: " + data.error : data.message);
+        }
+
+        async function saveBaby() {
+            const payload = {
+                firstName: val('baby_name'),
+                lastName: val('baby_lastname'),
+                weight: val('baby_weight'),
+                height: val('baby_height'),
+                birthDate: val('baby_birthdate'),
+                motherId: val('mother_id')
+            };
+
+            const res = await fetch('/api/save-baby', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            alert(data.error ? "Error: " + data.error : data.message);
+        }
+
+        async function saveAppointment() {
+            const payload = {
+                appointmentDate: val('app_date'),
+                recommendations: val('app_recom'),
+                motherId: val('mother_id')
+            };
+
+            const res = await fetch('/api/save-appointment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            alert(data.error ? "Error: " + data.error : data.message);
+        }
+
+      
+        async function loadMother() {
+            const motherId = val('mother_id');
+            if(!motherId) return alert("Please write a Mother ID first.");
+
+            const res = await fetch(`/api/load-mother?motherId=${motherId}`);
+            const data = await res.json();
+            
+            if(data.error) return alert("Error: " + data.error);
+            
+            setVal('mother_name', data.firstName);
+            setVal('mother_lastname', data.lastName);
+            setVal('mother_weight', data.weight);
+            setVal('mother_birthdate', data.birthDate);
+            setVal('mother_height', data.height);
+            alert("Mother data successfully downloaded!");
+        }
+
+        async function loadBaby() {
+            const motherId = val('mother_id');
+            if(!motherId) return alert("Please write a Mother ID first.");
+
+            const res = await fetch(`/api/load-baby?motherId=${motherId}`);
+            const data = await res.json();
+            
+            if(data.error) return alert("Error: " + data.error);
+
+            setVal('baby_name', data.firstName);
+            setVal('baby_lastname', data.lastName);
+            setVal('baby_weight', data.weight);
+            setVal('baby_birthdate', data.birthDate);
+            setVal('baby_height', data.height);
+            alert("Baby data successfully downloaded!");
+        }
+
+        async function loadAppointment() {
+            const motherId = val('mother_id');
+            if(!motherId) return alert("Please write a Mother ID first.");
+
+            const res = await fetch(`/api/load-appointment?motherId=${motherId}`);
+            const data = await res.json();
+            
+            if(data.error) return alert("Error: " + data.error);
+
+            setVal('app_date', data.appointmentDate);
+            setVal('app_recom', data.recommendations);
+            alert("Latest appointment downloaded!");
+        }
+    </script>
+</body>
+</html>
