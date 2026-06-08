@@ -1,0 +1,29 @@
+[
+  {
+    "productId": "1",
+    "name": "Bread",
+    "stock": 115,
+    "retailPrice": 0.25,
+    "wholesalePrice": 0.2,
+    "category": "Food",
+    "_id": "6a2658799c035b05addb3784"
+  },
+  {
+    "productId": "2",
+    "name": "Soda",
+    "stock": 48,
+    "retailPrice": 3.5,
+    "wholesalePrice": 3.2,
+    "category": "Food",
+    "_id": "6a2658fa9c035b05addb3785"
+  },
+  {
+    "productId": "3",
+    "name": "Laptop",
+    "stock": 24,
+    "retailPrice": 375,
+    "wholesalePrice": 350,
+    "category": "Electronics",
+    "_id": "6a265a259c035b05addb3787"
+  }
+]
