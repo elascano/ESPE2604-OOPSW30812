@@ -18,6 +18,7 @@
 *.tar.gz
 *.rar
 
+=======
 node_modules/
 jspm_packages/
 web_modules/
@@ -26,4 +27,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+<<<<<<< HEAD
 /ws/aimacana/u2/ws18DataBase/mongodb/target/
+=======
+/hw/codena/u2/hw09Libraries/JavaScript/StoreApp/nbproject/private/
+/hw/codena/u2/hw11UnitTest/JavaScript/Calculator/nbproject/private/
+/ws/palomo/u2/ws18GUI/shoppingCenter/target/
+/ws/palomo/u2/ws18GUISwing/shoppingCenter/target/
+/ws/palomo/u2/ws18GUISwing/ShoppingCenter_JS/nbproject/private/
+/ws/palomo/u2/ws18GUISwing/shoppingCenter_Java/target/
+>>>>>>> 4bd7b13947b86409cacd2260a76aa95f79a9444f

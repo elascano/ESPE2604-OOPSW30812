@@ -1,0 +1,6 @@
+ec\edu\espe\Billing\controller\BillingController.class
+ec\edu\espe\Billing\model\Payment.class
+ec\edu\espe\Billing\model\Person.class
+ec\edu\espe\Billing\model\Product.class
+ec\edu\espe\Billing\view\BillingSystem.class
+ec\edu\espe\Billing\view\BillingFrame.class

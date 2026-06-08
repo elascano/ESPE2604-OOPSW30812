@@ -1,0 +1,14 @@
+{
+  "name": "hw14mongodbjs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "electron": "^38.0.0",
+    "mongodb": "^7.0.0"
+  }
+}

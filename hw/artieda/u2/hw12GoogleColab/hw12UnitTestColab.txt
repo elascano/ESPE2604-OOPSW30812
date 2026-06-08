@@ -1,0 +1,77 @@
+Original file is located at
+
+https://colab.research.google.com/drive/1ma0iIn2eemUdCBf8XdDliKgGKxkSCp38?usp=sharing 
+
+
+import unittest
+
+class BasicOperation:
+
+    @staticmethod
+    def multiply(factor1: float, factor2: float) -> float:
+        """Computes the product of two floating-point numbers."""
+        return factor1 * factor2
+
+    @staticmethod
+    def add(num1: float, num2: float) -> float:
+        """Computes the sum of two floating-point numbers."""
+        return num1 + num2
+
+    @staticmethod
+    def subtract(num1: float, num2: float) -> float:
+        """Computes the difference of two floating-point numbers."""
+        return num1 - num2
+
+class TestBasicOperation(unittest.TestCase):
+
+    def test_multiply(self):
+
+        multiply_cases = [
+            (2.0, 3.0, 6.0),
+            (5.0, 0.0, 0.0),
+            (-2.0, 4.0, -8.0),
+            (-3.0, -5.0, 15.0),
+            (1.5, 2.0, 3.0),
+            (0.1, 0.2, 0.02),
+            (100.0, 10.0, 1000.0)
+        ]
+
+        for factor1, factor2, expected in multiply_cases:
+            with self.subTest(msg=f"Scenario: {factor1} * {factor2}"):
+                print(f"Running parameterized multiply test for: {factor1} * {factor2}")
+                self.assertAlmostEqual(BasicOperation.multiply(factor1, factor2), expected, places=3)
+
+    def test_add(self):
+        add_cases = [
+            (2.0, 3.0, 5.0),
+            (5.0, 0.0, 5.0),
+            (-2.0, 4.0, 2.0),
+            (-3.0, -5.0, -8.0),
+            (1.5, 2.0, 3.5),
+            (0.1, 0.2, 0.3),
+            (100.0, 10.0, 110.0)
+        ]
+
+        for num1, num2, expected in add_cases:
+            with self.subTest(msg=f"Scenario: {num1} + {num2}"):
+                print(f"Running parameterized add test for: {num1} + {num2}")
+                self.assertAlmostEqual(BasicOperation.add(num1, num2), expected, places=3)
+
+    def test_subtract(self):
+        subtract_cases = [
+            (5.0, 2.0, 3.0),
+            (5.0, 0.0, 5.0),
+            (-2.0, 4.0, -6.0),
+            (-3.0, -5.0, 2.0),
+            (2.0, 1.5, 0.5),
+            (0.2, 0.1, 0.1),
+            (100.0, 10.0, 90.0)
+        ]
+
+        for num1, num2, expected in subtract_cases:
+            with self.subTest(msg=f"Scenario: {num1} - {num2}"):
+                print(f"Running parameterized subtract test for: {num1} - {num2}")
+                self.assertAlmostEqual(BasicOperation.subtract(num1, num2), expected, places=3)
+
+if __name__ == '__main__':
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

@@ -1,0 +1,35 @@
+[
+  {
+    "motherId": "1712345678",
+    "babyId": "B-001",
+    "savedAt": "2024-07-01 09:00:00",
+    "temperature": 36.8,
+    "respiratoryDistress": false,
+    "feedingProblems": false,
+    "abnormalSkinColor": false,
+    "lethargyOrCrying": false,
+    "riskLevel": "NORMAL"
+  },
+  {
+    "motherId": "1798765432",
+    "babyId": "unknown",
+    "savedAt": "2024-07-20 15:00:00",
+    "temperature": 38.5,
+    "respiratoryDistress": true,
+    "feedingProblems": true,
+    "abnormalSkinColor": false,
+    "lethargyOrCrying": true,
+    "riskLevel": "CRITICAL"
+  },
+  {
+    "motherId": "1756781234",
+    "babyId": "B-003",
+    "savedAt": "2024-07-10 08:00:00",
+    "temperature": 37.0,
+    "respiratoryDistress": false,
+    "feedingProblems": false,
+    "abnormalSkinColor": false,
+    "lethargyOrCrying": false,
+    "riskLevel": "NORMAL"
+  }
+]

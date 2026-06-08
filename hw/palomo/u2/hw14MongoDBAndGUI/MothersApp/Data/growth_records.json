@@ -1,0 +1,29 @@
+[
+  {
+    "motherId": "1712345678",
+    "savedAt": "2024-07-01 10:30:00",
+    "motherWeight": 65.5,
+    "motherHeight": 162.0,
+    "babyWeight": 3200.0,
+    "babyHeight": 50.0,
+    "growthStatus": "NORMAL"
+  },
+  {
+    "motherId": "1798765432",
+    "savedAt": "2024-07-20 16:30:00",
+    "motherWeight": 70.0,
+    "motherHeight": 158.0,
+    "babyWeight": 0.0,
+    "babyHeight": 0.0,
+    "growthStatus": "SEVERE"
+  },
+  {
+    "motherId": "1756781234",
+    "savedAt": "2024-07-10 09:00:00",
+    "motherWeight": 60.0,
+    "motherHeight": 165.0,
+    "babyWeight": 2900.0,
+    "babyHeight": 48.0,
+    "growthStatus": "NORMAL"
+  }
+]
