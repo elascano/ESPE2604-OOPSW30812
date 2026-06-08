@@ -1,1 +1,0 @@
-console.log("Hello world, this was made in JavaScript by Kevin Alban");

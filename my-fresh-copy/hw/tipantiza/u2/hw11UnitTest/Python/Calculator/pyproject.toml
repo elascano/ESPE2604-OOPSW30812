@@ -1,6 +1,0 @@
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q --junitxml=./target/surefire-reports/TEST-report.xml"
-testpaths = [
-    "tests",
-]

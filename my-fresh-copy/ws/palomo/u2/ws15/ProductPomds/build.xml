@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="ProductPomds" default="default" basedir=".">
-    <description>Product POMDS - ec.edu.espe</description>
-    <import file="nbproject/build-impl.xml"/>
-</project>
