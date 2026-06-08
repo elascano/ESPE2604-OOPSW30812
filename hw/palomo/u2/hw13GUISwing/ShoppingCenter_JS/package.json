@@ -1,0 +1,11 @@
+{
+  "name": "shopping-center",
+  "version": "1.0.0",
+  "description": "Shopping Center - Proyecto convertido de Java a JavaScript",
+  "main": "ShoppingCenter.js",
+  "scripts": {
+    "start": "node ShoppingCenter.js"
+  },
+  "author": "Cristian",
+  "license": "ISC"
+}
