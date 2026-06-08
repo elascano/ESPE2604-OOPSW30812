@@ -26,3 +26,4 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+/ws/aimacana/u2/ws18DataBase/mongodb/target/
