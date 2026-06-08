@@ -1,0 +1,12 @@
+{
+  "name": "interfaces-js",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^30.0.0",
+    "mongoose": "^8.0.0"
+  }
+}
