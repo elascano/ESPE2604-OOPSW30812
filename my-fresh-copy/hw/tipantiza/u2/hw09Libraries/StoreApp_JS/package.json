@@ -1,0 +1,16 @@
+{
+  "name": "store-app",
+  "version": "1.0.0",
+  "description": "Store application showcasing clean code principles",
+  "main": "view/store.js",
+  "author": "Alexander Tipantiza",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "taxeslib": "file:../Libraries/TaxesLib"
+  }
+}

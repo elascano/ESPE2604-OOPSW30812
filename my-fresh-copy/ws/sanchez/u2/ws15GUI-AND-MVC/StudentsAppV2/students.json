@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Andres",
+    "lastName": "Sanchez",
+    "age": 20,
+    "subjectsGrades": {
+      "Programming": [
+        12.5,
+        15.0,
+        14.5
+      ]
+    }
+  },
+  {
+    "firstName": "Alexander",
+    "lastName": "Tipan",
+    "age": 24,
+    "subjectsGrades": {
+      "Chemistry": [
+        12.5,
+        15.0,
+        19.5
+      ]
+    }
+  },
+  {
+    "firstName": "juan",
+    "lastName": "perez",
+    "age": 24,
+    "subjectsGrades": {
+      "Programming": [
+        12.0,
+        15.0,
+        18.5
+      ]
+    }
+  }
+]

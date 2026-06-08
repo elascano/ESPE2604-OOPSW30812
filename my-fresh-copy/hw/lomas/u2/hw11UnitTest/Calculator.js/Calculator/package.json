@@ -1,0 +1,16 @@
+{
+    "name": "Calculator",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "Christopher Lomas,<CodeBros,@ESPE>",
+    "contributors": [],
+    "devDependencies": {
+        "jest": "^30.4.2"
+    }
+}

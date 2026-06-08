@@ -1,0 +1,16 @@
+{
+  "name": "product-app",
+  "version": "1.0.0",
+  "description": "MVC Product Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.5.1"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}

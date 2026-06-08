@@ -1,0 +1,10 @@
+{
+  "name": "StoreApp",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "ec.edu.espe.store.view/Store.js",
+  "keywords": ["util", "functional", "server", "client", "browser"],
+  "author": "Christopher Lomas, <CodeBros, @ESPE>",
+  "contributors": [],
+  "dependencies": {}
+}

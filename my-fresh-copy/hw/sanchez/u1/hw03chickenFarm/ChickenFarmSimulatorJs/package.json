@@ -1,0 +1,9 @@
+{
+    "name": "ChickenFarmSimulatorJs",
+    "version": "1.0.0",
+    "type": "module",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Joel Sanchez, The Softwarriors, @ESPE",
+    "contributors": [],
+    "dependencies": {}
+}

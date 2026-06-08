@@ -1,0 +1,8 @@
+{
+  "name": "store-app",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "taxes-lib": "file:../taxes-lib"
+  }
+}

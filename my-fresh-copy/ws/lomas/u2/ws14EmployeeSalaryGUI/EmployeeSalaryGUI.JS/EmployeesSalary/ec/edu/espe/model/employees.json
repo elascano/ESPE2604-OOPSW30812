@@ -1,0 +1,17 @@
+[
+    {
+        "id": "123",
+        "name": "Lomas",
+        "salary": 100
+    },
+    {
+        "id": "456",
+        "name": "Josue",
+        "salary": 100
+    },
+    {
+        "id": "789",
+        "name": "Edison",
+        "salary": 100
+    }
+]

@@ -1,0 +1,31 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.tar.gz
+*.rar
+
+=======
+node_modules/
+jspm_packages/
+web_modules/
+
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+/hw/codena/u2/hw09Libraries/JavaScript/StoreApp/nbproject/private/
+/hw/codena/u2/hw11UnitTest/JavaScript/Calculator/nbproject/private/

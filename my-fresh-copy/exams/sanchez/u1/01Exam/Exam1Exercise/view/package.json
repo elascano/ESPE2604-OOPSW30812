@@ -1,0 +1,9 @@
+{
+    "name": "Exam1Exercise",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Joel Sanchez <The_Softwarriors at ESPE>",
+    "contributors": [],
+    "dependencies": {}
+    "type": "module"
+}
