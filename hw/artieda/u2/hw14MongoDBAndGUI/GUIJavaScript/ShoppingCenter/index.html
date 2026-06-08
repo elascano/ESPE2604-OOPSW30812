@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Center - JS Replica</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 400px; }
+        header h1 { text-align: center; color: #333; font-size: 1.5rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1rem; display: flex; flex-direction: column; }
+        .form-group label { font-weight: bold; margin-bottom: 0.5rem; color: #555; }
+        .form-group input, .form-group select { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+        footer { margin-top: 2rem; display: flex; justify-content: space-around; }
+        button { padding: 0.5rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+        #btnInsert { background-color: #28a745; color: white; }
+        #btnCancel { background-color: #ffc107; color: #333; }
+        #btnQuit { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Customers</h1>
+        </header>
+
+        <form id="customerForm">
+            <div class="form-group">
+                <label for="id">Id:</label>
+                <input type="text" id="id" required>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="moneySpent">Money Spent:</label>
+                <input type="number" step="0.01" id="moneySpent" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age: <span id="ageValue">50</span></label>
+                <input type="range" id="age" min="0" max="100" value="50">
+            </div>
+            <div class="form-group">
+                <label for="typeOfCustomer">Type of Customer:</label>
+                <select id="typeOfCustomer">
+                    <option value="Frequent">Frequent</option>
+                    <option value="Ocassional">Ocassional</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Preferencial">Preferencial</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hobbies">Hobbies:</label>
+                <select id="hobbies" multiple size="6">
+                    <option value="Play Music">Play Music</option>
+                    <option value="Listening to Music">Listening to Music</option>
+                    <option value="Play Soccer">Play Soccer</option>
+                    <option value="Play an Instrument">Play an Instrument</option>
+                    <option value="Paint">Paint</option>
+                    <option value="Study English">Study English</option>
+                </select>
+            </div>
+
+            <footer>
+                <button type="submit" id="btnInsert">Insert</button>
+                <button type="button" id="btnCancel">Cancel</button>
+                <button type="button" id="btnQuit">Quit</button>
+            </footer>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ageInput = document.getElementById('age');
+            const ageValue = document.getElementById('ageValue');
+            const customerForm = document.getElementById('customerForm');
+            const btnCancel = document.getElementById('btnCancel');
+            const btnQuit = document.getElementById('btnQuit');
+
+            ageInput.addEventListener('input', (e) => { ageValue.textContent = e.target.value; });
+
+            customerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const hobbiesSelect = document.getElementById('hobbies');
+                const hobbies = Array.from(hobbiesSelect.selectedOptions).map(opt => opt.value);
+                const customer = {
+                    id: document.getElementById('id').value,
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    gender: document.getElementById('gender').value,
+                    moneySpent: document.getElementById('moneySpent').value,
+                    age: ageInput.value,
+                    typeOfCustomer: document.getElementById('typeOfCustomer').value,
+                    hobbies: hobbies
+                };
+                alert(`Shopping Center - Customer Registered:\n${JSON.stringify(customer, null, 2)}`);
+                customerForm.reset();
+                ageValue.textContent = '50';
+            });
+
+            btnCancel.addEventListener('click', () => {
+                customerForm.reset();
+                ageValue.textContent = '50';
+            });
+
+            btnQuit.addEventListener('click', () => {
+                if (confirm('Exit Shopping Center?')) { window.close(); alert('Quit signal received.'); }
+            });
+        });
+    </script>
+</body>
+</html>
