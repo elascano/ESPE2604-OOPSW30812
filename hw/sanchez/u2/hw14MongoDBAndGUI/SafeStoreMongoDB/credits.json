@@ -1,0 +1,50 @@
+[
+  {
+    "customerId": 1,
+    "customerName": "Andres",
+    "creditLimit": 20.0,
+    "currentDebt": 0.0,
+    "transactions": [],
+    "isBlocked": false
+  },
+  {
+    "customerId": 201,
+    "customerName": "Luis Fernandez",
+    "creditLimit": 1000.0,
+    "currentDebt": 450.0,
+    "transactions": [],
+    "isBlocked": false
+  },
+  {
+    "customerId": 202,
+    "customerName": "Martha Gomez",
+    "creditLimit": 2000.0,
+    "currentDebt": 1250.0,
+    "transactions": [],
+    "isBlocked": false
+  },
+  {
+    "customerId": 203,
+    "customerName": "Roberto Castro",
+    "creditLimit": 5000.0,
+    "currentDebt": 3200.0,
+    "transactions": [],
+    "isBlocked": true
+  },
+  {
+    "customerId": 204,
+    "customerName": "Patricia Mora",
+    "creditLimit": 3000.0,
+    "currentDebt": 800.0,
+    "transactions": [],
+    "isBlocked": false
+  },
+  {
+    "customerId": 205,
+    "customerName": "Carlos Andrade",
+    "creditLimit": 1500.0,
+    "currentDebt": 1500.0,
+    "transactions": [],
+    "isBlocked": true
+  }
+]
