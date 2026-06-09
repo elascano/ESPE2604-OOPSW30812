@@ -3,21 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ec.edu.espe.shoppignCenter.view;
-
-import java.awt.event.ActionListener;
-
 /**
  *
  * @author Cristian Palmo,Error 404 @ESPE
  */
 public class Splash extends javax.swing.JFrame {
-
+     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Splash.class.getName());
     /**
      * Creates new form Splash
      */
     public Splash() {
         initComponents();
-      
+         this.setLocationRelativeTo(null);
+        
+    
+        javax.swing.Timer timer = new javax.swing.Timer(5000, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                
+                Login Login = new Login();
+                Login.setVisible(true);
+                
+               
+                dispose(); 
+            }
+        });
+        timer.start(); 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,24 +122,15 @@ public class Splash extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Splash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Splash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Splash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Splash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Splash().setVisible(true);
-            }
-        });
-    }
+         java.awt.EventQueue.invokeLater(() -> new Splash().setVisible(true));
+        }
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LBLLicence;
     private javax.swing.JPanel jPanel1;
