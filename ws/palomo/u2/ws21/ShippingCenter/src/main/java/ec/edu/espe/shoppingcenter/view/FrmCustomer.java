@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ec.edu.espe.shoppingcenter.view;
-
+import ec.edu.espe.shoppingcenter.model.Customer;
 import java.util.ArrayList;
 
 /**
@@ -37,23 +37,23 @@ public class FrmCustomer extends javax.swing.JFrame {
         txtFirstName = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
         cmbGender = new javax.swing.JComboBox<>();
-        TXTMoneySpend = new javax.swing.JTextField();
-        SldAge = new javax.swing.JSlider();
-        cmbTyoeOfCustomer = new javax.swing.JComboBox<>();
+        txtMoneySpent = new javax.swing.JTextField();
+        sldAge = new javax.swing.JSlider();
+        cmbtypeOfCustomer = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         listHobbies = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        lblFirtsName = new javax.swing.JLabel();
+        lblLastName = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblMoneySpent = new javax.swing.JLabel();
+        lblage = new javax.swing.JLabel();
+        lblTypeOfCustomer = new javax.swing.JLabel();
+        lblHobbies = new javax.swing.JLabel();
         lblAge = new javax.swing.JLabel();
         pnlFooter = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnInsert = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
 
@@ -90,11 +90,12 @@ public class FrmCustomer extends javax.swing.JFrame {
 
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
 
-        SldAge.setMaximum(113);
-        SldAge.setMinimum(1);
-        SldAge.addChangeListener(this::SldAgeStateChanged);
+        sldAge.setMaximum(113);
+        sldAge.setMinimum(1);
+        sldAge.addChangeListener(this::sldAgeStateChanged);
 
-        cmbTyoeOfCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Frequent", "Ocasional", "Friend", "Preferencial", " " }));
+        cmbtypeOfCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Frequent", "Ocasional", "Friend", "Preferencial", " " }));
+        cmbtypeOfCustomer.addActionListener(this::cmbtypeOfCustomerActionPerformed);
 
         listHobbies.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Play music", "Listening to music", "Play soccer", "Play an instrument", "Paint", "Study English" };
@@ -103,21 +104,21 @@ public class FrmCustomer extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listHobbies);
 
-        jLabel2.setText("Id:");
+        lblId.setText("Id:");
 
-        jLabel3.setText("Firts Name:");
+        lblFirtsName.setText("Firts Name:");
 
-        jLabel4.setText("Last Name:");
+        lblLastName.setText("Last Name:");
 
-        jLabel5.setText("Gender:");
+        lblGender.setText("Gender:");
 
-        jLabel6.setText("Money Spent:");
+        lblMoneySpent.setText("Money Spent:");
 
-        jLabel7.setText("Age:");
+        lblage.setText("Age:");
 
-        jLabel8.setText("Type of customer:");
+        lblTypeOfCustomer.setText("Type of customer:");
 
-        jLabel9.setText("Hobbies:");
+        lblHobbies.setText("Hobbies:");
 
         lblAge.setText("0");
 
@@ -128,19 +129,19 @@ public class FrmCustomer extends javax.swing.JFrame {
             .addGroup(pnlDataInputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblGender, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblMoneySpent, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblage, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTypeOfCustomer, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblHobbies, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblFirtsName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLastName, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTyoeOfCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbtypeOfCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlDataInputLayout.createSequentialGroup()
-                        .addComponent(SldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAge))
                     .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -148,7 +149,7 @@ public class FrmCustomer extends javax.swing.JFrame {
                         .addComponent(txtLastName)
                         .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TXTMoneySpend, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMoneySpent, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -158,45 +159,46 @@ public class FrmCustomer extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(lblFirtsName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(lblLastName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(lblGender))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TXTMoneySpend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(txtMoneySpent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMoneySpent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(sldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblage)
                     .addComponent(lblAge))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTyoeOfCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(cmbtypeOfCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTypeOfCustomer))
                 .addGap(24, 24, 24)
                 .addGroup(pnlDataInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDataInputLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(lblHobbies)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jButton1.setText("Insert");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(this::btnInsertActionPerformed);
 
-        jButton2.setText("Cancel");
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(this::btnCancelActionPerformed);
 
         btnQuit.setText("Quit");
         btnQuit.addActionListener(this::btnQuitActionPerformed);
@@ -210,9 +212,9 @@ public class FrmCustomer extends javax.swing.JFrame {
             pnlFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFooterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btnInsert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnCancel)
                 .addGap(18, 18, 18)
                 .addComponent(btnQuit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,8 +226,8 @@ public class FrmCustomer extends javax.swing.JFrame {
             .addGroup(pnlFooterLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(pnlFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnInsert)
+                    .addComponent(btnCancel)
                     .addComponent(btnQuit)
                     .addComponent(btnMenu))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -260,7 +262,7 @@ public class FrmCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
     
     int id;
     String firstName;
@@ -274,14 +276,26 @@ public class FrmCustomer extends javax.swing.JFrame {
     id= Integer.parseInt(txtId.getText());
     firstName = txtFirstName.getText();
     lastName = txtLastName.getText();
+    typeOfCustomer = cmbtypeOfCustomer.getSelectedItem().toString();
+    gender = cmbGender.getSelectedItem().toString();
+    moneySpent = Float.parseFloat(txtMoneySpent.getText());
+    age = sldAge.getValue();
     
-    
-    
-    }//GEN-LAST:event_jButton1ActionPerformed
+    Customer customer = new Customer(id, firstName, lastName, typeOfCustomer, gender, moneySpent, age, hobbies);
 
-    private void SldAgeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SldAgeStateChanged
-        lblAge.setText(String.valueOf(SldAge.getValue()));
-    }//GEN-LAST:event_SldAgeStateChanged
+        System.out.println("customer --->" + customer);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                customer.toString(),
+                "Customer Information",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void sldAgeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldAgeStateChanged
+        lblage.setText(String.valueOf(sldAge.getValue()));
+    }//GEN-LAST:event_sldAgeStateChanged
 
     private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
         // TODO validate if it is 
@@ -292,10 +306,22 @@ public class FrmCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-    this.disposer();
+    this.dispose();
     FrmMenu frmMenu = new FrmMenu();
-    FrmMenu.setvisible(true);
+    frmMenu.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    txtFirstName.setText("");
+        txtId.setText("");
+        txtLastName.setText("");
+        txtMoneySpent.setText("");
+        sldAge.setValue(1);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void cmbtypeOfCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtypeOfCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbtypeOfCustomerActionPerformed
     
     /**
      * @param args the command line arguments
@@ -323,31 +349,31 @@ public class FrmCustomer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSlider SldAge;
-    private javax.swing.JTextField TXTMoneySpend;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnQuit;
     private javax.swing.JComboBox<String> cmbGender;
-    private javax.swing.JComboBox<String> cmbTyoeOfCustomer;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> cmbtypeOfCustomer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblFirtsName;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblHobbies;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMoneySpent;
+    private javax.swing.JLabel lblTypeOfCustomer;
+    private javax.swing.JLabel lblage;
     private javax.swing.JList<String> listHobbies;
     private javax.swing.JPanel pnlDataInput;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHeader;
+    private javax.swing.JSlider sldAge;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtMoneySpent;
     // End of variables declaration//GEN-END:variables
 }

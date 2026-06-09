@@ -30,7 +30,7 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        mnuQuick = new javax.swing.JMenuItem();
+        itmQuick = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         imtBuy = new javax.swing.JMenuItem();
         itmSell = new javax.swing.JMenuItem();
@@ -49,13 +49,13 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenu1.setText("System");
 
-        mnuQuick.setText("Quick");
-        mnuQuick.addActionListener(new java.awt.event.ActionListener() {
+        itmQuick.setText("Quick");
+        itmQuick.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuQuickActionPerformed(evt);
+                itmQuickActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuQuick);
+        jMenu1.add(itmQuick);
 
         jMenuBar1.add(jMenu1);
 
@@ -75,6 +75,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu4.setText("Reports");
 
         itmGeneret.setText("Generet");
+        itmGeneret.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmGeneretActionPerformed(evt);
+            }
+        });
         jMenu4.add(itmGeneret);
 
         jMenuBar1.add(jMenu4);
@@ -82,6 +87,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu5.setText("Customers");
 
         itmManager.setText("Manager");
+        itmManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmManagerActionPerformed(evt);
+            }
+        });
         jMenu5.add(itmManager);
 
         jMenuBar1.add(jMenu5);
@@ -105,10 +115,20 @@ public class FrmMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuQuickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuQuickActionPerformed
-        System.exit
-    }//GEN-LAST:event_mnuQuickActionPerformed
+    private void itmQuickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmQuickActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_itmQuickActionPerformed
 
+    private void itmGeneretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmGeneretActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmGeneretActionPerformed
+
+    private void itmManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmManagerActionPerformed
+    FrmCustomer frmCustomer = new FrmCustomer();
+        this.dispose();
+        frmCustomer.setVisible(true);
+    }//GEN-LAST:event_itmManagerActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -137,10 +157,8 @@ public class FrmMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrmMenu().setVisible(true);
         });
     }
 
@@ -149,6 +167,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem imtaddtotock;
     private javax.swing.JMenuItem itmGeneret;
     private javax.swing.JMenuItem itmManager;
+    private javax.swing.JMenuItem itmQuick;
     private javax.swing.JMenuItem itmSell;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -158,6 +177,5 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem mnuQuick;
     // End of variables declaration//GEN-END:variables
 }

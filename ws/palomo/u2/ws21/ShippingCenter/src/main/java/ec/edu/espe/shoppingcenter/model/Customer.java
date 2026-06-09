@@ -8,14 +8,15 @@ import java.util.ArrayList;
  */
 public class Customer {
     private int id;
-    private String firsName;
+    private String firstName;
     private String lastName;
     private String gender;
     private float moneySpent;
     private int age;
     private String typeOfCustomer;
-    private ArrayList<String> hibbies;
-
+    private ArrayList<String> hobbies;
+    
+    
     /**
      * @return the id
      */
@@ -34,14 +35,29 @@ public class Customer {
      * @return the firsName
      */
     public String getFirsName() {
-        return firsName;
+        return firstName;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firsName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", moneySpent=" + moneySpent + ", age=" + age + ", typeOfCustomer=" + typeOfCustomer + ", hobbies=" + hobbies + '}';
+    }
+     public Customer(int id, String firstName, String lastName, String typeOfCustomer, String gender, float moneySpent, int age, ArrayList<String> hobbies) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.typeOfCustomer = typeOfCustomer;
+        this.gender = gender;
+        this.moneySpent = moneySpent;
+        this.age = age;
+        this.hobbies = hobbies;
     }
 
     /**
      * @param firsName the firsName to set
      */
     public void setFirsName(String firsName) {
-        this.firsName = firsName;
+        this.firstName = firsName;
     }
 
     /**
@@ -118,14 +134,14 @@ public class Customer {
      * @return the hibbies
      */
     public ArrayList<String> getHibbies() {
-        return hibbies;
+        return hobbies;
     }
 
     /**
      * @param hibbies the hibbies to set
      */
     public void setHibbies(ArrayList<String> hibbies) {
-        this.hibbies = hibbies;
+        this.hobbies = hibbies;
     }
     
 }

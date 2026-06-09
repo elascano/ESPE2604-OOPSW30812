@@ -19,12 +19,12 @@
             <Property name="text" type="java.lang.String" value="System"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuQuick">
+            <MenuItem class="javax.swing.JMenuItem" name="itmQuick">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quick"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuQuickActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmQuickActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -60,6 +60,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Generet"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmGeneretActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -72,6 +75,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manager"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmManagerActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
