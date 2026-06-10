@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InventoryHub JS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>InventoryHub JS</h1>
+      <p>Manage customers, products, and suppliers</p>
+    </header>
+
+    <section class="tabs">
+      <button data-tab="customer" class="active">Customer</button>
+      <button data-tab="product">Product</button>
+      <button data-tab="supplier">Supplier</button>
+      <button data-tab="info">Info</button>
+    </section>
+
+    <main>
+      <div class="tab-panel active" id="customer">
+        <h2>Insert Customer</h2>
+        <form id="customer-form">
+          <label>RUC<input type="number" name="ruc" required /></label>
+          <label>Name<input type="text" name="name" required /></label>
+          <label>Address<input type="text" name="address" required /></label>
+          <label>Gmail<input type="email" name="gmailCustomer" required /></label>
+          <button type="submit">Insert Customer</button>
+        </form>
+      </div>
+
+      <div class="tab-panel" id="product">
+        <h2>Insert Product</h2>
+        <form id="product-form">
+          <label>ID<input type="text" name="id" required /></label>
+          <label>Name<input type="text" name="name" required /></label>
+          <label>Unit Price<input type="number" step="0.01" name="unitPrice" required /></label>
+          <label>Stock<input type="number" name="stock" min="0" required /></label>
+          <button type="submit">Insert Product</button>
+        </form>
+      </div>
+
+      <div class="tab-panel" id="supplier">
+        <h2>Insert Supplier</h2>
+        <form id="supplier-form">
+          <label>RUC<input type="text" name="ruc" required /></label>
+          <label>Company Name<input type="text" name="companyName" required /></label>
+          <label>Address<input type="text" name="address" required /></label>
+          <label>Phone<input type="text" name="phone" required pattern="\d{10}" /></label>
+          <label>Email<input type="email" name="email" required /></label>
+          <button type="submit">Insert Supplier</button>
+        </form>
+      </div>
+
+      <div class="tab-panel" id="info">
+        <h2>Consult Information</h2>
+        <div class="info-controls">
+          <select id="info-select">
+            <option value="customers">Customer</option>
+            <option value="products">Product</option>
+            <option value="suppliers">Supplier</option>
+          </select>
+          <button id="load-info">Load</button>
+        </div>
+        <div class="table-container">
+          <table id="info-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

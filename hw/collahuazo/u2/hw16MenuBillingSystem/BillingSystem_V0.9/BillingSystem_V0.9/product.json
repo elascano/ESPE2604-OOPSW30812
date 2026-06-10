@@ -1,0 +1,20 @@
+[
+  {
+    "id": "123",
+    "name": "Doritos",
+    "unitPrice": 0.6,
+    "stock": 20
+  },
+  {
+    "id": "24234",
+    "name": "d",
+    "unitPrice": 1.0,
+    "stock": 5
+  },
+  {
+    "id": "1244",
+    "name": "QUESO",
+    "unitPrice": 2.0,
+    "stock": 14
+  }
+]

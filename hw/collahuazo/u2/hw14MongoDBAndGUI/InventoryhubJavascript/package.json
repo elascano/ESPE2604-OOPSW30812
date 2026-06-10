@@ -1,0 +1,19 @@
+{
+  "name": "javascript_inventoryhub",
+  "version": "1.0.0",
+  "description": "InventoryHub JavaScript version with Express and MongoDB",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^7.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
