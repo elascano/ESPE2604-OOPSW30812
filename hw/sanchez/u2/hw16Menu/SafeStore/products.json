@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "Leche",
+    "wholesalePrice": 2.5,
+    "retailPrice": 2.0,
+    "stock": 100,
+    "minStock": 10,
+    "expiryDate": "2027-02-28"
+  }
+]
