@@ -1,0 +1,29 @@
+[
+  {
+    "motherId": "1712345678",
+    "calculatedAt": "2024-07-01",
+    "method": "LMP",
+    "inputDate": "2024-04-15",
+    "currentWeek": 11,
+    "trimester": "1st Trimester",
+    "estimatedDueDate": "2025-01-20"
+  },
+  {
+    "motherId": "1798765432",
+    "calculatedAt": "2024-07-20",
+    "method": "WEEK",
+    "inputDate": "2024-07-20",
+    "currentWeek": 28,
+    "trimester": "3rd Trimester",
+    "estimatedDueDate": "2024-10-08"
+  },
+  {
+    "motherId": "1756781234",
+    "calculatedAt": "2024-07-10",
+    "method": "LMP",
+    "inputDate": "2024-01-02",
+    "currentWeek": 27,
+    "trimester": "2nd Trimester",
+    "estimatedDueDate": "2024-10-07"
+  }
+]
