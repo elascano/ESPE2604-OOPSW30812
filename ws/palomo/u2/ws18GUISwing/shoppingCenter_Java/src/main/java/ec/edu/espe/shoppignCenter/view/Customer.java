@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ec.edu.espe.shoppignCenter.view;
-
+import ec.edu.espe.shoppingCenter.model.Customer;
+import java.util.ArrayList;
 /**
  *
  * @author Cristian
@@ -225,7 +226,49 @@ public class Customer extends javax.swing.JFrame {
     private void sldAgeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldAgeStateChanged
     lblAge.setText(String.valueOf(sldAge.getValue()));
     }//GEN-LAST:event_sldAgeStateChanged
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
 
+        int id;
+        String firstName;
+        String lastName;
+        String typeOfClient;
+        String gender;
+        float moneySpend;
+        int age;
+        ArrayList<String> hobbies = null;
+
+        id = Integer.parseInt(txtId.getText());
+        firstName = txtFirstName.getText();
+        lastName = txtLastName.getText();
+        typeOfClient = cmbTypeOfClient.getSelectedItem().toString();
+        gender = cmbGender.getSelectedItem().toString();
+        moneySpend = Float.parseFloat(txtMoneySpent.getText());
+        age = sldAge.getValue();
+
+        Customer customer = new Customer(id, firstName, lastName, typeOfClient, gender, moneySpend, age, hobbies);
+
+        System.out.println("customer --->" + customer);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                customer.toString(),
+                "Customer Information",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        this.dispose();
+        FrmMenu frmMenu = new FrmMenu();
+        frmMenu.setVisible(true);
+    }//GEN-LAST:event_btnMenuActionPerformed
+     
+     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        txtFirstName.setText("");
+        txtId.setText("");
+        txtLastName.setText("");
+        txtMoneySpent.setText("");
+        sldAge.setValue(1);
+    }//GEN-LAST:event_btnCancelActionPerformed
     /**
      * @param args the command line arguments
      */

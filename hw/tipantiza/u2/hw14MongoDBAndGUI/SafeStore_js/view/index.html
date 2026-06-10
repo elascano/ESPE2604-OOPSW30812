@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SafeStore - Sales System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 { color: #0078D4; margin-bottom: 20px; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; }
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab-btn.active { background-color: #0078D4; color: white; }
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 0 10px 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tab-content.active { display: block; }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        legend { font-weight: bold; padding: 0 10px; color: #0078D4; }
+        .form-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 120px; font-weight: bold; }
+        input, select, button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #0078D4;
+            color: white;
+            cursor: pointer;
+            border: none;
+            margin: 2px;
+        }
+        button:hover { background-color: #005a9e; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #0078D4; color: white; }
+        .totals {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            color: #155724;
+        }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+        .search-bar { margin-bottom: 15px; display: flex; gap: 10px; align-items: center; }
+        .search-bar input { flex: 1; max-width: 300px; }
+        
+        /* Modal Dialog Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+        }
+        .modal-content h3 { margin-bottom: 15px; color: #0078D4; }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .modal-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <h1>🛒 SafeStore - Sales System</h1>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('sales')">💰 SALES</button>
+        <button class="tab-btn" onclick="showTab('products')">📦 PRODUCTS</button>
+        <button class="tab-btn" onclick="showTab('suppliers')">🏭 SUPPLIERS</button>
+        <button class="tab-btn" onclick="showTab('history')">📜 HISTORY</button>
+    </div>
+    
+    <!-- SALES TAB -->
+    <div id="sales" class="tab-content active">
+        <fieldset>
+            <legend>📋 Customer Information</legend>
+            <div class="form-group">
+                <label>Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Enter customer name" style="width: 250px;">
+            </div>
+            <div class="form-group">
+                <label>Sale Type:</label>
+                <select id="saleType">
+                    <option>Retail</option>
+                    <option>Wholesale</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Payment Method:</label>
+                <select id="paymentMethod">
+                    <option>Cash</option>
+                    <option>Credit</option>
+                    <option>Transfer</option>
+                </select>
+            </div>
+            <button onclick="startNewSale()">Start New Sale</button>
+        </fieldset>
+        
+        <fieldset>
+            <legend>➕ Add Product to Sale</legend>
+            <div class="form-group">
+                <label>Product:</label>
+                <select id="productSelect" style="width: 250px;"></select>
+            </div>
+            <div class="form-group">
+                <label>Quantity:</label>
+                <input type="number" id="quantity" value="1" min="1" style="width: 100px;">
+            </div>
+            <button onclick="addToCart()">Add to Cart</button>
+        </fieldset>
+        
+        <fieldset>
+            <legend>🛒 Shopping Cart</legend>
+            <table id="cartTable">
+                <thead><tr><th>ID</th><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th>Action</th></td></thead>
+                <tbody id="cartBody"></tbody>
+            </table>
+        </fieldset>
+        
+        <div class="totals" id="totals">Subtotal: $0.00 | IVA (15%): $0.00 | TOTAL: $0.00</div>
+        <div>
+            <button class="btn-success" onclick="finalizeSale()">✅ Finalize Sale</button>
+            <button onclick="clearCart()">🗑️ Clear Cart</button>
+        </div>
+        <div class="status" id="status">Status: Ready</div>
+    </div>
+    
+    <!-- PRODUCTS TAB -->
+    <div id="products" class="tab-content">
+        <div class="search-bar">
+            <input type="text" id="searchProduct" placeholder="Search product by name or ID...">
+            <button onclick="searchProducts()">🔍 Search</button>
+            <button onclick="loadProducts()">🔄 Refresh</button>
+            <button onclick="showAddProductDialog()">➕ Add Product</button>
+        </div>
+        <table id="productsTable">
+            <thead><tr><th>ID</th><th>Name</th><th>Stock</th><th>Retail</th><th>Wholesale</th><th>Category</th><th>Actions</th></tr></thead>
+            <tbody id="productsBody"></tbody>
+        </table>
+    </div>
+    
+    <!-- SUPPLIERS TAB -->
+    <div id="suppliers" class="tab-content">
+        <div class="search-bar">
+            <input type="text" id="searchSupplier" placeholder="Search supplier by name or ID...">
+            <button onclick="searchSuppliers()">🔍 Search</button>
+            <button onclick="loadSuppliers()">🔄 Refresh</button>
+            <button onclick="showAddSupplierDialog()">➕ Add Supplier</button>
+        </div>
+        <table id="suppliersTable">
+            <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr></thead>
+            <tbody id="suppliersBody"></tbody>
+        </table>
+    </div>
+    
+    <!-- HISTORY TAB -->
+    <div id="history" class="tab-content">
+        <div class="search-bar">
+            <button onclick="loadHistory()">🔄 Refresh</button>
+        </div>
+        <table id="historyTable">
+            <thead><tr><th>ID</th><th>Date</th><th>Customer</th><th>Payment</th><th>Total</th><th>Action</th></tr></thead>
+            <tbody id="historyBody"></tbody>
+        </table>
+    </div>
+    
+    <!-- MODAL DIALOGS -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Input</h3>
+            <div id="modalFields"></div>
+            <div class="modal-buttons">
+                <button id="modalCancel">Cancel</button>
+                <button id="modalOk">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const { ipcRenderer } = require('electron');
+        
+        let cartItems = [];
+        let saleCounter = 1;
+        let modalResolve = null;
+        
+        // Modal functions (reemplazo de prompt)
+        function showModal(title, fields) {
+            return new Promise((resolve) => {
+                modalResolve = resolve;
+                const modal = document.getElementById('modal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalFields = document.getElementById('modalFields');
+                
+                modalTitle.textContent = title;
+                modalFields.innerHTML = '';
+                
+                fields.forEach(field => {
+                    const label = document.createElement('label');
+                    label.textContent = field.label + ': ';
+                    label.style.display = 'block';
+                    label.style.marginTop = '10px';
+                    const input = document.createElement('input');
+                    input.type = field.type || 'text';
+                    input.id = 'modal_' + field.name;
+                    input.value = field.value || '';
+                    input.placeholder = field.placeholder || '';
+                    modalFields.appendChild(label);
+                    modalFields.appendChild(input);
+                });
+                
+                modal.style.display = 'flex';
+                
+                const okBtn = document.getElementById('modalOk');
+                const cancelBtn = document.getElementById('modalCancel');
+                
+                const onOk = () => {
+                    const result = {};
+                    fields.forEach(field => {
+                        const input = document.getElementById('modal_' + field.name);
+                        if (input) result[field.name] = input.value;
+                    });
+                    modal.style.display = 'none';
+                    cleanup();
+                    resolve(result);
+                };
+                
+                const onCancel = () => {
+                    modal.style.display = 'none';
+                    cleanup();
+                    resolve(null);
+                };
+                
+                const cleanup = () => {
+                    okBtn.removeEventListener('click', onOk);
+                    cancelBtn.removeEventListener('click', onCancel);
+                };
+                
+                okBtn.addEventListener('click', onOk);
+                cancelBtn.addEventListener('click', onCancel);
+            });
+        }
+        
+        function showAlert(msg) {
+            return showModal('Alert', [{ name: 'msg', label: msg, type: 'text', value: '' }]).then(() => {});
+        }
+        
+        function showConfirm(msg) {
+            return showModal('Confirm', [{ name: 'confirm', label: msg, type: 'text', value: '' }]).then(() => true);
+        }
+        
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+        }
+        
+        // PRODUCTS
+        async function loadProducts() {
+            const products = await ipcRenderer.invoke('get-products');
+            const tbody = document.getElementById('productsBody');
+            tbody.innerHTML = '';
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center">No products found. Click "Add Product" to create one.</td></tr>';
+                return;
+            }
+            products.forEach(p => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = p.productId;
+                row.insertCell(1).textContent = p.name;
+                row.insertCell(2).textContent = p.stock;
+                row.insertCell(3).textContent = `$${p.retailPrice}`;
+                row.insertCell(4).textContent = `$${p.wholesalePrice}`;
+                row.insertCell(5).textContent = p.category || 'Other';
+                const actionCell = row.insertCell(6);
+                const editBtn = document.createElement('button');
+                editBtn.textContent = '✏️ Edit';
+                editBtn.onclick = () => editProduct(p);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '🗑️ Delete';
+                deleteBtn.className = 'btn-danger';
+                deleteBtn.onclick = () => deleteProduct(p);
+                actionCell.appendChild(editBtn);
+                actionCell.appendChild(deleteBtn);
+            });
+        }
+        
+        async function loadProductSelect() {
+            const products = await ipcRenderer.invoke('get-products');
+            const select = document.getElementById('productSelect');
+            select.innerHTML = '<option value="">-- Select Product --</option>';
+            products.forEach(p => {
+                const option = document.createElement('option');
+                option.value = JSON.stringify(p);
+                option.textContent = `${p.name} - $${p.retailPrice} (Stock: ${p.stock})`;
+                select.appendChild(option);
+            });
+        }
+        
+        function searchProducts() {
+            const term = document.getElementById('searchProduct').value.toLowerCase();
+            const rows = document.querySelectorAll('#productsBody tr');
+            rows.forEach(row => {
+                if (row.cells[0]) {
+                    const id = row.cells[0].textContent.toLowerCase();
+                    const name = row.cells[1].textContent.toLowerCase();
+                    row.style.display = id.includes(term) || name.includes(term) ? '' : 'none';
+                }
+            });
+        }
+        
+        async function showAddProductDialog() {
+            const result = await showModal('Add Product', [
+                { name: 'id', label: 'Product ID', type: 'text' },
+                { name: 'name', label: 'Product Name', type: 'text' },
+                { name: 'stock', label: 'Stock', type: 'number' },
+                { name: 'retailPrice', label: 'Retail Price', type: 'number' },
+                { name: 'wholesalePrice', label: 'Wholesale Price', type: 'number' },
+                { name: 'category', label: 'Category', type: 'text', value: 'Other' }
+            ]);
+            
+            if (result && result.id && result.name) {
+                await ipcRenderer.invoke('save-product', {
+                    productId: result.id,
+                    name: result.name,
+                    stock: parseInt(result.stock) || 0,
+                    retailPrice: parseFloat(result.retailPrice) || 0,
+                    wholesalePrice: parseFloat(result.wholesalePrice) || 0,
+                    category: result.category || 'Other'
+                });
+                await loadProducts();
+                await loadProductSelect();
+                alert('✅ Product saved!');
+            }
+        }
+        
+        async function editProduct(product) {
+            const result = await showModal('Edit Product', [
+                { name: 'stock', label: 'Stock', type: 'number', value: product.stock }
+            ]);
+            if (result && result.stock) {
+                product.stock = parseInt(result.stock);
+                await ipcRenderer.invoke('update-product', product._id, product);
+                await loadProducts();
+                await loadProductSelect();
+                alert('✅ Product updated!');
+            }
+        }
+        
+        async function deleteProduct(product) {
+            const result = await showModal('Confirm Delete', [
+                { name: 'confirm', label: `Delete ${product.name}? Type YES to confirm`, type: 'text' }
+            ]);
+            if (result && result.confirm === 'YES') {
+                await ipcRenderer.invoke('delete-product', product._id);
+                await loadProducts();
+                await loadProductSelect();
+                alert('✅ Product deleted');
+            }
+        }
+        
+        // SUPPLIERS
+        async function loadSuppliers() {
+            const suppliers = await ipcRenderer.invoke('get-suppliers');
+            const tbody = document.getElementById('suppliersBody');
+            tbody.innerHTML = '';
+            if (suppliers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No suppliers found. Click "Add Supplier" to create one.</td></tr>';
+                return;
+            }
+            suppliers.forEach(s => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = s.supplierId;
+                row.insertCell(1).textContent = s.name;
+                row.insertCell(2).textContent = s.phone;
+                row.insertCell(3).textContent = s.email;
+                row.insertCell(4).textContent = s.address;
+                const actionCell = row.insertCell(5);
+                const editBtn = document.createElement('button');
+                editBtn.textContent = '✏️ Edit';
+                editBtn.onclick = () => editSupplier(s);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '🗑️ Delete';
+                deleteBtn.className = 'btn-danger';
+                deleteBtn.onclick = () => deleteSupplier(s);
+                actionCell.appendChild(editBtn);
+                actionCell.appendChild(deleteBtn);
+            });
+        }
+        
+        function searchSuppliers() {
+            const term = document.getElementById('searchSupplier').value.toLowerCase();
+            const rows = document.querySelectorAll('#suppliersBody tr');
+            rows.forEach(row => {
+                if (row.cells[0]) {
+                    const id = row.cells[0].textContent.toLowerCase();
+                    const name = row.cells[1].textContent.toLowerCase();
+                    row.style.display = id.includes(term) || name.includes(term) ? '' : 'none';
+                }
+            });
+        }
+        
+        async function showAddSupplierDialog() {
+            const result = await showModal('Add Supplier', [
+                { name: 'id', label: 'Supplier ID', type: 'text' },
+                { name: 'name', label: 'Supplier Name', type: 'text' },
+                { name: 'phone', label: 'Phone', type: 'text' },
+                { name: 'email', label: 'Email', type: 'text' },
+                { name: 'address', label: 'Address', type: 'text' }
+            ]);
+            
+            if (result && result.id && result.name) {
+                await ipcRenderer.invoke('save-supplier', {
+                    supplierId: result.id,
+                    name: result.name,
+                    phone: result.phone || '',
+                    email: result.email || '',
+                    address: result.address || ''
+                });
+                await loadSuppliers();
+                alert('✅ Supplier saved!');
+            }
+        }
+        
+        async function editSupplier(supplier) {
+            const result = await showModal('Edit Supplier', [
+                { name: 'name', label: 'Name', type: 'text', value: supplier.name },
+                { name: 'phone', label: 'Phone', type: 'text', value: supplier.phone },
+                { name: 'email', label: 'Email', type: 'text', value: supplier.email },
+                { name: 'address', label: 'Address', type: 'text', value: supplier.address }
+            ]);
+            if (result) {
+                supplier.name = result.name;
+                supplier.phone = result.phone;
+                supplier.email = result.email;
+                supplier.address = result.address;
+                await ipcRenderer.invoke('update-supplier', supplier._id, supplier);
+                await loadSuppliers();
+                alert('✅ Supplier updated!');
+            }
+        }
+        
+        async function deleteSupplier(supplier) {
+            const result = await showModal('Confirm Delete', [
+                { name: 'confirm', label: `Delete ${supplier.name}? Type YES to confirm`, type: 'text' }
+            ]);
+            if (result && result.confirm === 'YES') {
+                await ipcRenderer.invoke('delete-supplier', supplier._id);
+                await loadSuppliers();
+                alert('✅ Supplier deleted');
+            }
+        }
+        
+        // SALES
+        function startNewSale() {
+            const customer = document.getElementById('customerName').value;
+            if (!customer) { alert('Please enter customer name'); return; }
+            document.getElementById('status').innerHTML = `Status: Sale active - ${customer}`;
+            alert(`✅ New sale started for ${customer}`);
+        }
+        
+        function addToCart() {
+            const select = document.getElementById('productSelect');
+            if (!select.value) { alert('Select a product'); return; }
+            const product = JSON.parse(select.value);
+            const quantity = parseInt(document.getElementById('quantity').value);
+            if (quantity > product.stock) { alert(`⚠️ Insufficient stock. Available: ${product.stock}`); return; }
+            const total = quantity * product.retailPrice;
+            cartItems.push({ productId: product.productId, name: product.name, quantity, price: product.retailPrice, total });
+            renderCart();
+            updateTotals();
+            alert(`✅ ${quantity}x ${product.name} added to cart`);
+        }
+        
+        function renderCart() {
+            const tbody = document.getElementById('cartBody');
+            tbody.innerHTML = '';
+            if (cartItems.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">Cart is empty</td></tr>'; return; }
+            cartItems.forEach((item, index) => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = item.productId;
+                row.insertCell(1).textContent = item.name;
+                row.insertCell(2).textContent = item.quantity;
+                row.insertCell(3).textContent = `$${item.price.toFixed(2)}`;
+                row.insertCell(4).textContent = `$${item.total.toFixed(2)}`;
+                const actionCell = row.insertCell(5);
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = '❌ Remove';
+                removeBtn.className = 'btn-danger';
+                removeBtn.onclick = () => { cartItems.splice(index, 1); renderCart(); updateTotals(); };
+                actionCell.appendChild(removeBtn);
+            });
+        }
+        
+        function updateTotals() {
+            const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+            const tax = subtotal * 0.15;
+            const total = subtotal + tax;
+            document.getElementById('totals').innerHTML = `💰 Subtotal: $${subtotal.toFixed(2)} | 📊 IVA (15%): $${tax.toFixed(2)} | 🎯 TOTAL: $${total.toFixed(2)}`;
+        }
+        
+        function clearCart() {
+            if (cartItems.length > 0) {
+                cartItems = [];
+                renderCart();
+                updateTotals();
+                document.getElementById('status').innerHTML = 'Status: Cart cleared';
+            }
+        }
+        
+        async function finalizeSale() {
+            if (cartItems.length === 0) { alert('Cart is empty'); return; }
+            const customer = document.getElementById('customerName').value;
+            if (!customer) { alert('Please enter customer name'); return; }
+            const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+            const tax = subtotal * 0.15;
+            const total = subtotal + tax;
+            
+            const confirmResult = await showModal('Confirm Sale', [
+                { name: 'confirm', label: `Complete sale for ${customer}? Total: $${total.toFixed(2)}\nType YES to confirm`, type: 'text' }
+            ]);
+            
+            if (confirmResult && confirmResult.confirm === 'YES') {
+                const sale = { 
+                    saleId: saleCounter, 
+                    customerName: customer, 
+                    date: new Date().toLocaleString(), 
+                    saleType: document.getElementById('saleType').value, 
+                    paymentMethod: document.getElementById('paymentMethod').value, 
+                    subtotal, tax, total, 
+                    items: [...cartItems] 
+                };
+                await ipcRenderer.invoke('save-sale', sale);
+                for (const item of cartItems) {
+                    const products = await ipcRenderer.invoke('get-products');
+                    const product = products.find(p => p.productId === item.productId);
+                    if (product) { product.stock -= item.quantity; await ipcRenderer.invoke('update-product', product._id, product); }
+                }
+                alert(`✅ Sale #${saleCounter} saved!\nTotal: $${total.toFixed(2)}`);
+                clearCart();
+                document.getElementById('customerName').value = '';
+                document.getElementById('status').innerHTML = 'Status: Ready';
+                await loadProducts();
+                await loadProductSelect();
+                await loadHistory();
+                saleCounter++;
+            }
+        }
+        
+        // HISTORY
+        async function loadHistory() {
+            const sales = await ipcRenderer.invoke('get-sales');
+            const tbody = document.getElementById('historyBody');
+            tbody.innerHTML = '';
+            if (sales.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No sales yet.</td></tr>'; return; }
+            sales.forEach(s => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = s.saleId;
+                row.insertCell(1).textContent = s.date;
+                row.insertCell(2).textContent = s.customerName;
+                row.insertCell(3).textContent = s.paymentMethod;
+                row.insertCell(4).textContent = `$${s.total?.toFixed(2) || 0}`;
+                const actionCell = row.insertCell(5);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '🗑️ Delete';
+                deleteBtn.className = 'btn-danger';
+                deleteBtn.onclick = () => deleteSale(s);
+                actionCell.appendChild(deleteBtn);
+            });
+        }
+        
+        async function deleteSale(sale) {
+            const result = await showModal('Confirm Delete', [
+                { name: 'confirm', label: `Delete sale #${sale.saleId}? Type YES to confirm`, type: 'text' }
+            ]);
+            if (result && result.confirm === 'YES') {
+                await ipcRenderer.invoke('delete-sale', sale._id);
+                await loadHistory();
+                alert('✅ Sale deleted');
+            }
+        }
+        
+        // INIT
+        loadProducts();
+        loadSuppliers();
+        loadHistory();
+        loadProductSelect();
+    </script>
+</body>
+</html>

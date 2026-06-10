@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Customer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 13px; }
+
+  body { background: #c0c0c0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+  .window {
+    background: #d4d0c8;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    width: 360px;
+    padding-bottom: 16px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+  }
+
+  .title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .title-bar .controls { display: flex; gap: 4px; }
+  .title-bar .controls span {
+    background: #d4d0c8; color: #000;
+    width: 16px; height: 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 10px; cursor: pointer;
+    border: 1px solid; border-color: #fff #808080 #808080 #fff;
+  }
+
+  .form-title { text-align: center; padding: 14px 0 10px; font-weight: bold; letter-spacing: 1px; }
+
+  .form-body { padding: 0 30px; }
+
+  .row { display: flex; align-items: center; margin-bottom: 10px; }
+  .row label { width: 120px; flex-shrink: 0; }
+
+  input[type="text"], input[type="number"], select {
+    background: white;
+    border: 1px inset #808080;
+    padding: 2px 4px;
+    height: 22px;
+    outline: none;
+    font-size: 13px;
+  }
+  #inp-id { width: 70px; border-color: #000080; border-width: 2px; }
+  #inp-first, #inp-last { width: 150px; }
+  #sel-gender { width: 100px; }
+  #inp-money { width: 90px; }
+
+  /* slider */
+  .slider-wrap { display: flex; align-items: center; gap: 8px; flex: 1; }
+  input[type="range"] { width: 140px; accent-color: #000080; }
+  #age-val { min-width: 24px; }
+
+  /* listbox */
+  #lst-hobbies {
+    background: white;
+    border: 1px inset #808080;
+    width: 190px;
+    height: 110px;
+    overflow-y: auto;
+    padding: 2px;
+  }
+  #lst-hobbies div {
+    padding: 2px 4px;
+    cursor: pointer;
+    user-select: none;
+  }
+  #lst-hobbies div.selected { background: #000080; color: white; }
+
+  .btn-row { display: flex; justify-content: center; gap: 16px; margin-top: 18px; }
+  button {
+    background: #d4d0c8;
+    border: 1px solid; border-color: #fff #808080 #808080 #fff;
+    padding: 4px 18px;
+    cursor: pointer;
+    font-size: 13px;
+    min-width: 72px;
+    active-border-color: #808080 #fff #fff #808080;
+  }
+  button:active { border-color: #808080 #fff #fff #808080; }
+
+  /* tabla de clientes insertados */
+  #tabla-wrap { padding: 10px 30px 0; display: none; }
+  #tabla-wrap h3 { font-size: 12px; margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th { background: #000080; color: white; padding: 3px 5px; text-align: left; }
+  td { background: white; border-bottom: 1px solid #ccc; padding: 3px 5px; }
+  tr:nth-child(even) td { background: #eef; }
+
+  .msg { font-size: 11px; color: green; text-align: center; padding: 4px; display: none; }
+  .err { color: red; }
+</style>
+</head>
+<body>
+
+<div class="window">
+  <!-- Barra de título -->
+  <div class="title-bar">
+    <span>☕ Customer</span>
+    <div class="controls">
+      <span>—</span><span>□</span><span onclick="window.close ? window.close() : ''">✕</span>
+    </div>
+  </div>
+
+  <div class="form-title">CUSTOMER</div>
+
+  <div class="form-body">
+    <div class="row">
+      <label>id</label>
+      <input type="text" id="inp-id">
+    </div>
+    <div class="row">
+      <label>Firts Name</label>
+      <input type="text" id="inp-first">
+    </div>
+    <div class="row">
+      <label>Last Name</label>
+      <input type="text" id="inp-last">
+    </div>
+    <div class="row">
+      <label>Gender</label>
+      <select id="sel-gender">
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+    <div class="row">
+      <label>Money Spent</label>
+      <input type="number" id="inp-money" value="0" min="0" step="1">
+    </div>
+    <div class="row">
+      <label>Age</label>
+      <div class="slider-wrap">
+        <input type="range" id="slider-age" min="0" max="100" value="0"
+               oninput="document.getElementById('age-val').textContent = this.value">
+        <span id="age-val">0</span>
+      </div>
+    </div>
+    <div class="row">
+      <label>Type of customer</label>
+      <select id="sel-type">
+        <option>Frequent</option>
+        <option>New</option>
+        <option>VIP</option>
+        <option>Regular</option>
+      </select>
+    </div>
+    <div class="row" style="align-items:flex-start; margin-top:4px;">
+      <label style="padding-top:4px;">Hobbies:</label>
+      <div id="lst-hobbies">
+        <div onclick="toggleHobby(this)">Play Music</div>
+        <div onclick="toggleHobby(this)">Listening to Music</div>
+        <div onclick="toggleHobby(this)">Play Soccer</div>
+        <div onclick="toggleHobby(this)">Play an Instrument</div>
+        <div onclick="toggleHobby(this)">Paint</div>
+        <div onclick="toggleHobby(this)">Study English</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="msg" id="msg"></p>
+
+  <div class="btn-row">
+    <button onclick="insertCustomer()">Insert</button>
+    <button onclick="cancelForm()">Cancel</button>
+    <button onclick="quitApp()">Quit</button>
+  </div>
+
+  <!-- Tabla de clientes -->
+  <div id="tabla-wrap">
+    <h3>Clientes registrados:</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Nombre</th><th>Género</th><th>$</th><th>Edad</th><th>Tipo</th></tr>
+      </thead>
+      <tbody id="tabla-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const customers = [];
+
+  function toggleHobby(el) {
+    el.classList.toggle('selected');
+  }
+
+  function getHobbies() {
+    return [...document.querySelectorAll('#lst-hobbies div.selected')]
+      .map(d => d.textContent);
+  }
+
+  function showMsg(text, isError = false) {
+    const m = document.getElementById('msg');
+    m.textContent = text;
+    m.className = 'msg' + (isError ? ' err' : '');
+    m.style.display = 'block';
+    setTimeout(() => m.style.display = 'none', 3000);
+  }
+
+  function insertCustomer() {
+    const id = document.getElementById('inp-id').value.trim();
+    const first = document.getElementById('inp-first').value.trim();
+    const last = document.getElementById('inp-last').value.trim();
+    const gender = document.getElementById('sel-gender').value;
+    const money = parseFloat(document.getElementById('inp-money').value);
+    const age = parseInt(document.getElementById('slider-age').value);
+    const type = document.getElementById('sel-type').value;
+    const hobbies = getHobbies();
+
+    if (!id || isNaN(parseInt(id))) { showMsg('El ID debe ser un número válido.', true); return; }
+    if (!first || !last) { showMsg('Nombre y apellido son obligatorios.', true); return; }
+
+    const customer = { id: parseInt(id), firstName: first, lastName: last,
+                       gender, moneySpent: money, age, typeCustomer: type, hobbies };
+    customers.push(customer);
+    renderTable();
+    showMsg(`Cliente "${first} ${last}" insertado correctamente.`);
+    cancelForm();
+  }
+
+  function cancelForm() {
+    document.getElementById('inp-id').value = '';
+    document.getElementById('inp-first').value = '';
+    document.getElementById('inp-last').value = '';
+    document.getElementById('sel-gender').value = 'Male';
+    document.getElementById('inp-money').value = '0';
+    document.getElementById('slider-age').value = '0';
+    document.getElementById('age-val').textContent = '0';
+    document.getElementById('sel-type').value = 'Frequent';
+    document.querySelectorAll('#lst-hobbies div').forEach(d => d.classList.remove('selected'));
+  }
+
+  function quitApp() {
+    if (confirm('¿Desea cerrar la aplicación?')) {
+      document.body.innerHTML = '<p style="text-align:center;padding:40px;font-family:Arial">Aplicación cerrada.</p>';
+    }
+  }
+
+  function renderTable() {
+    const wrap = document.getElementById('tabla-wrap');
+    const tbody = document.getElementById('tabla-body');
+    tbody.innerHTML = '';
+    customers.forEach(c => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${c.id}</td><td>${c.firstName} ${c.lastName}</td>
+        <td>${c.gender}</td><td>$${c.moneySpent.toFixed(2)}</td>
+        <td>${c.age}</td><td>${c.typeCustomer}</td>`;
+      tbody.appendChild(tr);
+    });
+    wrap.style.display = 'block';
+  }
+</script>
+</body>
+</html>

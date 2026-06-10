@@ -1,0 +1,29 @@
+[
+  {
+    "productId": "1",
+    "name": "Milk",
+    "stock": 100,
+    "retailPrice": 2.5,
+    "wholesalePrice": 2.05,
+    "category": "Food",
+    "_id": "6a263eef5df6377ae5abe204"
+  },
+  {
+    "productId": "2",
+    "name": "Jacket",
+    "stock": 55,
+    "retailPrice": 30.0,
+    "wholesalePrice": 25.0,
+    "category": "Clothing",
+    "_id": "6a263f405df6377ae5abe205"
+  },
+  {
+    "productId": "3",
+    "name": "Mouse",
+    "stock": 30,
+    "retailPrice": 12.0,
+    "wholesalePrice": 10.0,
+    "category": "Electronics",
+    "_id": "6a263f605df6377ae5abe206"
+  }
+]
