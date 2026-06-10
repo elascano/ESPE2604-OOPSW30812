@@ -1,0 +1,56 @@
+[
+  {
+    "savedAt": "2024-07-01 10:00:00",
+    "mother": {
+      "name": "Maria Gomez",
+      "id": "1712345678",
+      "birthDate": "1995-03-14",
+      "weight": 65.5,
+      "height": 162.0
+    },
+    "baby": {
+      "name": "Sofia Gomez",
+      "birthDate": "2024-01-10",
+      "weight": 3200.0,
+      "height": 50.0
+    },
+    "appointmentDate": "2024-07-15",
+    "doctorRecommendation": "Continue breastfeeding and schedule monthly checkup."
+  },
+  {
+    "savedAt": "2024-07-20 16:00:00",
+    "mother": {
+      "name": "Ana Torres",
+      "id": "1798765432",
+      "birthDate": "1998-07-22",
+      "weight": 70.0,
+      "height": 158.0
+    },
+    "baby": {
+      "name": "Pending",
+      "birthDate": "Pending",
+      "weight": 0.0,
+      "height": 0.0
+    },
+    "appointmentDate": "2024-08-03",
+    "doctorRecommendation": "Rest and increase iron intake."
+  },
+  {
+    "savedAt": "2024-07-10 09:30:00",
+    "mother": {
+      "name": "Luisa Paredes",
+      "id": "1756781234",
+      "birthDate": "1992-11-05",
+      "weight": 60.0,
+      "height": 165.0
+    },
+    "baby": {
+      "name": "Lucas Paredes",
+      "birthDate": "2023-09-20",
+      "weight": 2900.0,
+      "height": 48.0
+    },
+    "appointmentDate": "2024-07-28",
+    "doctorRecommendation": "Apply vitamins and follow growth chart."
+  }
+]
