@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle System</title>
+</head>
+<body>
+
+<h1>Insert Vehicle</h1>
+
+<label>ID</label>
+<input type="number" id="id"><br><br>
+
+<label>Description</label>
+<input type="text" id="description"><br><br>
+
+<label>Value</label>
+<input type="number" id="value"><br><br>
+
+<label>Quantity</label>
+<input type="number" id="quantity"><br><br>
+
+<button onclick="saveVehicle()">
+    Save Vehicle
+</button>
+
+<h2>Vehicles</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody id="vehicleTable">
+    </tbody>
+
+</table>
+
+<script src="script.js"></script>
+
+</body>
+</html>
