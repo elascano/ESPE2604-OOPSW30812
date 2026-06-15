@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 def validar():
-    if txt_usuario.get() == "admin" and txt_pass.get() == "1234":
+    if txt_usuario.get() == "casher" and txt_pass.get() == "casher1234":
         messagebox.showinfo("Sistema", "Acceso concedido")
     else:
         messagebox.showerror("Error", "Usuario o contraseña incorrectos")
