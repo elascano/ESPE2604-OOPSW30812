@@ -2,6 +2,11 @@ const fileSystem = require('fs');
 const readlineInterface = require('readline');
 const Product = require('../model/Product');
 
+/**
+ *
+ * @author Alexander Tipantiza, The Softwarriors, @ESPE
+ */
+
 const productsData = JSON.parse(
     fileSystem.readFileSync('./data/products.json', 'utf8')
 );

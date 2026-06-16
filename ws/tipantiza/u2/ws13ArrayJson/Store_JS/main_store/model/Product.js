@@ -1,3 +1,9 @@
+
+/**
+ *
+ * @author Alexander Tipantiza, The Softwarriors, @ESPE
+ */
+
 class Product {
 
     constructor(id, name, category, price) {
