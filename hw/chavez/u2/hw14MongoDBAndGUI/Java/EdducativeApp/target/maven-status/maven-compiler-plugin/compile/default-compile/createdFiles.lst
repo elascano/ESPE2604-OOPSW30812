@@ -1,0 +1,8 @@
+com\mycompany\edducativeapp\model\Register.class
+com\mycompany\edducativeapp\view\frmEducativeApp.class
+com\mycompany\edducativeapp\controller\RegisterDAO.class
+com\mycompany\edducativeapp\controller\StudentDAO.class
+com\mycompany\edducativeapp\controller\TeacherDAO.class
+com\mycompany\edducativeapp\controller\MongoDBConnection.class
+com\mycompany\edducativeapp\model\Student.class
+com\mycompany\edducativeapp\model\Teacher.class
