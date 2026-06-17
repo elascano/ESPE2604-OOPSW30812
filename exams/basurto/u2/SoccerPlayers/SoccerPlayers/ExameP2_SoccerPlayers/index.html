@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACME - Delete Soccer Player</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Soccer Player</h1>
+        <div id="message-area"></div>
+        
+        <form id="soccer-form">
+            <div class="form-group">
+                <label for="id-input">Player MongoDB ID:</label>
+                <input type="text" id="id-input" placeholder="e.g., 65f21d8ebd32f1a8c90014ef" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" id="btn-delete" class="btn-danger">Permanently Delete</button>
+                <button type="button" id="btn-cancel" class="btn-secondary">Cancel</button>
+            </div>
+        </form>
+
+        <div id="output" class="output-card" style="display: none;">
+            <h3>Processed Data (Model Verification)</h3>
+            <p id="res-id"></p>
+            <p id="res-name"></p>
+            <p id="res-calc" style="font-weight: bold; color: #2c3e50;"></p>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
