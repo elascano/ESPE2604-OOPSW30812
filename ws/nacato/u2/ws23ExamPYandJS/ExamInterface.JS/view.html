@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ACME COMPANY: BANK MANAGEMENT (CRUD)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin: auto; }
+        h2 { text-align: center; }
+        .form-group { margin-bottom: 12px; display: flex; align-items: center; }
+        .form-group label { width: 130px; font-weight: bold; }
+        .form-group input { flex-grow: 1; padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+        .btn-group { display: flex; gap: 8px; margin: 20px 0; }
+        button { flex: 1; padding: 10px; color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        .btn-add { background-color: #4CAF50; }
+        .btn-update { background-color: #2196F3; }
+        .btn-delete { background-color: #f44336; }
+        .btn-clear { background-color: #ff9800; }
+        button:hover { opacity: 0.9; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+        th { background-color: #e0e0e0; }
+        tbody tr { cursor: pointer; }
+        tbody tr:hover { background-color: #f1f1f1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>BANK MANAGEMENT SYSTEM (CRUD)</h2>
+    
+    <div class="form-group">
+        <label for="ent_id">Bank ID:</label>
+        <input type="text" id="ent_id">
+    </div>
+    <div class="form-group">
+        <label for="ent_name">Bank Name:</label>
+        <input type="text" id="ent_name">
+    </div>
+    <div class="form-group">
+        <label for="ent_deposits">Total Deposits:</label>
+        <input type="number" id="ent_deposits" step="0.01">
+    </div>
+    <div class="form-group">
+        <label for="ent_loans">Total Loans:</label>
+        <input type="number" id="ent_loans" step="0.01">
+    </div>
+
+    <div class="btn-group">
+        <button id="btn_create" class="btn-add">Add / Create</button>
+        <button id="btn_update" class="btn-update">Modify / Update</button>
+        <button id="btn_delete" class="btn-delete">Delete</button>
+        <button id="btn_clear" class="btn-clear">Clear Fields</button>
+    </div>
+
+    <h3>Registered Banks (Click row to select):</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Deposits</th>
+                <th>Loans</th>
+                <th>Net Worth</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+            </tbody>
+    </table>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
