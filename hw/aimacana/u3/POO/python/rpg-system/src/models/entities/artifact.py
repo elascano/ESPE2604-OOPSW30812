@@ -23,7 +23,7 @@ class Artifact(Item, IEquippable, ISellable):
     def unequip(self, target: Character):
         target.max_hp -= self.bonus_health
         if target.hp > target.max_hp:
-            target.take_damage(target.hp - target.max_hp)
+            target.set_hp(target.max_hp)
         target.set_equipped_artifact(self.slot, None)
         try:
             target.add_item(self)

@@ -32,7 +32,7 @@ export class Artifact extends Item implements IEquippable, ISellable {
     target.setMaxHp(target.getMaxHp() - this.bonusHealth);
     if (target.getHp() > target.getMaxHp()) {
       // Ajustar HP actual si se pasa del nuevo máximo
-      target.takeDamage(target.getHp() - target.getMaxHp());
+      target.setHp(target.getMaxHp());
     }
     target.setEquippedArtifact(this.slot, undefined);
     try {

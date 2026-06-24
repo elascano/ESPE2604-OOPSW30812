@@ -45,6 +45,11 @@ class CharacterDashboard:
         self.txt_console = ctk.CTkTextbox(left_col, wrap=tk.WORD, height=180, border_width=2, border_color="#313244", fg_color="#181825")
         self.txt_console.pack(fill=tk.BOTH, expand=True)
         self.txt_console.configure(state=tk.DISABLED)
+        self.txt_console.tag_config("error", foreground="#f38ba8")
+        self.txt_console.tag_config("success", foreground="#a6e3a1")
+        self.txt_console.tag_config("combat", foreground="#f9e2af")
+        self.txt_console.tag_config("loot", foreground="#cba6f7")
+        self.txt_console.tag_config("default", foreground="#bac2de")
 
         self.player_stats = PlayerStatsComponent(center_col, self.game_controller, self.update_all_components, self.log)
         self.player_stats.pack(fill=tk.X, pady=(0, 20))
@@ -65,6 +70,16 @@ class CharacterDashboard:
 
     def log(self, message: str):
         self.txt_console.configure(state=tk.NORMAL)
-        self.txt_console.insert(tk.END, f"> {message}\n")
+        if "❌" in message or "Game Over" in message or "error" in message or "Error" in message:
+            tag = "error"
+        elif "⭐" in message or "SUBISTE DE NIVEL" in message or "restaurado" in message or "guardada" in message or "exitosamente" in message:
+            tag = "success"
+        elif "⚔️" in message or "atacó" in message or "contraatacó" in message or "daño" in message:
+            tag = "combat"
+        elif "botín" in message or "encontrado" in message or "equipado" in message or "mochila" in message or "quitado" in message:
+            tag = "loot"
+        else:
+            tag = "default"
+        self.txt_console.insert(tk.END, f"> {message}\n", tag)
         self.txt_console.see(tk.END)
         self.txt_console.configure(state=tk.DISABLED)

@@ -49,13 +49,7 @@ public class InventoryComponent extends VBox {
         btnLoot.setMaxWidth(Double.MAX_VALUE);
         btnLoot.getStyleClass().addAll("btn", "btn-warning");
         btnLoot.setOnAction(e -> {
-            try {
-                Item item = ec.edu.espe.rpg.model.factories.ItemFactory.createRandomLoot(gameController.getCurrentCharacter().getLevel());
-                gameController.getCurrentCharacter().addItem(item);
-                logger.accept("Has encontrado un ítem: " + item.getName());
-            } catch (ec.edu.espe.rpg.model.exceptions.InventoryFullException ex) {
-                logger.accept("❌ " + ex.getMessage());
-            }
+            logger.accept(gameController.lootRandomItem());
             update();
             onUpdate.run();
         });
@@ -79,7 +73,7 @@ public class InventoryComponent extends VBox {
         VBox itemBox = new VBox(5);
         itemBox.setAlignment(Pos.CENTER);
         itemBox.setPadding(new Insets(5));
-        itemBox.setStyle("-fx-background-color: #313244; -fx-background-radius: 8px; -fx-cursor: hand;");
+        itemBox.getStyleClass().add("inventory-item");
         
         ImageView icon = new ImageView();
         icon.setFitWidth(50);

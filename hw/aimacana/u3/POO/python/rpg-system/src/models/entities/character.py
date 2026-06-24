@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from .item import Item
     from .armor import Armor
     from .artifact import Artifact
+    from .weapon import Weapon
 
 class Character(ABC):
     def __init__(self, char_id: str, name: str, level: int, max_hp: float):
@@ -19,8 +20,15 @@ class Character(ABC):
         self.bonus_damage = 0.0
         self.bonus_defense = 0.0
         self.inventory: List['Item'] = []
+        self.equipped_weapon: Optional['Weapon'] = None
         self.equipped_armor: Dict[ArmorSlot, 'Armor'] = {}
         self.equipped_artifacts: Dict[ArtifactSlot, 'Artifact'] = {}
+
+    def get_equipped_weapon(self) -> Optional['Weapon']:
+        return self.equipped_weapon
+
+    def set_equipped_weapon(self, weapon: Optional['Weapon']):
+        self.equipped_weapon = weapon
 
     def get_equipped_armor(self, slot: ArmorSlot) -> Optional['Armor']:
         return self.equipped_armor.get(slot)
@@ -39,6 +47,9 @@ class Character(ABC):
             self.equipped_artifacts.pop(slot, None)
         else:
             self.equipped_artifacts[slot] = artifact
+
+    def set_hp(self, hp: float):
+        self.hp = max(0.0, min(hp, self.max_hp))
 
     def take_damage(self, amount: float):
         real_damage = amount - self.bonus_defense

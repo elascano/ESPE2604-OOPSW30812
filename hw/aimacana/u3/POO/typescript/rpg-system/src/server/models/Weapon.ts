@@ -18,11 +18,23 @@ export class Weapon extends Item implements IEquippable, IRepairable, ISellable 
   public getAttackSpeed(): number { return this.attackSpeed; }
 
   public equip(target: Character): void {
+    const currentlyEquipped = target.getEquippedWeapon();
+    target.removeItem(this); // Quitar de mochila
+    if (currentlyEquipped) {
+      currentlyEquipped.unequip(target); // Devolver vieja arma a mochila
+    }
     target.setBonusDamage(target.getBonusDamage() + this.baseDamage);
+    target.setEquippedWeapon(this);
   }
 
   public unequip(target: Character): void {
     target.setBonusDamage(target.getBonusDamage() - this.baseDamage);
+    target.setEquippedWeapon(undefined);
+    try {
+      target.addItem(this); // Devolver a mochila
+    } catch (e) {
+      // Ignorar
+    }
   }
 
   public repair(amount: number): void {

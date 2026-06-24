@@ -16,7 +16,7 @@ public class Potion extends Item implements IConsumable, ISellable {
     @Override
     public void consume(Character target) {
         System.out.println(target.getName() + " consumes " + getName());
-        target.takeDamage(-restorationAmount); // Negative damage heals
+        target.heal(restorationAmount);
     }
 
     @Override

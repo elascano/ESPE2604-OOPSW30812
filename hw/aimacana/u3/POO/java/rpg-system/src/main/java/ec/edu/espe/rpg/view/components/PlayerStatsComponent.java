@@ -187,6 +187,7 @@ public class PlayerStatsComponent extends VBox {
 
         equipPane.getChildren().clear();
         
+        equipPane.getChildren().add(buildSlotUI(c.getEquippedWeapon(), "Arma", "/images/weapon.png", () -> gameController.unequipWeapon()));
         equipPane.getChildren().add(buildSlotUI(c.getEquippedArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.HELMET), "Casco", "/images/helmet.png", () -> gameController.unequipArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.HELMET)));
         equipPane.getChildren().add(buildSlotUI(c.getEquippedArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.CHEST), "Pechera", "/images/chest.png", () -> gameController.unequipArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.CHEST)));
         equipPane.getChildren().add(buildSlotUI(c.getEquippedArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.LEGS), "Pantalones", "/images/legs.png", () -> gameController.unequipArmor(ec.edu.espe.rpg.model.enums.ArmorSlot.LEGS)));
@@ -223,9 +224,9 @@ public class PlayerStatsComponent extends VBox {
         String title = emptyName;
         if (item != null) {
             title = item.getName();
-            box.setStyle("-fx-background-color: #45475a; -fx-background-radius: 8px; -fx-cursor: hand; -fx-min-width: 70px; -fx-min-height: 70px; -fx-border-color: #cba6f7; -fx-border-radius: 8px;");
+            box.getStyleClass().add("equipped-slot");
         } else {
-            box.setStyle("-fx-background-color: #313244; -fx-background-radius: 8px; -fx-min-width: 70px; -fx-min-height: 70px;");
+            box.getStyleClass().add("equipped-slot-empty");
             icon.setOpacity(0.3);
         }
 

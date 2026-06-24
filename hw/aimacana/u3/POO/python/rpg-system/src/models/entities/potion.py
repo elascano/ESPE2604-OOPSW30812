@@ -10,7 +10,7 @@ class Potion(Item, IConsumable, ISellable):
 
     def consume(self, target: Character):
         print(f"{target.name} consumes {self.name}")
-        target.take_damage(-self.restoration_amount)
+        target.heal(self.restoration_amount)
 
     def calculate_sale_value(self) -> float:
         return self.base_value

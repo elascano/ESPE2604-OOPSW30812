@@ -105,10 +105,8 @@ public class ControlPanelComponent extends VBox {
         btnRest.setMaxWidth(Double.MAX_VALUE);
         btnRest.getStyleClass().addAll("btn", "btn-info");
         btnRest.setOnAction(e -> {
-            Character c = gameController.getCurrentCharacter();
-            if (c != null) {
-                c.heal(c.getMaxHp());
-                logger.accept(c.getName() + " ha descansado. HP restaurado al máximo.");
+            if (gameController.getCurrentCharacter() != null) {
+                logger.accept(gameController.restCharacter());
                 onUpdate.run();
             } else {
                 showAlert("No hay personaje activo.");
@@ -135,12 +133,8 @@ public class ControlPanelComponent extends VBox {
             showAlert("El nombre no puede estar vacío.");
             return;
         }
-        String id = java.util.UUID.randomUUID().toString();
-        Character newChar = "Warrior".equals(cmbClass.getValue()) 
-            ? new Warrior(id, name, 1, 100.0, 15.0) 
-            : new Mage(id, name, 1, 80.0, 20.0, 50.0);
         
-        logger.accept(gameController.createNewCharacter(newChar));
+        logger.accept(gameController.createCharacter(name, cmbClass.getValue()));
         btnSave.setDisable(false);
         onUpdate.run();
     }

@@ -20,7 +20,7 @@ public class CharacterDashboard {
 
     private final GameController gameController;
     private BorderPane mainView;
-    private TextArea txtConsole;
+    private javafx.scene.control.ListView<Label> logListView;
     
     // Components
     private ControlPanelComponent controlPanel;
@@ -40,10 +40,8 @@ public class CharacterDashboard {
 
         mainView.setTop(buildHeader());
         
-        txtConsole = new TextArea();
-        txtConsole.setEditable(false);
-        txtConsole.setWrapText(true);
-        txtConsole.getStyleClass().add("custom-console");
+        logListView = new javafx.scene.control.ListView<>();
+        logListView.getStyleClass().add("custom-console-list");
 
         Runnable onUpdate = this::updateAllComponents;
         Consumer<String> logger = this::log;
@@ -62,8 +60,8 @@ public class CharacterDashboard {
         VBox.setVgrow(consoleCard, Priority.ALWAYS);
         Label consoleTitle = new Label("Registro de Eventos");
         consoleTitle.getStyleClass().add("card-title");
-        VBox.setVgrow(txtConsole, Priority.ALWAYS);
-        consoleCard.getChildren().addAll(consoleTitle, txtConsole);
+        VBox.setVgrow(logListView, Priority.ALWAYS);
+        consoleCard.getChildren().addAll(consoleTitle, logListView);
         
         leftColumn.getChildren().addAll(controlPanel, consoleCard);
         javafx.scene.control.ScrollPane leftScroll = new javafx.scene.control.ScrollPane(leftColumn);
@@ -110,7 +108,24 @@ public class CharacterDashboard {
     }
 
     private void log(String message) {
-        txtConsole.appendText("> " + message + "\n");
+        Label label = new Label("> " + message);
+        label.setWrapText(true);
+        label.setMaxWidth(230); // prevent horizontal scrollbar
+        
+        if (message.contains("❌") || message.contains("Game Over") || message.contains("error") || message.contains("Error")) {
+            label.setStyle("-fx-text-fill: #f38ba8; -fx-font-weight: bold;");
+        } else if (message.contains("⭐") || message.contains("SUBISTE DE NIVEL") || message.contains("restaurado") || message.contains("guardada") || message.contains("exitosamente")) {
+            label.setStyle("-fx-text-fill: #a6e3a1; -fx-font-weight: bold;");
+        } else if (message.contains("⚔️") || message.contains("atacó") || message.contains("contraatacó") || message.contains("daño")) {
+            label.setStyle("-fx-text-fill: #f9e2af;");
+        } else if (message.contains("botín") || message.contains("encontrado") || message.contains("equipado") || message.contains("mochila") || message.contains("quitado")) {
+            label.setStyle("-fx-text-fill: #cba6f7;");
+        } else {
+            label.setStyle("-fx-text-fill: #bac2de;");
+        }
+        
+        logListView.getItems().add(label);
+        logListView.scrollTo(logListView.getItems().size() - 1);
     }
 
     public BorderPane getView() {

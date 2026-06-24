@@ -111,12 +111,13 @@ class PlayerStatsComponent(ctk.CTkFrame):
         for widget in self.equip_pane.winfo_children():
             widget.destroy()
 
-        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.HELMET), "Casco", "helmet.png", lambda: self.game_controller.unequip_armor(ArmorSlot.HELMET), 0, 0)
-        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.CHEST), "Pechera", "chest.png", lambda: self.game_controller.unequip_armor(ArmorSlot.CHEST), 0, 1)
-        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.LEGS), "Pantalones", "legs.png", lambda: self.game_controller.unequip_armor(ArmorSlot.LEGS), 0, 2)
-        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.BOOTS), "Botas", "boots.png", lambda: self.game_controller.unequip_armor(ArmorSlot.BOOTS), 1, 0)
-        self.build_slot_ui(c.get_equipped_artifact(ArtifactSlot.RING), "Anillo", "ring.png", lambda: self.game_controller.unequip_artifact(ArtifactSlot.RING), 1, 1)
-        self.build_slot_ui(c.get_equipped_artifact(ArtifactSlot.AMULET), "Amuleto", "amulet.png", lambda: self.game_controller.unequip_artifact(ArtifactSlot.AMULET), 1, 2)
+        self.build_slot_ui(c.get_equipped_weapon(), "Arma", "weapon.png", self.game_controller.unequip_weapon, 0, 0)
+        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.HELMET), "Casco", "helmet.png", lambda: self.game_controller.unequip_armor(ArmorSlot.HELMET), 0, 1)
+        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.CHEST), "Pechera", "chest.png", lambda: self.game_controller.unequip_armor(ArmorSlot.CHEST), 0, 2)
+        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.LEGS), "Pantalones", "legs.png", lambda: self.game_controller.unequip_armor(ArmorSlot.LEGS), 1, 0)
+        self.build_slot_ui(c.get_equipped_armor(ArmorSlot.BOOTS), "Botas", "boots.png", lambda: self.game_controller.unequip_armor(ArmorSlot.BOOTS), 1, 1)
+        self.build_slot_ui(c.get_equipped_artifact(ArtifactSlot.RING), "Anillo", "ring.png", lambda: self.game_controller.unequip_artifact(ArtifactSlot.RING), 1, 2)
+        self.build_slot_ui(c.get_equipped_artifact(ArtifactSlot.AMULET), "Amuleto", "amulet.png", lambda: self.game_controller.unequip_artifact(ArtifactSlot.AMULET), 2, 0)
 
         if isinstance(c, Warrior):
             self.lbl_class_stat.configure(text=f" Guerrero | EXP: {c.exp}/100 ", text_color="#1e1e2e", fg_color="#f38ba8")

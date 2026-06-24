@@ -13,6 +13,7 @@ public abstract class Character {
     private double bonusDamage;
     private double bonusDefense;
     private List<Item> inventory;
+    private Weapon equippedWeapon;
     private java.util.Map<ec.edu.espe.rpg.model.enums.ArmorSlot, ec.edu.espe.rpg.model.entities.Armor> equippedArmor;
     private java.util.Map<ec.edu.espe.rpg.model.enums.ArtifactSlot, ec.edu.espe.rpg.model.entities.Artifact> equippedArtifacts;
 
@@ -40,6 +41,9 @@ public abstract class Character {
     public void setLevel(int level) { this.level = level; }
 
     public double getHp() { return hp; }
+    public void setHp(double hp) {
+        this.hp = Math.max(0, Math.min(hp, this.maxHp));
+    }
     public double getMaxHp() { return maxHp; }
     public void setMaxHp(double maxHp) { this.maxHp = maxHp; }
 
@@ -64,6 +68,14 @@ public abstract class Character {
         } else {
             equippedArmor.put(slot, armor);
         }
+    }
+
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
+    public void setEquippedWeapon(Weapon weapon) {
+        this.equippedWeapon = weapon;
     }
 
     public ec.edu.espe.rpg.model.entities.Artifact getEquippedArtifact(ec.edu.espe.rpg.model.enums.ArtifactSlot slot) {

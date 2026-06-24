@@ -6,6 +6,10 @@ import ec.edu.espe.rpg.model.entities.Mage;
 import ec.edu.espe.rpg.model.entities.Item;
 import ec.edu.espe.rpg.model.entities.Potion;
 import ec.edu.espe.rpg.model.entities.Weapon;
+import ec.edu.espe.rpg.model.entities.Armor;
+import ec.edu.espe.rpg.model.entities.Artifact;
+import ec.edu.espe.rpg.model.enums.ArmorSlot;
+import ec.edu.espe.rpg.model.enums.ArtifactSlot;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -17,9 +21,13 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repositorio de persistencia en MongoDB para personajes del juego.
+ * Implementa el patrón Singleton y utiliza mapeadores limpios de datos.
+ */
 public class MongoCharacterRepository implements CharacterRepository {
 
-    private static final String CONNECTION_STRING = "mongodb://admin:AZaxnebula18*@157.137.223.54:27017/";
+    private static final String DEFAULT_CONNECTION_STRING = "mongodb://localhost:27017/";
     private static final String DATABASE_NAME = "rpg_db";
     private static final String COLLECTION_NAME = "characters";
 
@@ -46,9 +54,21 @@ public class MongoCharacterRepository implements CharacterRepository {
     private static MongoCharacterRepository instance;
 
     private MongoCharacterRepository() {
-        this.mongoClient = MongoClients.create(CONNECTION_STRING);
+        this.mongoClient = MongoClients.create(getConnectionString());
         this.database = mongoClient.getDatabase(DATABASE_NAME);
         this.collection = database.getCollection(COLLECTION_NAME);
+    }
+
+    private static String getConnectionString() {
+        String sysProp = System.getProperty("mongo.uri");
+        if (sysProp != null && !sysProp.trim().isEmpty()) {
+            return sysProp;
+        }
+        String envUri = System.getenv("MONGO_URI");
+        if (envUri != null && !envUri.trim().isEmpty()) {
+            return envUri;
+        }
+        return DEFAULT_CONNECTION_STRING;
     }
 
     public static synchronized MongoCharacterRepository getInstance() {
@@ -56,6 +76,74 @@ public class MongoCharacterRepository implements CharacterRepository {
             instance = new MongoCharacterRepository();
         }
         return instance;
+    }
+
+    /**
+     * Obtiene un valor Double de forma segura, previniendo excepciones de casteo
+     * si el número se almacenó como Entero (Integer) en BSON.
+     */
+    private static double getDoubleSafe(Document doc, String key) {
+        if (doc == null || key == null) return 0.0;
+        Object val = doc.get(key);
+        if (val instanceof Number) {
+            return ((Number) val).doubleValue();
+        }
+        return 0.0;
+    }
+
+    private Document mapItemToDocument(Item item) {
+        Document itemDoc = new Document("id", item.getId())
+                .append("name", item.getName())
+                .append("weight", item.getWeight())
+                .append("description", item.getDescription())
+                .append("baseValue", item.getBaseValue());
+
+        if (item instanceof Potion) {
+            itemDoc.append("type", "Potion");
+            itemDoc.append("restorationAmount", ((Potion) item).getRestorationAmount());
+        } else if (item instanceof Weapon) {
+            itemDoc.append("type", "Weapon");
+            itemDoc.append("baseDamage", ((Weapon) item).getBaseDamage());
+            itemDoc.append("attackSpeed", ((Weapon) item).getAttackSpeed());
+            itemDoc.append("durability", ((Weapon) item).getDurability());
+        } else if (item instanceof Armor) {
+            itemDoc.append("type", "Armor");
+            itemDoc.append("defense", ((Armor) item).getDefense());
+            itemDoc.append("slot", ((Armor) item).getSlot().name());
+        } else if (item instanceof Artifact) {
+            itemDoc.append("type", "Artifact");
+            itemDoc.append("bonusHealth", ((Artifact) item).getBonusHealth());
+            itemDoc.append("slot", ((Artifact) item).getSlot().name());
+        }
+        return itemDoc;
+    }
+
+    private Item mapDocumentToItem(Document itemDoc) {
+        if (itemDoc == null) return null;
+        String itemType = itemDoc.getString("type");
+        if ("Potion".equals(itemType)) {
+            return new Potion(itemDoc.getString("id"), itemDoc.getString("name"),
+                getDoubleSafe(itemDoc, "weight"), itemDoc.getString("description"),
+                getDoubleSafe(itemDoc, "baseValue"), getDoubleSafe(itemDoc, "restorationAmount"));
+        } else if ("Weapon".equals(itemType)) {
+            return new Weapon(itemDoc.getString("id"), itemDoc.getString("name"),
+                getDoubleSafe(itemDoc, "weight"), itemDoc.getString("description"),
+                getDoubleSafe(itemDoc, "baseValue"), getDoubleSafe(itemDoc, "baseDamage"),
+                getDoubleSafe(itemDoc, "attackSpeed"));
+        } else if ("Armor".equals(itemType)) {
+            ArmorSlot slot = ArmorSlot.valueOf(itemDoc.getString("slot"));
+            return new Armor(
+                itemDoc.getString("id"), itemDoc.getString("name"),
+                getDoubleSafe(itemDoc, "weight"), itemDoc.getString("description"),
+                getDoubleSafe(itemDoc, "baseValue"), getDoubleSafe(itemDoc, "defense"), slot);
+        } else if ("Artifact".equals(itemType)) {
+            ArtifactSlot slot = ArtifactSlot.valueOf(itemDoc.getString("slot"));
+            return new Artifact(
+                itemDoc.getString("id"), itemDoc.getString("name"),
+                getDoubleSafe(itemDoc, "weight"), itemDoc.getString("description"),
+                getDoubleSafe(itemDoc, "baseValue"), getDoubleSafe(itemDoc, "bonusHealth"), slot);
+        }
+        return null;
     }
 
     @Override
@@ -79,34 +167,37 @@ public class MongoCharacterRepository implements CharacterRepository {
             doc.append(FIELD_MANA, mage.getMana());
         }
 
+        // Save inventory
         List<Document> inventoryDocs = new ArrayList<>();
         for (Item item : character.getInventory()) {
-            Document itemDoc = new Document("id", item.getId())
-                    .append("name", item.getName())
-                    .append("weight", item.getWeight())
-                    .append("description", item.getDescription())
-                    .append("baseValue", item.getBaseValue());
-            
-            if (item instanceof Potion) {
-                itemDoc.append("type", "Potion");
-                itemDoc.append("restorationAmount", ((Potion)item).getRestorationAmount());
-            } else if (item instanceof Weapon) {
-                itemDoc.append("type", "Weapon");
-                itemDoc.append("baseDamage", ((Weapon)item).getBaseDamage());
-                itemDoc.append("attackSpeed", ((Weapon)item).getAttackSpeed());
-                itemDoc.append("durability", ((Weapon)item).getDurability());
-            } else if (item instanceof ec.edu.espe.rpg.model.entities.Armor) {
-                itemDoc.append("type", "Armor");
-                itemDoc.append("defense", ((ec.edu.espe.rpg.model.entities.Armor)item).getDefense());
-                itemDoc.append("slot", ((ec.edu.espe.rpg.model.entities.Armor)item).getSlot().name());
-            } else if (item instanceof ec.edu.espe.rpg.model.entities.Artifact) {
-                itemDoc.append("type", "Artifact");
-                itemDoc.append("bonusHealth", ((ec.edu.espe.rpg.model.entities.Artifact)item).getBonusHealth());
-                itemDoc.append("slot", ((ec.edu.espe.rpg.model.entities.Artifact)item).getSlot().name());
-            }
-            inventoryDocs.add(itemDoc);
+            inventoryDocs.add(mapItemToDocument(item));
         }
         doc.append(FIELD_INVENTORY, inventoryDocs);
+
+        // Save equipped weapon
+        if (character.getEquippedWeapon() != null) {
+            doc.append("equippedWeapon", mapItemToDocument(character.getEquippedWeapon()));
+        }
+
+        // Save equipped armor
+        List<Document> equippedArmorDocs = new ArrayList<>();
+        for (ArmorSlot slot : ArmorSlot.values()) {
+            Armor armor = character.getEquippedArmor(slot);
+            if (armor != null) {
+                equippedArmorDocs.add(mapItemToDocument(armor));
+            }
+        }
+        doc.append("equippedArmor", equippedArmorDocs);
+
+        // Save equipped artifacts
+        List<Document> equippedArtifactDocs = new ArrayList<>();
+        for (ArtifactSlot slot : ArtifactSlot.values()) {
+            Artifact artifact = character.getEquippedArtifact(slot);
+            if (artifact != null) {
+                equippedArtifactDocs.add(mapItemToDocument(artifact));
+            }
+        }
+        doc.append("equippedArtifacts", equippedArtifactDocs);
 
         ReplaceOptions options = new ReplaceOptions().upsert(true);
         collection.replaceOne(Filters.eq(FIELD_ID, character.getId()), doc, options);
@@ -134,83 +225,100 @@ public class MongoCharacterRepository implements CharacterRepository {
         collection.deleteOne(Filters.eq(FIELD_ID, id));
     }
 
+    private double calculateArtifactsHealthBonus(Document doc) {
+        double total = 0;
+        List<Document> artifactDocs = doc.getList("equippedArtifacts", Document.class);
+        if (artifactDocs != null) {
+            for (Document artDoc : artifactDocs) {
+                total += getDoubleSafe(artDoc, "bonusHealth");
+            }
+        }
+        return total;
+    }
+
     private Character mapDocumentToCharacter(Document doc) {
         String type = doc.getString(FIELD_TYPE);
         Character character = null;
+
+        // Calculate base maxHp by subtracting artifact bonuses from saved maxHp
+        double baseMaxHp = getDoubleSafe(doc, FIELD_MAX_HP) - calculateArtifactsHealthBonus(doc);
 
         if (TYPE_WARRIOR.equals(type)) {
             Warrior warrior = new Warrior(
                     doc.getString(FIELD_ID),
                     doc.getString(FIELD_NAME),
                     doc.getInteger(FIELD_LEVEL),
-                    doc.getDouble(FIELD_MAX_HP),
-                    doc.getDouble(FIELD_STRENGTH)
+                    baseMaxHp,
+                    getDoubleSafe(doc, FIELD_STRENGTH)
             );
             warrior.setExp(doc.getInteger(FIELD_EXP, 0));
-            applyDamage(warrior, doc.getDouble(FIELD_MAX_HP), doc.getDouble(FIELD_HP));
             character = warrior;
         } else if (TYPE_MAGE.equals(type)) {
             Mage mage = new Mage(
                     doc.getString(FIELD_ID),
                     doc.getString(FIELD_NAME),
                     doc.getInteger(FIELD_LEVEL),
-                    doc.getDouble(FIELD_MAX_HP),
-                    doc.getDouble(FIELD_INTELLIGENCE),
-                    doc.getDouble(FIELD_MANA)
+                    baseMaxHp,
+                    getDoubleSafe(doc, FIELD_INTELLIGENCE),
+                    getDoubleSafe(doc, FIELD_MANA)
             );
-            mage.setMana(doc.getDouble(FIELD_MANA));
+            mage.setMana(getDoubleSafe(doc, FIELD_MANA));
             mage.setExp(doc.getInteger(FIELD_EXP, 0));
-            applyDamage(mage, doc.getDouble(FIELD_MAX_HP), doc.getDouble(FIELD_HP));
             character = mage;
         }
 
         if (character != null) {
+            // Load inventory (without auto-equipping!)
             List<Document> inventoryDocs = doc.getList(FIELD_INVENTORY, Document.class);
             if (inventoryDocs != null) {
                 for (Document itemDoc : inventoryDocs) {
-                    String itemType = itemDoc.getString("type");
-                    try {
-                        if ("Potion".equals(itemType)) {
-                            Potion p = new Potion(itemDoc.getString("id"), itemDoc.getString("name"),
-                                itemDoc.getDouble("weight"), itemDoc.getString("description"),
-                                itemDoc.getDouble("baseValue"), itemDoc.getDouble("restorationAmount"));
-                            character.addItem(p);
-                        } else if ("Weapon".equals(itemType)) {
-                            Weapon w = new Weapon(itemDoc.getString("id"), itemDoc.getString("name"),
-                                itemDoc.getDouble("weight"), itemDoc.getString("description"),
-                                itemDoc.getDouble("baseValue"), itemDoc.getDouble("baseDamage"),
-                                itemDoc.getDouble("attackSpeed"));
-                            w.equip(character); // Equiparlo para que de el bono de daño
-                            character.addItem(w);
-                        } else if ("Armor".equals(itemType)) {
-                            ec.edu.espe.rpg.model.enums.ArmorSlot slot = ec.edu.espe.rpg.model.enums.ArmorSlot.valueOf(itemDoc.getString("slot"));
-                            ec.edu.espe.rpg.model.entities.Armor a = new ec.edu.espe.rpg.model.entities.Armor(
-                                itemDoc.getString("id"), itemDoc.getString("name"),
-                                itemDoc.getDouble("weight"), itemDoc.getString("description"),
-                                itemDoc.getDouble("baseValue"), itemDoc.getDouble("defense"), slot);
-                            a.equip(character);
-                            character.addItem(a);
-                        } else if ("Artifact".equals(itemType)) {
-                            ec.edu.espe.rpg.model.enums.ArtifactSlot slot = ec.edu.espe.rpg.model.enums.ArtifactSlot.valueOf(itemDoc.getString("slot"));
-                            ec.edu.espe.rpg.model.entities.Artifact art = new ec.edu.espe.rpg.model.entities.Artifact(
-                                itemDoc.getString("id"), itemDoc.getString("name"),
-                                itemDoc.getDouble("weight"), itemDoc.getString("description"),
-                                itemDoc.getDouble("baseValue"), itemDoc.getDouble("bonusHealth"), slot);
-                            art.equip(character);
-                            character.addItem(art);
-                        }
-                    } catch (Exception e) {}
+                    Item item = mapDocumentToItem(itemDoc);
+                    if (item != null) {
+                        try {
+                            character.addItem(item);
+                        } catch (Exception e) {}
+                    }
                 }
             }
+
+            // Load equipped weapon
+            Document weaponDoc = doc.get("equippedWeapon", Document.class);
+            if (weaponDoc != null) {
+                Weapon w = (Weapon) mapDocumentToItem(weaponDoc);
+                if (w != null) {
+                    character.setBonusDamage(character.getBonusDamage() + w.getBaseDamage());
+                    character.setEquippedWeapon(w);
+                }
+            }
+
+            // Load equipped armor
+            List<Document> armorDocs = doc.getList("equippedArmor", Document.class);
+            if (armorDocs != null) {
+                for (Document armorDoc : armorDocs) {
+                    Armor a = (Armor) mapDocumentToItem(armorDoc);
+                    if (a != null) {
+                        character.setBonusDefense(character.getBonusDefense() + a.getDefense());
+                        character.setEquippedArmor(a.getSlot(), a);
+                    }
+                }
+            }
+
+            // Load equipped artifacts
+            List<Document> artifactDocs = doc.getList("equippedArtifacts", Document.class);
+            if (artifactDocs != null) {
+                for (Document artDoc : artifactDocs) {
+                    Artifact art = (Artifact) mapDocumentToItem(artDoc);
+                    if (art != null) {
+                        character.setMaxHp(character.getMaxHp() + art.getBonusHealth());
+                        character.setEquippedArtifact(art.getSlot(), art);
+                    }
+                }
+            }
+
+            // Apply saved health directly, safe inside [0, maxHp] range
+            character.setHp(getDoubleSafe(doc, FIELD_HP));
         }
 
         return character;
-    }
-
-    private void applyDamage(Character character, double maxHp, double currentHp) {
-        double damageTaken = maxHp - currentHp;
-        if (damageTaken > 0) {
-            character.takeDamage(damageTaken);
-        }
     }
 }

@@ -114,5 +114,44 @@ class GameController:
 
         return result
 
+    def create_character(self, name: str, class_type: str) -> str:
+        import uuid
+        from models.factories.character_factory import CharacterFactory
+        char_id = str(uuid.uuid4())
+        try:
+            character = CharacterFactory.create_character(class_type, char_id, name)
+            self.current_character = character
+            return f"Nuevo personaje ({class_type}) creado en memoria: {name}"
+        except ValueError as e:
+            return f"Error al crear personaje: {str(e)}"
+
+    def rest_character(self) -> str:
+        if self.current_character is None:
+            return "Error: No hay personaje activo para descansar."
+        self.current_character.heal(self.current_character.max_hp)
+        return f"{self.current_character.name} ha descansado. HP restaurado al máximo."
+
+    def loot_random_item(self) -> str:
+        if self.current_character is None:
+            return "Error: No hay personaje activo para buscar botín."
+        from models.factories.item_factory import ItemFactory
+        from models.exceptions.inventory_full_exception import InventoryFullException
+        try:
+            item = ItemFactory.create_random_loot(self.current_character.level)
+            self.current_character.add_item(item)
+            return f"Has encontrado un ítem: {item.name}"
+        except InventoryFullException as e:
+            return f"Error: {str(e)}"
+
+    def unequip_weapon(self) -> str:
+        if self.current_character is None:
+            return "No hay personaje activo."
+        weapon = self.current_character.get_equipped_weapon()
+        if weapon is not None:
+            weapon.unequip(self.current_character)
+            return f"{self.current_character.name} se ha quitado: {weapon.name}"
+        return "No hay arma equipada."
+
     def get_current_character(self) -> Optional[Character]:
         return self.current_character
+

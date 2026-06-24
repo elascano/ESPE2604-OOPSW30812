@@ -76,14 +76,8 @@ class ControlPanelComponent(ctk.CTkFrame):
             messagebox.showwarning("Error", "El nombre no puede estar vacío.")
             return
 
-        char_id = str(uuid.uuid4())
         cls_val = self.cmb_class.get()
-        if cls_val == "Warrior":
-            new_char = Warrior(char_id, name, 1, 100.0, 15.0)
-        else:
-            new_char = Mage(char_id, name, 1, 80.0, 20.0, 50.0)
-
-        msg = self.game_controller.create_new_character(new_char)
+        msg = self.game_controller.create_character(name, cls_val)
         self.logger(msg)
         self.btn_save.configure(state=tk.NORMAL)
         self.on_update()
@@ -112,8 +106,8 @@ class ControlPanelComponent(ctk.CTkFrame):
     def handle_rest(self):
         c = self.game_controller.get_current_character()
         if c:
-            c.heal(c.max_hp)
-            self.logger(f"{c.name} ha descansado. HP restaurado al máximo.")
+            msg = self.game_controller.rest_character()
+            self.logger(msg)
             self.on_update()
         else:
             messagebox.showwarning("Error", "No hay personaje activo.")
