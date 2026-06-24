@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streaming Platform</title>
+</head>
+
+<body>
+
+<h1>Streaming Platform</h1>
+
+<input id="name" placeholder="Name">
+<input id="plan" placeholder="Plan">
+
+<br><br>
+
+<button onclick="createUser()">Create</button>
+
+<script>
+function createUser() {
+    alert("FUNCIONA");
+}
+</script>
+<button onclick="updateUser()">Update</button>
+<button onclick="deleteUser()">Delete</button>
+<button onclick="loadUsers()">Load</button>
+
+
+<br><br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Plan</th>
+        </tr>
+    </thead>
+    <tbody id="table"></tbody>
+</table>
+
+<script src="./dist/view/gui.js"></script>
+
+</body>
+</html>
