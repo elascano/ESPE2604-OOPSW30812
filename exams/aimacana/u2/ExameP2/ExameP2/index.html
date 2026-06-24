@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACME - Register Furniture</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Register New Furniture</h1>
+        <div id="message-area"></div>
+        
+        <form id="furniture-form">
+            <div class="form-group">
+                <label for="id-input">Product ID:</label>
+                <input type="text" id="id-input" placeholder="e.g., F001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name-input">Name / Description:</label>
+                <input type="text" id="name-input" placeholder="e.g., Office Chair" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price-input">Unit Price ($):</label>
+                <input type="number" id="price-input" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity-input">Quantity in Stock:</label>
+                <input type="number" id="quantity-input" min="0" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" id="btn-save" class="btn-primary">Save Furniture</button>
+                <button type="button" id="btn-cancel" class="btn-secondary">Cancel</button>
+            </div>
+        </form>
+
+        <div id="output" class="output-card" style="display: none;">
+            <h3>Registered Data (Model)</h3>
+            <p id="res-id"></p>
+            <p id="res-name"></p>
+            <p id="res-calc"></p>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
