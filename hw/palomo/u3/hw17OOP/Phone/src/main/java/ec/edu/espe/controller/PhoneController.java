@@ -4,13 +4,15 @@
  */
 package ec.edu.espe.controller;
 import ec.edu.espe.model.CellPhone;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+
 /**
  *
  * @author Cristian
  */
 public class PhoneController {
-    private ArrayList<CellPhone> phones = new ArrayList<>();
+    private ArrayList<CellPhone> phones =
+            new ArrayList<>();
 
     public void registerPhone(CellPhone phone) {
 

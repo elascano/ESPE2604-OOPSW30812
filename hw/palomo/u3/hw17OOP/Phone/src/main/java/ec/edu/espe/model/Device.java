@@ -10,7 +10,7 @@ package ec.edu.espe.model;
  */
 public abstract class Device {
     private String brand;
-    private String model; 
+    private String model;
 
     public Device(String brand, String model) {
         this.brand = brand;
@@ -29,4 +29,3 @@ public abstract class Device {
 
     public abstract void turnOff();
 }
-        

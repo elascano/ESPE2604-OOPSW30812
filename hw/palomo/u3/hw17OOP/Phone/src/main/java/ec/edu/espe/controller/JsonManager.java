@@ -7,15 +7,13 @@ import ec.edu.espe.model.CellPhone;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
 /**
  *
  * @author Cristian
  */
 public class JsonManager {
     public static void savePhones(List<CellPhone> phones) {
-
-        try {
+     try {
 
             FileWriter writer =
                     new FileWriter("data/phones.json");

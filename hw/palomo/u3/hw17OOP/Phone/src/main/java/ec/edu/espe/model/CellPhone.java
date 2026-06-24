@@ -8,7 +8,7 @@ package ec.edu.espe.model;
  *
  * @author Cristian
  */
-public class CellPhone extends Device {
+public class CellPhone extends Device{
     private String imei;
 
     private Battery battery;

@@ -9,7 +9,7 @@ package ec.edu.espe.model;
  * @author Cristian
  */
 public class Screen {
-     private double size;
+    private double size;
 
     public Screen(double size) {
         this.size = size;

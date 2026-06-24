@@ -3,17 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.espe.view;
-import ec.edu.espe.controller.PhoneController;
+
 import ec.edu.espe.controller.JsonManager;
+import ec.edu.espe.controller.PhoneController;
 import ec.edu.espe.model.*;
+
 import java.util.Scanner;
+
 
 /**
  *
  * @author Cristian
  */
 public class Main {
-     public static void main(String[] args) {
+    public static void main(String[] args) {
 
         Scanner scanner =
                 new Scanner(System.in);
@@ -102,5 +105,4 @@ public class Main {
 
         } while(option != 3);
     }
-    
 }
