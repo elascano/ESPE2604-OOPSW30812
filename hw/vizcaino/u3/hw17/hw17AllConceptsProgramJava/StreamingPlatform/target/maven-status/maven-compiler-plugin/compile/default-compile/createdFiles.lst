@@ -1,0 +1,13 @@
+ec\edu\espe\model\Playable.class
+ec\edu\espe\mongo\MongoDBConnection.class
+ec\edu\espe\model\Movie.class
+ec\edu\espe\model\Series.class
+ec\edu\espe\model\User.class
+ec\edu\espe\model\Episode.class
+ec\edu\espe\model\StreamingPlatform.class
+ec\edu\espe\model\Subscription.class
+utils\ConsolePrinter.class
+ec\edu\espe\model\PlayableContent.class
+ec\edu\espe\main\Main.class
+ec\edu\espe\view\StreamingPlatformView.class
+ec\edu\espe\controller\StreamingPlatformController.class

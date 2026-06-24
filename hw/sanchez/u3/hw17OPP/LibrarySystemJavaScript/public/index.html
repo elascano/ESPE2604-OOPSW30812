@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Library System</h1>
+
+<input id="bookId" placeholder="Id">
+<input id="title" placeholder="Title">
+<input id="author" placeholder="Author">
+
+<br><br>
+
+<button onclick="saveBook()">Save</button>
+<button onclick="searchBook()">Search</button>
+<button onclick="updateBook()">Update</button>
+<button onclick="deleteBook()">Delete</button>
+<button onclick="showBooks()">Show All</button>
+
+<br><br>
+
+<table id="booksTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="app.js"></script>
+
+</body>
+</html>

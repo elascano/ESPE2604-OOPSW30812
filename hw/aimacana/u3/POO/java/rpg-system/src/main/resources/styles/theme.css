@@ -1,0 +1,134 @@
+/* theme.css - Estilos externalizados del RPG System */
+
+.root-view {
+    -fx-background-color: #1e1e2e;
+}
+
+.main-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #cdd6f4;
+}
+
+.card {
+    -fx-background-color: #181825;
+    -fx-background-radius: 12px;
+    -fx-border-color: #313244;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #cdd6f4;
+}
+
+.custom-textfield {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-background-radius: 6px;
+}
+
+.custom-combobox {
+    -fx-font-size: 14px;
+    -fx-padding: 6px;
+    -fx-background-radius: 6px;
+}
+
+.btn {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-text-fill: #11111b;
+}
+
+.btn-primary {
+    -fx-background-color: #89b4fa;
+}
+
+.btn-warning {
+    -fx-background-color: #f9e2af;
+}
+
+.btn-success {
+    -fx-background-color: #a6e3a1;
+}
+
+.btn-danger {
+    -fx-background-color: #f38ba8;
+    -fx-font-weight: 900;
+    -fx-font-size: 15px;
+    -fx-padding: 12px 25px;
+    -fx-background-radius: 8px;
+}
+
+.btn-purple {
+    -fx-background-color: #cba6f7;
+    -fx-font-weight: 900;
+    -fx-font-size: 15px;
+    -fx-padding: 12px 25px;
+    -fx-background-radius: 8px;
+}
+
+/* Pseudo-clase para botones deshabilitados */
+.btn:disabled {
+    -fx-background-color: #45475a;
+    -fx-text-fill: #a6adc8;
+    -fx-cursor: default;
+}
+
+.stats-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #cdd6f4;
+}
+
+.stats-class-badge {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #313244;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #bac2de;
+}
+
+.hp-title, .stat-title {
+    -fx-text-fill: #a6adc8;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.hp-text {
+    -fx-text-fill: #cdd6f4;
+    -fx-font-weight: 800;
+    -fx-font-size: 16px;
+}
+
+.hp-bar-container {
+    -fx-control-inner-background: #313244;
+    -fx-background-color: transparent;
+}
+
+.primary-stat-val {
+    -fx-text-fill: #cdd6f4;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+}
+
+.secondary-stat-val {
+    -fx-text-fill: #cba6f7;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+}
+
+.custom-console {
+    -fx-font-family: 'Consolas', monospace;
+    -fx-font-size: 14px;
+    -fx-control-inner-background: #11111b;
+    -fx-text-fill: #a6adc8;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
