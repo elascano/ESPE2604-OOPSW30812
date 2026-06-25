@@ -1,0 +1,11 @@
+ec\edu\espe\librarysystem\model\Book.class
+ec\edu\espe\librarysystem\view\FrmMain.class
+ec\edu\espe\librarysystem\controller\BookController.class
+ec\edu\espe\librarysystem\dao\BookDAO.class
+ec\edu\espe\librarysystem\dao\MongoBookDAO.class
+ec\edu\espe\librarysystem\model\Member.class
+ec\edu\espe\librarysystem\utils\Validator.class
+ec\edu\espe\librarysystem\view\BookPanel.class
+ec\edu\espe\librarysystem\model\Library.class
+ec\edu\espe\librarysystem\model\Person.class
+ec\edu\espe\librarysystem\utils\MongoConnection.class
