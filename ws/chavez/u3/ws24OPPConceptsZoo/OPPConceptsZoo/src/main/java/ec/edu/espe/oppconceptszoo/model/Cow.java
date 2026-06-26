@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Esteban Basurto , CodeBreakers, @ESPE
+ * @author Odalys Chavez , CodeBreakers, @ESPE
  */
 public class Cow extends FarmAnimal implements IMeatAnimal{
 
@@ -28,7 +28,8 @@ public class Cow extends FarmAnimal implements IMeatAnimal{
 
     @Override
     public void sendToSlaugnterHouse(SlaughterHouse slaugthterHouse) {
-       System.out.println("Seeding cow");}
+       System.out.println("Seeding cow");
+    }
 
 
 }

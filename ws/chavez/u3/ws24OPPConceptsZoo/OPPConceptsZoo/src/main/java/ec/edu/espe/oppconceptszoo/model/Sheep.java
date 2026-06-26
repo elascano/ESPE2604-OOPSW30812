@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Esteban Basurto , CodeBreakers, @ESPE
+ * @author Odalys Chavez , CodeBreakers, @ESPE
  */
 public class Sheep extends FarmAnimal{
     Date lastSheering;

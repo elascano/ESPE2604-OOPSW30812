@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Esteban Basurto , CodeBreakers, @ESPE
+ * @author Odalys Chavez , CodeBreakers, @ESPE
  */
 public interface IMeatAnimal {
     public ArrayList<Cut> cut();

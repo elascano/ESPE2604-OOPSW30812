@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Esteban Basurto , CodeBreakers, @ESPE
+ * @author Odalys Chavez , CodeBreakers, @ESPE
  */
 public abstract class FarmAnimal {
     int id; String breed;

@@ -6,7 +6,7 @@ package ec.edu.espe.oppconceptszoo.model;
 
 /**
  *
- * @author Esteban Basurto , CodeBreakers, @ESPE
+ * @author Odalys Chavez , CodeBreakers, @ESPE
  */
 public class Chicken {
     
