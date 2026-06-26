@@ -15,4 +15,5 @@ public class G {
         System.out.println("G uses J");
         j.action();
     }
+    
 }
