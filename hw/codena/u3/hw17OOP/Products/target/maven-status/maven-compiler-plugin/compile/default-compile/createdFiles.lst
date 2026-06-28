@@ -1,0 +1,11 @@
+ec\edu\espe\products\model\Battery.class
+ec\edu\espe\products\Products.class
+ec\edu\espe\products\model\ISellable.class
+ec\edu\espe\products\view\FrmAddBook.class
+ec\edu\espe\products\model\Watch.class
+ec\edu\espe\products\utils\MongoConnection.class
+ec\edu\espe\products\controller\ProductController.class
+ec\edu\espe\products\model\Product.class
+ec\edu\espe\products\view\FrmAddWatch.class
+ec\edu\espe\products\view\FrmStore.class
+ec\edu\espe\products\model\Book.class
