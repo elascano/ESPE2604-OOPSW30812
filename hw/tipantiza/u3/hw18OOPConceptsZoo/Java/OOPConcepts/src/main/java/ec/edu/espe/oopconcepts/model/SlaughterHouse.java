@@ -3,7 +3,7 @@ package ec.edu.espe.oopconcepts.model;
 
 /**
  *
- * @author Daniel Codena, CodeBreakers, @ESPE
+ * @author Alexander Tipantiza, The Softwarrios, @ESPE
  */
 public class SlaughterHouse {
     private String description;
