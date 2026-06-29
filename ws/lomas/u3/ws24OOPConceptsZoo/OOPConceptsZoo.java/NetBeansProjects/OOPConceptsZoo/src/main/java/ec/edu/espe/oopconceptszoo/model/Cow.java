@@ -1,8 +1,10 @@
 package ec.edu.espe.oopconceptszoo.model;
 
 import ec.edu.espe.oopconceptszoo.controller.IMeatAnimal;
+import ec.edu.espe.oopconceptszoo.controller.MongoConnection;
 import java.util.ArrayList;
 import java.util.Date;
+import org.bson.Document;
 
 public class Cow extends FarmAnimal implements IMeatAnimal {
     boolean isProducingMilk;
@@ -14,29 +16,29 @@ public class Cow extends FarmAnimal implements IMeatAnimal {
         this.milk = milk;
     }
 
-    public boolean isProducingMilk() {
-        return isProducingMilk;
-    }
-
-    public float milk() {
-        return milk;
-    }
-
-    @Override
-    public int getAgeInMonths() {
-        return super.getAgeInMonths();
-    }
-
     @Override
     public ArrayList<Cut> cut() {
         ArrayList<Cut> cuts = new ArrayList<>();
-        cuts.add(new Cut(10, "T-Bone", "Rib Section", 5.5f));
-        cuts.add(new Cut(11, "Ribeye", "Loin Section", 3.8f));
+        cuts.add(new Cut(10, "T-Bone", "Rib Section", (float) (getWeight() * 0.20)));
+        cuts.add(new Cut(11, "Ribeye", "Loin Section", (float) (getWeight() * 0.12)));
         return cuts;
     }
 
     @Override
     public void sendToSlaughterHouse(SlaughterHouse slaughterhouse) {
-        System.out.println("Cow " + id + " sent to " + slaughterhouse.description);
+        System.out.println("Cow moving to house.");
     }
+
+    public void saveToDatabase() {
+        Document doc = new Document("id", getId())
+                .append("breed", getBreed())
+                .append("bornOn", getBornOn())
+                .append("weight", getWeight())
+                .append("isProducingMilk", isProducingMilk)
+                .append("milk", milk);
+        MongoConnection.saveDocument("cows", doc);
+    }
+
+    public boolean isProducingMilk() { return isProducingMilk; }
+    public float milk() { return milk; }
 }

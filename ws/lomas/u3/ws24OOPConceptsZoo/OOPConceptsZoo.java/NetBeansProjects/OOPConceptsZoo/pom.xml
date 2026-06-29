@@ -10,4 +10,20 @@
         <maven.compiler.release>18</maven.compiler.release>
         <exec.mainClass>ec.edu.espe.oopconceptszoo.OOPConceptsZoo</exec.mainClass>
     </properties>
+    
+<dependencies>
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>5.1.0</version>
+    </dependency>
+    
+    <dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+    </dependency>
+    
+</dependencies>
+    
 </project>
