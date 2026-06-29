@@ -1,7 +1,6 @@
+import os
 from typing import List, Optional
 from pymongo import MongoClient
-from pymongo.collection import Collection
-from pymongo.database import Database
 from .character_repository import CharacterRepository
 from models.entities.character import Character
 from models.entities.warrior import Warrior
@@ -10,10 +9,13 @@ from models.entities.potion import Potion
 from models.entities.weapon import Weapon
 from models.entities.armor import Armor
 from models.entities.artifact import Artifact
+from models.enums.armor_slot import ArmorSlot
+from models.enums.artifact_slot import ArtifactSlot
 from models.factories.character_factory import CharacterFactory
 
 class MongoCharacterRepository(CharacterRepository):
-    CONNECTION_STRING = "mongodb://admin:AZaxnebula18*@157.137.223.54:27017/"
+    # Cargar de variable de entorno para seguridad, fallback a local
+    CONNECTION_STRING = os.environ.get("MONGO_URI") or os.environ.get("DATABASE_URL") or "mongodb://localhost:27017/"
     DATABASE_NAME = "rpg_db"
     COLLECTION_NAME = "characters"
 
@@ -26,6 +28,32 @@ class MongoCharacterRepository(CharacterRepository):
             cls._instance.db = cls._instance.client[cls.DATABASE_NAME]
             cls._instance.collection = cls._instance.db[cls.COLLECTION_NAME]
         return cls._instance
+
+    def _map_item_to_doc(self, item) -> dict:
+        item_doc = {
+            "id": item.id,
+            "name": item.name,
+            "weight": item.weight,
+            "description": item.description,
+            "baseValue": item.base_value
+        }
+        if isinstance(item, Potion):
+            item_doc["type"] = "Potion"
+            item_doc["restorationAmount"] = item.restoration_amount
+        elif isinstance(item, Weapon):
+            item_doc["type"] = "Weapon"
+            item_doc["baseDamage"] = item.base_damage
+            item_doc["attackSpeed"] = item.attack_speed
+            item_doc["durability"] = item.durability
+        elif isinstance(item, Armor):
+            item_doc["type"] = "Armor"
+            item_doc["defense"] = item.defense
+            item_doc["slot"] = item.slot.name
+        elif isinstance(item, Artifact):
+            item_doc["type"] = "Artifact"
+            item_doc["bonusHealth"] = item.bonus_health
+            item_doc["slot"] = item.slot.name
+        return item_doc
 
     def save(self, character: Character):
         doc = {
@@ -47,32 +75,27 @@ class MongoCharacterRepository(CharacterRepository):
             doc["intelligence"] = character.intelligence
             doc["mana"] = character.mana
 
+        # Save inventory items
         for item in character.inventory:
-            item_doc = {
-                "id": item.id,
-                "name": item.name,
-                "weight": item.weight,
-                "description": item.description,
-                "baseValue": item.base_value
-            }
-            if isinstance(item, Potion):
-                item_doc["type"] = "Potion"
-                item_doc["restorationAmount"] = item.restoration_amount
-            elif isinstance(item, Weapon):
-                item_doc["type"] = "Weapon"
-                item_doc["baseDamage"] = item.base_damage
-                item_doc["attackSpeed"] = item.attack_speed
-                item_doc["durability"] = item.durability
-            elif isinstance(item, Armor):
-                item_doc["type"] = "Armor"
-                item_doc["defense"] = item.defense
-                item_doc["slot"] = item.slot.name
-            elif isinstance(item, Artifact):
-                item_doc["type"] = "Artifact"
-                item_doc["bonusHealth"] = item.bonus_health
-                item_doc["slot"] = item.slot.name
-            
-            doc["inventory"].append(item_doc)
+            doc["inventory"].append(self._map_item_to_doc(item))
+
+        # Save equipped weapon
+        if character.get_equipped_weapon() is not None:
+            doc["equippedWeapon"] = self._map_item_to_doc(character.get_equipped_weapon())
+
+        # Save equipped armor
+        doc["equippedArmor"] = []
+        for slot in ArmorSlot:
+            armor = character.get_equipped_armor(slot)
+            if armor is not None:
+                doc["equippedArmor"].append(self._map_item_to_doc(armor))
+
+        # Save equipped artifacts
+        doc["equippedArtifacts"] = []
+        for slot in ArtifactSlot:
+            artifact = character.get_equipped_artifact(slot)
+            if artifact is not None:
+                doc["equippedArtifacts"].append(self._map_item_to_doc(artifact))
 
         self.collection.replace_one({"_id": character.id}, doc, upsert=True)
 

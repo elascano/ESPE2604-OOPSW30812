@@ -1,8 +1,11 @@
 import { CharacterRepository } from '../repositories/CharacterRepository';
 import { Character } from '../models/Character';
 import { Item } from '../models/Item';
+import { Weapon } from '../models/Weapon';
 import { ArmorSlot, ArtifactSlot } from '../models/enums';
 import { CharacterDeadException } from '../models/exceptions';
+import { CharacterFactory } from '../models/CharacterFactory';
+import { ItemFactory } from '../models/ItemFactory';
 
 // Para simplificar la validación de interfaces en TS ya que usa duck typing y no implements nominal en runtime
 function isIEquippable(item: any): boolean {
@@ -24,6 +27,48 @@ export class GameService {
   public createNewCharacter(character: Character): string {
     this.currentCharacter = character;
     return `Nuevo personaje creado en memoria: ${character.getName()}`;
+  }
+
+  public createCharacter(name: string, classType: string): string {
+    const id = Math.random().toString(36).substring(2, 9);
+    try {
+      const char = CharacterFactory.createCharacter(classType, id, name);
+      this.currentCharacter = char;
+      return `Nuevo personaje (${classType}) creado en memoria: ${name}`;
+    } catch (e: any) {
+      return `Error al crear personaje: ${e.message}`;
+    }
+  }
+
+  public restCharacter(): string {
+    if (!this.currentCharacter) {
+      return 'Error: No hay personaje activo para descansar.';
+    }
+    this.currentCharacter.heal(this.currentCharacter.getMaxHp());
+    return `${this.currentCharacter.getName()} ha descansado. HP restaurado al máximo.`;
+  }
+
+  public lootRandomItem(): string {
+    if (!this.currentCharacter) {
+      return 'Error: No hay personaje activo para buscar botín.';
+    }
+    try {
+      const item = ItemFactory.createRandomLoot(this.currentCharacter.getLevel());
+      this.currentCharacter.addItem(item);
+      return `Has encontrado un ítem: ${item.getName()}`;
+    } catch (e: any) {
+      return `Error: ${e.message}`;
+    }
+  }
+
+  public unequipWeapon(): string {
+    if (!this.currentCharacter) return 'No hay personaje activo.';
+    const weapon = this.currentCharacter.getEquippedWeapon();
+    if (weapon) {
+      weapon.unequip(this.currentCharacter);
+      return `${this.currentCharacter.getName()} se ha quitado: ${weapon.getName()}`;
+    }
+    return 'No hay arma equipada.';
   }
 
   public async loadCharacter(characterId: string): Promise<string> {

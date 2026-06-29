@@ -3,6 +3,7 @@ from models.interfaces.i_equippable import IEquippable
 from models.interfaces.i_repairable import IRepairable
 from models.interfaces.i_sellable import ISellable
 from .character import Character
+from models.exceptions.inventory_full_exception import InventoryFullException
 
 class Weapon(Item, IEquippable, IRepairable, ISellable):
     def __init__(self, item_id: str, name: str, weight: float, description: str, base_value: float, base_damage: float, attack_speed: float):
@@ -12,10 +13,20 @@ class Weapon(Item, IEquippable, IRepairable, ISellable):
         self.durability = 100.0
 
     def equip(self, target: Character):
+        currently_equipped = target.get_equipped_weapon()
+        target.remove_item(self)
+        if currently_equipped is not None:
+            currently_equipped.unequip(target)
         target.bonus_damage += self.base_damage
+        target.set_equipped_weapon(self)
 
     def unequip(self, target: Character):
         target.bonus_damage -= self.base_damage
+        target.set_equipped_weapon(None)
+        try:
+            target.add_item(self)
+        except InventoryFullException:
+            pass
 
     def repair(self, amount: float):
         self.durability += amount

@@ -10,6 +10,7 @@ import { Armor } from './models/Armor';
 import { Artifact } from './models/Artifact';
 import { ArmorSlot, ArtifactSlot } from './models/enums';
 import { Character } from './models/Character';
+import { EnemyFactory } from './models/EnemyFactory';
 
 // Singleton de servicio para emular el estado local de la app Java
 const repository = MongoCharacterRepository.getInstance();
@@ -67,6 +68,7 @@ function toDTO(c: Character | null): CharacterDTO | null {
       slot: (i as any).getSlot ? (i as any).getSlot() : null
     })),
     equipped: {
+      weapon: c.getEquippedWeapon()?.getName() || null,
       helmet: c.getEquippedArmor(ArmorSlot.HELMET)?.getName() || null,
       chest: c.getEquippedArmor(ArmorSlot.CHEST)?.getName() || null,
       legs: c.getEquippedArmor(ArmorSlot.LEGS)?.getName() || null,
@@ -77,14 +79,52 @@ function toDTO(c: Character | null): CharacterDTO | null {
   };
 }
 
-export async function createDemoCharacter() {
-  const warrior = new Warrior('char-1', 'Conan', 1, 150, 20);
-  warrior.addItem(new Weapon('wp-1', 'Espada Larga', 5, 'Espada básica', 10, 15, 1.0));
-  warrior.addItem(new Potion('pt-1', 'Poción Menor', 1, 'Cura 50 HP', 5, 50));
-  warrior.addItem(new Armor('ar-1', 'Cota de Malla', 10, 'Defensa media', 20, 15, ArmorSlot.CHEST));
-  
-  const msg = gameService.createNewCharacter(warrior);
+export async function createCharacterAction(name: string, classType: string) {
+  const msg = gameService.createCharacter(name, classType);
   await gameService.saveGame();
+  return { msg, character: toDTO(gameService.getCurrentCharacter()) };
+}
+
+export async function createDemoCharacter() {
+  const msg = gameService.createCharacter('Conan', 'Warrior');
+  const char = gameService.getCurrentCharacter();
+  if (char) {
+    char.addItem(new Weapon('wp-1', 'Espada Larga', 5, 'Espada básica', 10, 15, 1.0));
+    char.addItem(new Potion('pt-1', 'Poción Menor', 1, 'Cura 50 HP', 5, 50));
+    char.addItem(new Armor('ar-1', 'Cota de Malla', 10, 'Defensa media', 20, 15, ArmorSlot.CHEST));
+  }
+  await gameService.saveGame();
+  return { msg, character: toDTO(gameService.getCurrentCharacter()) };
+}
+
+export async function restCharacterAction() {
+  const msg = gameService.restCharacter();
+  return { msg, character: toDTO(gameService.getCurrentCharacter()) };
+}
+
+export async function lootRandomItemAction() {
+  const msg = gameService.lootRandomItem();
+  return { msg, character: toDTO(gameService.getCurrentCharacter()) };
+}
+
+export async function unequipItemAction(slotName: string) {
+  let msg = '';
+  const slotLower = slotName.toLowerCase();
+  if (slotLower === 'weapon') {
+    msg = gameService.unequipWeapon();
+  } else if (slotLower === 'helmet') {
+    msg = gameService.unequipArmor(ArmorSlot.HELMET);
+  } else if (slotLower === 'chest') {
+    msg = gameService.unequipArmor(ArmorSlot.CHEST);
+  } else if (slotLower === 'legs') {
+    msg = gameService.unequipArmor(ArmorSlot.LEGS);
+  } else if (slotLower === 'boots') {
+    msg = gameService.unequipArmor(ArmorSlot.BOOTS);
+  } else if (slotLower === 'ring') {
+    msg = gameService.unequipArtifact(ArtifactSlot.RING);
+  } else if (slotLower === 'amulet') {
+    msg = gameService.unequipArtifact(ArtifactSlot.AMULET);
+  }
   return { msg, character: toDTO(gameService.getCurrentCharacter()) };
 }
 
@@ -109,8 +149,10 @@ export async function interactItem(itemId: string) {
 }
 
 export async function attackDummy() {
-  // Dummy enemy for testing
-  const enemy = new Warrior('enemy-1', 'Orco', 1, 80, 10);
+  const char = gameService.getCurrentCharacter();
+  const level = char ? char.getLevel() : 1;
+  const enemy = EnemyFactory.spawnEnemyForLevel(level);
+  
   const msg = gameService.attackTarget(enemy);
   return { msg, character: toDTO(gameService.getCurrentCharacter()) };
 }

@@ -2,6 +2,7 @@ package ec.edu.espe.rpg.controller;
 
 import ec.edu.espe.rpg.model.entities.Character;
 import ec.edu.espe.rpg.model.entities.Item;
+import ec.edu.espe.rpg.model.entities.Weapon;
 import ec.edu.espe.rpg.model.interfaces.IConsumable;
 import ec.edu.espe.rpg.model.interfaces.IEquippable;
 import ec.edu.espe.rpg.repository.CharacterRepository;
@@ -142,6 +143,48 @@ public class GameController {
         }
         
         return result;
+    }
+
+    public String createCharacter(String name, String classType) {
+        String id = java.util.UUID.randomUUID().toString();
+        try {
+            ec.edu.espe.rpg.model.entities.Character character = ec.edu.espe.rpg.model.factories.CharacterFactory.createCharacter(classType, id, name);
+            this.currentCharacter = character;
+            return "Nuevo personaje (" + classType + ") creado en memoria: " + name;
+        } catch (IllegalArgumentException e) {
+            return "Error al crear personaje: " + e.getMessage();
+        }
+    }
+
+    public String restCharacter() {
+        if (currentCharacter == null) {
+            return "Error: No hay personaje activo para descansar.";
+        }
+        currentCharacter.heal(currentCharacter.getMaxHp());
+        return currentCharacter.getName() + " ha descansado. HP restaurado al máximo.";
+    }
+
+    public String lootRandomItem() {
+        if (currentCharacter == null) {
+            return "Error: No hay personaje activo para buscar botín.";
+        }
+        try {
+            ec.edu.espe.rpg.model.entities.Item item = ec.edu.espe.rpg.model.factories.ItemFactory.createRandomLoot(currentCharacter.getLevel());
+            currentCharacter.addItem(item);
+            return "Has encontrado un ítem: " + item.getName();
+        } catch (ec.edu.espe.rpg.model.exceptions.InventoryFullException e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    public String unequipWeapon() {
+        if (currentCharacter == null) return "No hay personaje activo.";
+        Weapon weapon = currentCharacter.getEquippedWeapon();
+        if (weapon != null) {
+            weapon.unequip(currentCharacter);
+            return currentCharacter.getName() + " se ha quitado: " + weapon.getName();
+        }
+        return "No hay arma equipada.";
     }
     
     public Character getCurrentCharacter() {

@@ -14,7 +14,7 @@ export class Potion extends Item implements IConsumable, ISellable {
 
   public consume(target: Character): void {
     console.log(`${target.getName()} consumes ${this.getName()}`);
-    target.takeDamage(-this.restorationAmount); // Negative damage heals
+    target.heal(this.restorationAmount);
   }
 
   public calculateSaleValue(): number {

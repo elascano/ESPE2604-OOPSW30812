@@ -2,6 +2,7 @@ import { Item } from './Item';
 import { ArmorSlot, ArtifactSlot } from './enums';
 import type { Armor } from './Armor';
 import type { Artifact } from './Artifact';
+import type { Weapon } from './Weapon';
 import { InventoryFullException, CharacterDeadException } from './exceptions';
 
 export abstract class Character {
@@ -14,6 +15,7 @@ export abstract class Character {
   private bonusDamage: number;
   private bonusDefense: number;
   private inventory: Item[];
+  private equippedWeapon?: Weapon;
   private equippedArmor: Map<ArmorSlot, Armor>;
   private equippedArtifacts: Map<ArtifactSlot, Artifact>;
 
@@ -41,6 +43,9 @@ export abstract class Character {
   public setLevel(level: number): void { this.level = level; }
 
   public getHp(): number { return this.hp; }
+  public setHp(hp: number): void {
+    this.hp = Math.max(0, Math.min(hp, this.maxHp));
+  }
   public getMaxHp(): number { return this.maxHp; }
   public setMaxHp(maxHp: number): void { this.maxHp = maxHp; }
 
@@ -54,6 +59,14 @@ export abstract class Character {
   public setBonusDefense(def: number): void { this.bonusDefense = def; }
 
   public getInventory(): Item[] { return this.inventory; }
+
+  public getEquippedWeapon(): Weapon | undefined {
+    return this.equippedWeapon;
+  }
+
+  public setEquippedWeapon(weapon?: Weapon): void {
+    this.equippedWeapon = weapon;
+  }
 
   public getEquippedArmor(slot: ArmorSlot): Armor | undefined {
     return this.equippedArmor.get(slot);

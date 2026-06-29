@@ -21,12 +21,22 @@ public class Weapon extends Item implements IEquippable, IRepairable, ISellable 
 
     @Override
     public void equip(Character target) {
+        Weapon currentlyEquipped = target.getEquippedWeapon();
+        target.removeItem(this); // Quitar de mochila
+        if (currentlyEquipped != null) {
+            currentlyEquipped.unequip(target); // Devolver vieja arma a mochila
+        }
         target.setBonusDamage(target.getBonusDamage() + baseDamage);
+        target.setEquippedWeapon(this);
     }
 
     @Override
     public void unequip(Character target) {
         target.setBonusDamage(target.getBonusDamage() - baseDamage);
+        target.setEquippedWeapon(null);
+        try {
+            target.addItem(this); // Devolver a mochila
+        } catch (ec.edu.espe.rpg.model.exceptions.InventoryFullException e) {}
     }
 
     @Override

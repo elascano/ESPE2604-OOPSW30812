@@ -33,16 +33,10 @@ class InventoryComponent(ctk.CTkFrame):
         self.btn_loot.pack(fill=tk.X, pady=(10, 10), padx=15)
 
     def handle_loot(self):
-        c = self.game_controller.get_current_character()
-        if c:
-            try:
-                item = ItemFactory.create_random_loot(c.level)
-                c.add_item(item)
-                self.logger(f"Has encontrado un ítem: {item.name}")
-            except InventoryFullException as ex:
-                self.logger(f"❌ {str(ex)}")
-            self.update_state()
-            self.on_update()
+        msg = self.game_controller.loot_random_item()
+        self.logger(msg)
+        self.update_state()
+        self.on_update()
 
     def update_state(self):
         c = self.game_controller.get_current_character()

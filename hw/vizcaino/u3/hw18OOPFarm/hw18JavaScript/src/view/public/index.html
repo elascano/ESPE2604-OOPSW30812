@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESPE - Farm Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f9; color: #333; }
+        .container { max-width: 1100px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0d5c3a; text-align: center; }
+        .panel { display: flex; gap: 20px; margin-bottom: 25px; }
+        .form-section, .actions-section { flex: 1; border: 1px solid #ddd; padding: 20px; border-radius: 6px; background: #fafafa; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #0d5c3a; color: white; border: none; padding: 10px 15px; margin-top: 15px; cursor: pointer; font-size: 14px; border-radius: 4px; width: 100%; font-weight: bold;}
+        button:hover { background: #083d26; }
+        .btn-delete { background: #c0392b; }
+        .btn-delete:hover { background: #962d22; }
+        .btn-action { background: #d35400; }
+        .btn-action:hover { background: #a04000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #0d5c3a; color: white; }
+        .hidden { display: none; }
+        #logsDisplay { background: #222; color: #00ff00; padding: 15px; font-family: monospace; border-radius: 4px; height: 120px; overflow-y: auto; margin-top: 15px;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Farm Management System - hw18JavaScript</h1>
+    
+    <label for="animalSelector" style="font-size: 18px;">Select Animal Type to Manage:</label>
+    <select id="animalSelector" onchange="switchAnimalType()">
+        <option value="Cow">Cow</option>
+        <option value="Pig">Pig</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Sheep">Sheep</option>
+    </select>
+
+    <div class="panel">
+        <div class="form-section">
+            <h2 id="formTitle">Form: Cow</h2>
+            <form id="crudForm">
+                <label>Animal ID:</label>
+                <input type="number" id="animalId" required>
+                
+                <label>Breed:</label>
+                <input type="text" id="breed" required>
+                
+                <label>Birth Date (To Calculate Age in Months):</label>
+                <input type="date" id="bornOn" required>
+                
+                <label>Initial Weight (kg):</label>
+                <input type="number" step="0.01" id="weight" required>
+
+                <div id="cowFields">
+                    <label>Is Producing Milk?</label>
+                    <select id="isProducingMilk"><option value="true">Yes</option><option value="false">No</option></select>
+                    <label>Daily Milk Yield (L):</label>
+                    <input type="number" step="0.1" id="dailyMilkYield" value="0">
+                </div>
+
+                <div id="pigFields" class="hidden">
+                    <label>Ideal Weight (kg):</label>
+                    <input type="number" step="0.1" id="idealWeight" value="0">
+                    <label>Pen Number:</label>
+                    <input type="number" id="penNumber" value="0">
+                </div>
+
+                <div id="chickenFields" class="hidden">
+                    <label>Is Molting?</label>
+                    <select id="isMolting"><option value="false">No</option><option value="true">Yes</option></select>
+                    <label>Eggs Per Week:</label>
+                    <input type="number" id="numberOfEggsPerWeek" value="0">
+                    <label>Egg Color:</label>
+                    <input type="text" id="eggColor" value="White">
+                </div>
+
+                <div id="sheepFields" class="hidden">
+                    <label>Last Shearing Date:</label>
+                    <input type="date" id="lastSheering">
+                    <label>Wool Quality:</label>
+                    <input type="text" id="woolQuality" value="Premium">
+                </div>
+
+                <button type="button" onclick="saveAnimal()">Save / Create Animal</button>
+                <button type="button" onclick="updateAnimal()">Update Attributes</button>
+            </form>
+        </div>
+
+        <div class="actions-section">
+            <h2>Specific Actions & History Log</h2>
+            <p style="font-size: 13px; color:#666;">Enter the Animal ID in the form on the left, then trigger the corresponding action:</p>
+            
+            <button class="btn-action" onclick="triggerFeed()">Feed Animal (Global +2% Weight)</button>
+            
+            <div id="cowAction">
+                <label>Milk Volume Extracted Today (L):</label>
+                <input type="number" id="milkInput" value="5" style="width: 50%; display:inline-block; margin-right: 10px;">
+                <button class="btn-action" style="width: 45%; display:inline-block;" onclick="triggerMilk()">Milk Cow</button>
+            </div>
+            
+            <div id="chickenAction" class="hidden">
+                <button class="btn-action" onclick="triggerLayEgg()">Record Egg (layAnEgg)</button>
+            </div>
+            
+            <div id="sheepAction" class="hidden">
+                <button class="btn-action" onclick="triggerShear()">Shear Sheep</button>
+            </div>
+            
+            <div id="pigAction" class="hidden">
+                <button class="btn-action" onclick="triggerCut()">Process Meat (cut)</button>
+            </div>
+
+            <label>Action History Log:</label>
+            <div id="logsDisplay">No actions executed in this session yet...</div>
+        </div>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; background: #feebeb; border-radius: 6px;">
+        <label style="color:#c0392b;">Delete Animal Entry from MongoDB Atlas:</label>
+        <input type="number" id="deleteId" placeholder="Enter ID to delete" style="width: 200px; display:inline-block; margin-right:10px;">
+        <button class="btn-delete" style="width: auto; display:inline-block; padding: 8px 20px;" onclick="deleteAnimal()">Delete Animal</button>
+    </div>
+
+    <h2>MongoDB Atlas Inventory (Tabular View)</h2>
+    <table id="inventoryTable">
+        <thead>
+            <tr id="tableHeader"></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<script src="frontend.js"></script>
+</body>
+</html>
