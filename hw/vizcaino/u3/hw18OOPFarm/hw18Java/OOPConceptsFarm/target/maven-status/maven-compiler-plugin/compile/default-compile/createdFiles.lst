@@ -1,0 +1,14 @@
+ec\edu\espe\oopconceptsfarm\model\IMeatAnimal.class
+ec\edu\espe\oopconceptsfarm\controller\FarmController.class
+ec\edu\espe\oopconceptsfarm\model\SlaughterHouse.class
+ec\edu\espe\oopconceptsfarm\model\Sheep.class
+ec\edu\espe\oopconceptsfarm\OOPConceptsFarm.class
+ec\edu\espe\oopconceptsfarm\utils\MongoConnection.class
+ec\edu\espe\oopconceptsfarm\model\Cow.class
+ec\edu\espe\oopconceptsfarm\model\Chicken.class
+ec\edu\espe\oopconceptsfarm\view\FarmView.class
+ec\edu\espe\oopconceptsfarm\model\Farm.class
+ec\edu\espe\oopconceptsfarm\model\FarmAnimal.class
+ec\edu\espe\oopconceptsfarm\model\Cut.class
+ec\edu\espe\oopconceptsfarm\model\Food.class
+ec\edu\espe\oopconceptsfarm\model\Pig.class

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 Zoo Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🐾 Zoo Management System</h1>
+            <p class="status">✅ Connected to MongoDB Atlas</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="register">📝 Register</button>
+            <button class="tab-btn" data-tab="list">📋 List</button>
+            <button class="tab-btn" data-tab="business">💼 Operations</button>
+            <button class="tab-btn" data-tab="stats">📊 Statistics</button>
+        </div>
+
+        <div id="tab-register" class="tab-content active">
+            <div class="form-container">
+                <h2>Register New Animal</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Type:</label>
+                        <select id="animalType" required>
+                            <option value="Cow">Cow</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Pig">Pig</option>
+                            <option value="Sheep">Sheep</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ID:</label>
+                        <input type="number" id="animalId" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Breed:</label>
+                        <input type="text" id="breed" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Born On:</label>
+                        <input type="date" id="bornOn" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Weight (kg):</label>
+                        <input type="number" step="0.1" id="weight" required>
+                    </div>
+                    <div class="extra-fields" id="extraFields">
+                        <h3>Specific Information</h3>
+                        <div class="form-group">
+                            <label id="extraLabel1">Produces Milk:</label>
+                            <input type="text" id="extra1" value="true">
+                        </div>
+                        <div class="form-group">
+                            <label id="extraLabel2">Milk Produced:</label>
+                            <input type="text" id="extra2" value="25.5">
+                        </div>
+                    </div>
+                    <button type="submit">✅ Register</button>
+                </form>
+                <div id="registerResult"></div>
+            </div>
+        </div>
+
+        <div id="tab-list" class="tab-content">
+            <div class="filter-container">
+                <label>Filter:</label>
+                <select id="filterType">
+                    <option value="All">All</option>
+                    <option value="Cow">Cow</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Pig">Pig</option>
+                    <option value="Sheep">Sheep</option>
+                </select>
+                <button id="filterBtn">🔍 Filter</button>
+                <button id="refreshBtn">🔄 Refresh</button>
+                <button id="deleteBtn">🗑️ Delete</button>
+            </div>
+            <div class="table-container">
+                <table id="animalTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Type</th><th>Breed</th>
+                            <th>Born On</th><th>Weight</th>
+                            <th>Age</th><th>Extra Info</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr><td colspan="7">No animals</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="tab-business" class="tab-content">
+            <div class="business-container">
+                <div class="business-buttons">
+                    <button id="milkBtn">🥛 Total Milk</button>
+                    <button id="eggsBtn">🥚 Total Eggs</button>
+                    <button id="readyPigsBtn">🐷 Ready Pigs</button>
+                    <button id="searchBtn">🔎 Search by ID</button>
+                </div>
+                <div class="result-container">
+                    <h3>Results</h3>
+                    <pre id="businessResult">Click a button...</pre>
+                    <button id="clearResultBtn">🧹 Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-stats" class="tab-content">
+            <div class="stats-container">
+                <button id="generateStatsBtn">📊 Generate Statistics</button>
+                <pre id="statsResult">Click the button...</pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
