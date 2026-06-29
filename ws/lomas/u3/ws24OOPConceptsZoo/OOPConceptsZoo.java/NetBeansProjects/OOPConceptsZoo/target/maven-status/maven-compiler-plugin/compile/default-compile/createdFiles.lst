@@ -1,0 +1,10 @@
+ec\edu\espe\oopconceptszoo\model\SlaughterHouse.class
+ec\edu\espe\oopconceptszoo\model\FarmAnimal.class
+ec\edu\espe\oopconceptszoo\model\Cut.class
+ec\edu\espe\oopconceptszoo\view\Main.class
+ec\edu\espe\oopconceptszoo\model\Food.class
+ec\edu\espe\oopconceptszoo\model\Cow.class
+ec\edu\espe\oopconceptszoo\model\Chicken.class
+ec\edu\espe\oopconceptszoo\controller\IMeatAnimal.class
+ec\edu\espe\oopconceptszoo\model\Pig.class
+ec\edu\espe\oopconceptszoo\model\Sheep.class
