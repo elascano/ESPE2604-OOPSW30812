@@ -4,10 +4,17 @@
  */
 package ec.edu.espe.oopconceptszoo.model;
 
+import java.util.Date;
+
 /**
  *
- * @author Ronald Tipan <The_Softwarrios at ESPE>
+ * @author Adrian Vizcaino, SoftWarriors, @ESPE
  */
-public class SlughterHouse {
-    String description;
+public class Sheep extends FarmAnimal{
+    Date lastSheering;
+    @Override
+    public void food(Food food) {
+        System.out.println("feddomt a sjeep with" +food);
+    }
+    
 }

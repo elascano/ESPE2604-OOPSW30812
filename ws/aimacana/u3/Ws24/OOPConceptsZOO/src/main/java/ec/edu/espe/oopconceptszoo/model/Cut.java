@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.oopconceptszoo.model;
 
-/**
- *
- * @author Ronald Tipan <The_Softwarrios at ESPE>
- */
 public class Cut {
-    int id;
-    String description;
-    String procedure;
-    float weight;
+    private String name;
+    private float weight;
+    
+    public Cut(String name, float weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+    
+    public String getName() { return name; }
+    public float getWeight() { return weight; }
 }
