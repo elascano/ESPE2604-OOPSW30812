@@ -16,7 +16,7 @@ public abstract class FarmAnimal {
     private String breed;
     private Date bornOn;
     private float weight;
-    private SlaughterHouse slaughterHouse;
+    protected SlaughterHouse slaughterHouse;
     private Product product;
     private ArrayList<Cut> cuts;
 
