@@ -68,7 +68,4 @@ public class Cow extends FarmAnimal implements IMeatAnimal {
         return null;
     }
 
-
-
-
 }
