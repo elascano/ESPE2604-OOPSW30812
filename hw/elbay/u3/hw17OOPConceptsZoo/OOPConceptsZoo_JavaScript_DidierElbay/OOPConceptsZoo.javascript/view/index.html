@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+  Farm Management System - Web View
+  Author: Didier Elbay
+  Backend: server.js (Node.js + Express + MongoDB)
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farm Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; text-align: center; }
+        .navbar { background-color: #333; overflow: hidden; display: none; justify-content: flex-start; }
+        .navbar a { color: white; padding: 14px 20px; text-decoration: none; cursor: pointer; font-weight: bold; }
+        .navbar a:hover { background-color: #ddd; color: black; }
+        .container { padding: 40px; display: none; max-width: 400px; margin: 40px auto; background: white; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); }
+        .active { display: block; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .btn-group { display: flex; justify-content: space-between; margin-top: 20px; }
+        button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-save   { background-color: #3498db; color: white; }
+        .btn-delete { background-color: #e74c3c; color: white; }
+        .btn-back   { background-color: #7f8c8d; color: white; }
+        .btn-login  { background-color: #2ecc71; color: white; width: 100%; }
+        .result-lbl { font-size: 1.1em; color: blue; font-weight: bold; margin-top: 15px; }
+        h2 { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar" id="mainNavbar">
+        <a onclick="showView('homeView')">Home</a>
+        <a onclick="showView('chickenView')">Chicken Management</a>
+        <a onclick="showView('cowView')">Cow Management</a>
+        <a onclick="showView('pigView')">Pig Management</a>
+        <a onclick="showView('sheepView')">Sheep Management</a>
+        <a onclick="logout()" style="margin-left:auto;">Logout</a>
+    </div>
+
+    <!-- Login -->
+    <div class="container active" id="loginView">
+        <h2>Login Secure System</h2>
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" id="loginUser" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="loginPass" placeholder="Password">
+        </div>
+        <button class="btn-login" onclick="login()">Login</button>
+    </div>
+
+    <!-- Home -->
+    <div class="container" id="homeView">
+        <h2>Welcome to Farm Management System</h2>
+        <p>Use the navigation bar above to manage your animals.</p>
+    </div>
+
+    <!-- Chicken Management -->
+    <div class="container" id="chickenView">
+        <h2>Chicken Management</h2>
+        <div class="form-group">
+            <label>ID:</label>
+            <input type="number" id="chickenId" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>Egg Production (weekly):</label>
+            <input type="number" id="chickenEggs" min="0" value="0">
+        </div>
+        <div class="form-group">
+            <label><input type="checkbox" id="chickenMolting"> Is Molting Plumes?</label>
+        </div>
+        <p class="result-lbl" id="chickenResult">Status: -</p>
+        <div class="btn-group">
+            <button class="btn-back" onclick="showView('homeView')">Back to Menu</button>
+            <button class="btn-delete" onclick="deleteRecord('chickens', 'chickenId', 'chickenResult')">Delete</button>
+            <button class="btn-save" onclick="saveChicken()">Save</button>
+        </div>
+    </div>
+
+    <!-- Cow Management -->
+    <div class="container" id="cowView">
+        <h2>Cow Management</h2>
+        <div class="form-group">
+            <label>ID:</label>
+            <input type="number" id="cowId" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>Milk Production (liters):</label>
+            <input type="number" id="cowMilk" step="0.1" min="0" value="0">
+        </div>
+        <div class="form-group">
+            <label>Weight (kg):</label>
+            <input type="number" id="cowWeight" step="0.1" min="0.1" value="400">
+        </div>
+        <p class="result-lbl" id="cowResult">Efficiency: - | Meat: -</p>
+        <div class="btn-group">
+            <button class="btn-back" onclick="showView('homeView')">Back to Menu</button>
+            <button class="btn-delete" onclick="deleteRecord('cows', 'cowId', 'cowResult')">Delete</button>
+            <button class="btn-save" onclick="saveCow()">Save</button>
+        </div>
+    </div>
+
+    <!-- Pig Management -->
+    <div class="container" id="pigView">
+        <h2>Pig Management</h2>
+        <div class="form-group">
+            <label>ID:</label>
+            <input type="number" id="pigId" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>Breed:</label>
+            <select id="pigBreed">
+                <option>Duroc</option>
+                <option>Landrace</option>
+                <option>Berkshire</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Weight (kg):</label>
+            <input type="number" id="pigWeight" step="0.1" min="0.1" value="80">
+        </div>
+        <div class="form-group">
+            <label>Ideal Weight (kg):</label>
+            <input type="number" id="pigIdealWeight" min="1" value="100">
+        </div>
+        <p class="result-lbl" id="pigResult">Expected Meat: -</p>
+        <div class="btn-group">
+            <button class="btn-back" onclick="showView('homeView')">Back to Menu</button>
+            <button class="btn-delete" onclick="deleteRecord('pigs', 'pigId', 'pigResult')">Delete</button>
+            <button class="btn-save" onclick="savePig()">Save</button>
+        </div>
+    </div>
+
+    <!-- Sheep Management -->
+    <div class="container" id="sheepView">
+        <h2>Sheep Management</h2>
+        <div class="form-group">
+            <label>ID:</label>
+            <input type="number" id="sheepId" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>Weight (kg):</label>
+            <input type="number" id="sheepWeight" step="0.1" min="0.1" value="60">
+        </div>
+        <p class="result-lbl" id="sheepResult">Status: -</p>
+        <div class="btn-group">
+            <button class="btn-back" onclick="showView('homeView')">Back to Menu</button>
+            <button class="btn-delete" onclick="deleteRecord('sheeps', 'sheepId', 'sheepResult')">Delete</button>
+            <button class="btn-save" onclick="saveSheep()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        const API = "http://localhost:3000";
+
+        // ----------------------------------------------------------------- helpers
+        function showView(viewId) {
+            document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+        }
+
+        async function sendToAtlas(collection, data, resultId, successMsg, resultText) {
+            try {
+                const res = await fetch(`${API}/api/animals/${collection}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const json = await res.json();
+                if (json.success) {
+                    document.getElementById(resultId).textContent = resultText;
+                    alert(successMsg);
+                } else {
+                    alert("Error: " + json.message);
+                }
+            } catch (e) {
+                alert("Server connection error: " + e.message);
+            }
+        }
+
+        async function deleteRecord(collection, idInputId, resultId) {
+            const id = parseInt(document.getElementById(idInputId).value, 10);
+            if (isNaN(id)) return alert("Invalid ID.");
+            if (!confirm(`Delete ID ${id} from ${collection}?`)) return;
+            try {
+                const res = await fetch(`${API}/api/animals/${collection}/${id}`, { method: 'DELETE' });
+                const json = await res.json();
+                if (json.success) {
+                    document.getElementById(resultId).textContent = "Deleted";
+                    alert(`ID ${id} removed.`);
+                } else {
+                    alert("Not found: " + json.message);
+                }
+            } catch (e) {
+                alert("Server connection error: " + e.message);
+            }
+        }
+
+        // ------------------------------------------------------------------- auth
+        async function login() {
+            const username = document.getElementById('loginUser').value.trim();
+            const password = document.getElementById('loginPass').value.trim();
+            if (!username || !password) return alert("Please fill in all fields.");
+            try {
+                const res = await fetch(`${API}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    document.getElementById('mainNavbar').style.display = 'flex';
+                    showView('homeView');
+                } else {
+                    alert(json.message || "Invalid credentials.");
+                }
+            } catch (e) {
+                alert("Server connection error: " + e.message);
+            }
+        }
+
+        function logout() {
+            document.getElementById('mainNavbar').style.display = 'none';
+            document.getElementById('loginUser').value = '';
+            document.getElementById('loginPass').value = '';
+            showView('loginView');
+        }
+
+        // --------------------------------------------------------------- animals
+        function saveChicken() {
+            const id       = parseInt(document.getElementById('chickenId').value, 10);
+            const eggs     = parseInt(document.getElementById('chickenEggs').value, 10);
+            const isMolting = document.getElementById('chickenMolting').checked;
+
+            if (isNaN(eggs) || isNaN(id)) return alert("Invalid entry.");
+
+            const status = (!isMolting && eggs > 2) ? "Optimal Production" : "Low Efficiency";
+            sendToAtlas('chickens', { id, eggs, isMolting, status }, 'chickenResult',
+                "Chicken saved!", `Status: ${status}`);
+        }
+
+        function saveCow() {
+            const id     = parseInt(document.getElementById('cowId').value, 10);
+            const milk   = parseFloat(document.getElementById('cowMilk').value);
+            const weight = parseFloat(document.getElementById('cowWeight').value);
+
+            if (isNaN(milk) || isNaN(weight) || weight <= 0) return alert("Invalid entry.");
+
+            const efficiency   = ((milk / weight) * 100).toFixed(1);
+            const expectedMeat = ((weight * 0.20) + (weight * 0.12)).toFixed(2);
+            sendToAtlas('cows', { id, milk, weight, efficiency: parseFloat(efficiency), meatYield: parseFloat(expectedMeat) },
+                'cowResult', "Cow saved!", `Efficiency: ${efficiency}% | Meat: ${expectedMeat} kg`);
+        }
+
+        function savePig() {
+            const id          = parseInt(document.getElementById('pigId').value, 10);
+            const breed       = document.getElementById('pigBreed').value;
+            const weight      = parseFloat(document.getElementById('pigWeight').value);
+            const idealWeight = parseInt(document.getElementById('pigIdealWeight').value, 10);
+
+            if (isNaN(weight) || weight <= 0) return alert("Invalid entry.");
+
+            const expectedMeat = ((weight * 0.15) + (weight * 0.10)).toFixed(2);
+            sendToAtlas('pigs', { id, breed, weight, idealWeight, expectedMeat: parseFloat(expectedMeat) },
+                'pigResult', "Pig saved!", `Expected Meat: ${expectedMeat} kg`);
+        }
+
+        function saveSheep() {
+            const id     = parseInt(document.getElementById('sheepId').value, 10);
+            const weight = parseFloat(document.getElementById('sheepWeight').value);
+
+            if (isNaN(weight) || weight <= 0) return alert("Invalid entry.");
+
+            const status = (weight >= 45.0 && weight <= 80.0) ? "Ready for Shearing" : "Under Evaluation";
+            sendToAtlas('sheeps', { id, weight, status }, 'sheepResult',
+                "Sheep saved!", `Status: ${status}`);
+        }
+    </script>
+</body>
+</html>
