@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ec.edu.espe.oopconcepts.model.FarmAnimalTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s -- in ec.edu.espe.oopconcepts.model.FarmAnimalTest
