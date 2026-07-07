@@ -1,9 +1,9 @@
 import * as fs from "fs";
-import { CellPhone } from "..ec.edu.espe.model/CellPhone";
+import { CellPhone } from "../ec.edu.espe.model/CellPhone";
 
 export class PhoneController {
 
-    private filePath = ".ec.edu.espe.data/phones.json";
+    private filePath = "../ec.edu.espe.data/phones.json";
 
     public savePhone(phone: CellPhone): void {
 

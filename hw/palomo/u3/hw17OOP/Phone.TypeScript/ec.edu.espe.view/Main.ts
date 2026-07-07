@@ -1,11 +1,11 @@
 import * as readline from "readline-sync";
 
-import { Battery } from "../model/Battery";
-import { Screen } from "../model/Screen";
-import { SIMCard } from "../model/SIMCard";
-import { CellPhone } from "../model/CellPhone";
+import { Battery } from "../ec.edu.espe.model/Battery";
+import { Screen } from "../ec.edu.espe.model/Screen";
+import { SIMCard } from "../ec.edu.espe.model/SIMCard";
+import { CellPhone } from "../ec.edu.espe.model/CellPhone";
 
-import { PhoneController } from "../controller/PhoneController";
+import { PhoneController } from "../ec.edu.espe.controller/PhoneController";
 
 const controller = new PhoneController();
 
