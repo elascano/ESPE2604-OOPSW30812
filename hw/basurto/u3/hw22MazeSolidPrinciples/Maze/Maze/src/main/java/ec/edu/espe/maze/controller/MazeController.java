@@ -1,46 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.maze.controller;
 
+import ec.edu.espe.maze.model.Cell;
 import ec.edu.espe.maze.model.Maze;
-import ec.edu.espe.maze.view.MazeView;
+import ec.edu.espe.maze.service.IMazeGenerator;
+import ec.edu.espe.maze.service.IMazeSolver;
+import ec.edu.espe.maze.view.IMazeRenderer;
 import java.util.List;
 
-/**
- *
- * @author Usuario
- */
 public class MazeController {
-  private Maze model;
-    private MazeView view;
+    private final IMazeGenerator generator;
+    private final IMazeSolver solver;
+    private final IMazeRenderer renderer;
 
-    public MazeController(Maze model, MazeView view) {
-        this.model = model;
-        this.view = view;
+    public MazeController(IMazeGenerator g, IMazeSolver s, IMazeRenderer r) {
+        this.generator = g;
+        this.solver = s;
+        this.renderer = r;
     }
 
-    public void startApplication() {
-        view.showMessage("--- Generating Maze (MVC Structure) ---");
-        model.generateMaze();
-        view.displayMaze(model, null); // Displays empty maze
-
-        view.showMessage("\n--- Solving Maze (Route marked with '*') ---");
-        List<int[]> solution = model.solve();
-        view.displayMaze(model, solution); // Displays solved maze
+    public void createAndShowMaze(int width, int height) {
+        Maze maze = new Maze(width, height);
+        generator.generate(maze);
+        List<Cell> path = solver.findPath(maze);
+        renderer.draw(maze, path);
     }
-
-    // MAIN ENTRY POINT
-    public static void main(String[] args) {
-        // Initialize MVC Components
-        Maze theModel = new Maze(6, 10);
-        MazeView theView = new MazeView();
-        
-        // Controller binds Model and View together
-        MazeController theController = new MazeController(theModel, theView);
-        
-        // Execute App
-        theController.startApplication();
-    }  
 }

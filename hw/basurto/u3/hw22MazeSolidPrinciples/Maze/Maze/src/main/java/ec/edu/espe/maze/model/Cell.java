@@ -1,46 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.maze.model;
-import java.util.HashMap;
-import java.util.Map;
-/**
- *
- * @author Usuario
- */
-public class Cell {
-    private final int row;
-    private final int col;
-    // Walls: true means the wall exists, false means it is open/removed
-    private final Map<String, Boolean> walls;
-    private boolean visited;
-    private boolean isStart;
-    private boolean isEnd;
 
-    public Cell(int row, int col) {
-        this.row = row;
-        this.col = col;
-        this.visited = false;
-        this.isStart = false;
-        this.isEnd = false;
-        
-        this.walls = new HashMap<>();
-        this.walls.put("top", true);
-        this.walls.put("right", true);
-        this.walls.put("bottom", true);
-        this.walls.put("left", true);
+public class Cell {
+    private final int x;
+    private final int y;
+    private boolean wallNorth = true;
+    private boolean wallSouth = true;
+    private boolean wallEast = true;
+    private boolean wallWest = true;
+    private boolean visited = false;
+
+    public Cell(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    // Getters and Setters
-    public int getRow() { return row; }
-    public int getCol() { return col; }
-    public boolean isVisited() { return visited; }
-    public void setVisited(boolean visited) { this.visited = visited; }
-    public boolean isStart() { return isStart; }
-    public void setStart(boolean start) { isStart = start; }
-    public boolean isEnd() { return isEnd; }
-    public void setEnd(boolean end) { isEnd = end; }
-    public Map<String, Boolean> getWalls() { return walls; 
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void markVisited() {
+        this.visited = true;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public void breakWall(Direction dir) {
+        switch (dir) {
+            case NORTH -> wallNorth = false;
+            case SOUTH -> wallSouth = false;
+            case EAST -> wallEast = false;
+            case WEST -> wallWest = false;
+        }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public boolean isWallNorth() {
+        return wallNorth;
+    }
+
+    public boolean isWallSouth() {
+        return wallSouth;
+    }
+
+    public boolean isWallEast() {
+        return wallEast;
+    }
+
+    public boolean isWallWest() {
+        return wallWest;
     }
 }
