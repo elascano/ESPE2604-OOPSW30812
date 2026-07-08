@@ -1,7 +1,5 @@
-ec\edu\espe\mazeapplication\controller\DoorController.class
 ec\edu\espe\mazeapplication\controller\RandomMazeGenerator.class
-ec\edu\espe\mazeapplication\controller\PathController.class
-ec\edu\espe\mazeapplication\model\EntranceDoor.class
+ec\edu\espe\mazeapplication\model\StartDoor.class
 ec\edu\espe\mazeapplication\view\FrmMaze.class
 ec\edu\espe\mazeapplication\model\Wall.class
 ec\edu\espe\mazeapplication\model\Maze.class
@@ -12,5 +10,4 @@ ec\edu\espe\mazeapplication\model\Door.class
 ec\edu\espe\mazeapplication\model\ExitDoor.class
 ec\edu\espe\mazeapplication\model\Path.class
 ec\edu\espe\mazeapplication\model\Room.class
-ec\edu\espe\mazeapplication\controller\RoomController.class
 ec\edu\espe\mazeapplication\view\MazeApplication.class

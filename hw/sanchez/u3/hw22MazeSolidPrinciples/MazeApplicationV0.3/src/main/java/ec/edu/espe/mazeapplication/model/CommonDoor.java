@@ -1,14 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package ec.edu.espe.mazeapplication.model;
 
 /**
  *
- * @author Cristian Palomo, Error 404, @ESPE
+ * @author Joel Sanchez
  */
-public class CommonDoor extends Door{
+public class CommonDoor extends Door {
+
+    public CommonDoor() {
+        super();
+    }
+
+    @Override
+    public String toString() {
+        return "Common Door";
+    }
 
 }

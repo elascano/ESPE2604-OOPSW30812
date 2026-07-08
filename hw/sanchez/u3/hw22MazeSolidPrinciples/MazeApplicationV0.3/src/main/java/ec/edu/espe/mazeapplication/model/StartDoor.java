@@ -1,19 +1,19 @@
 package ec.edu.espe.mazeapplication.model;
 
 /**
- * Exit Door
+ * Start Door
  * @author Joel Sanchez
  */
-public class ExitDoor extends Door {
+public class StartDoor extends Door {
 
-    public ExitDoor() {
+    public StartDoor() {
         super();
         openDoor();        
     }
 
     @Override
     public String toString() {
-        return "Exit Door";
+        return "Start Door";
     }
 
 }

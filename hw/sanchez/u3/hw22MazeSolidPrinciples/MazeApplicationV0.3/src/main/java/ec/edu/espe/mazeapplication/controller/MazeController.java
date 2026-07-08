@@ -1,30 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package ec.edu.espe.mazeapplication.controller;
 
 import ec.edu.espe.mazeapplication.model.Maze;
 import ec.edu.espe.mazeapplication.model.Room;
-/**
- *
- * @author Joel Sanchez, The Softwarriors, @ESPE
- */
+import ec.edu.espe.mazeapplication.model.Wall;
+
 public class MazeController {
 
     private Maze maze;
+    private MazeGenerator generator;
+
+    public MazeController() {
+        this.generator = new RandomMazeGenerator();
+    }
 
     public void createMaze(int rows, int columns) {
-
         maze = new Maze(rows, columns);
+        initializeMaze();
+    }
 
-        MazeGenerator generator = new RandomMazeGenerator(maze);
-
-        generator.createRooms();
-        generator.assignWalls();
-        generator.assignDoors();
-
+    public void initializeMaze() {
+        if (generator instanceof RandomMazeGenerator) {
+            RandomMazeGenerator randomGen = (RandomMazeGenerator) generator;
+            randomGen.setMaze(this.maze);
+            randomGen.generateMaze();
+        }
     }
 
     public Maze getMaze() {
@@ -32,37 +31,61 @@ public class MazeController {
     }
 
     public String drawMaze() {
-
-    StringBuilder mazeView = new StringBuilder();
-
-    Room[][] rooms = maze.getRooms();
-
-    for (int i = 0; i < rooms.length; i++) {
-
-        for (int j = 0; j < rooms[0].length; j++) {
-
-            Room room = rooms[i][j];
-
-            if (i == 0 && j == 0) {
-                mazeView.append("[E]");
-            } else if (i == rooms.length - 1 && j == rooms[0].length - 1) {
-                mazeView.append("[S]");
-            } else {
-                mazeView.append("[R]");
-            }
-
+        if (maze == null) {
+            return "Maze not generated.";
         }
 
-        mazeView.append("\n");
+        StringBuilder builder = new StringBuilder();
+        int rows = maze.getRows();
+        int columns = maze.getColumns();
+        
+        for (int c = 0; c < columns; c++) {
+            builder.append("+---");
+        }
+        builder.append("+\n");
+        
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < columns; c++) {
+                Room room = maze.getRoom(r, c);
+                Wall wall = room.getWalls()[0];
+                
+                if (c == 0) {
+                    builder.append("|");
+                } else {
+                    Room leftRoom = maze.getRoom(r, c-1);
+                    Wall leftWall = leftRoom.getWalls()[0];
+                    if (leftWall != null && leftWall.isEastWall()) {
+                        builder.append("|");
+                    } else {
+                        builder.append(" ");
+                    }
+                }
+                
+                if (r == 0 && c == 0) {
+                    builder.append(" S ");
+                } else if (r == rows - 1 && c == columns - 1) {
+                    builder.append(" E ");
+                } else {
+                    builder.append("   ");
+                }
+            }
+            builder.append("|\n");
+            
+            for (int c = 0; c < columns; c++) {
+                Room room = maze.getRoom(r, c);
+                Wall wall = room.getWalls()[0];
+                
+                builder.append("+");
+                
+                if (wall != null && wall.isSouthWall()) {
+                    builder.append("---");
+                } else {
+                    builder.append("   ");
+                }
+            }
+            builder.append("+\n");
+        }
+        
+        return builder.toString();
     }
-
-    mazeView.append("\nLegend:\n");
-    mazeView.append("E = Entrance\n");
-    mazeView.append("S = Exit\n");
-    mazeView.append("R = Room\n");
-    mazeView.append("D = Door\n");
-    mazeView.append("W = Wall\n");
-
-    return mazeView.toString();
-}
 }
