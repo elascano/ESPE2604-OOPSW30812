@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Generator & Solver Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121218;
+            color: #f4f4f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .dashboard {
+            background-color: #18181b;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            color: #d4d4d8;
+            font-size: 1rem;
+        }
+
+        input, select {
+            background-color: #27272a;
+            border: 1px solid #3f3f46;
+            color: #f4f4f5;
+            padding: 0.5rem;
+            border-radius: 4px;
+            width: 60%;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            max-width: 100%;
+            max-height: 80vh;
+        }
+
+        canvas {
+            background-color: #121218;
+            display: none;
+        }
+
+        pre {
+            background-color: #18181b;
+            padding: 1rem;
+            border-radius: 4px;
+            color: #a78bfa;
+            font-family: monospace;
+            display: none;
+            overflow: auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1>Maze System (SOLID & MVC)</h1>
+        
+        <div class="form-group">
+            <label for="widthInput">Width:</label>
+            <input type="number" id="widthInput" value="20" min="5" max="200">
+        </div>
+
+        <div class="form-group">
+            <label for="heightInput">Height:</label>
+            <input type="number" id="heightInput" value="20" min="5" max="200">
+        </div>
+
+        <div class="form-group">
+            <label for="rendererSelect">Renderer:</label>
+            <select id="rendererSelect">
+                <option value="Graphical Window">Graphical Window</option>
+                <option value="Console (ASCII)">Console (ASCII)</option>
+            </select>
+        </div>
+
+        <button id="generateBtn">Generate & Solve</button>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="mazeCanvas"></canvas>
+        <pre id="asciiOutput"></pre>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
