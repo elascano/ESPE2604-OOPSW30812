@@ -1,0 +1,7 @@
+{
+  "name": "javaaScriptMaze",
+  "version": "1.0.0",
+  "description": "JavaScript version of the MazeGenerator project",
+  "type": "module",
+  "private": true
+}
