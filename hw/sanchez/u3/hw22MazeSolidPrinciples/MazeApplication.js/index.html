@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generador de Laberintos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="sheet">
+
+    <header class="titleblock">
+      <div class="titleblock__left">
+        <span class="titleblock__eyebrow">ec.edu.espe.mazeapplication</span>
+        <h1 class="titleblock__title">Generador de Laberintos</h1>
+      </div>
+      <div class="titleblock__meta">
+        <div><span>ALGORITMO</span><strong>DFS recursivo</strong></div>
+        <div><span>ORIGEN</span><strong id="metaOrigin">Java &rarr; JS</strong></div>
+      </div>
+    </header>
+
+    <main class="workspace">
+
+      <section class="controls" aria-label="Parámetros del laberinto">
+        <div class="field">
+          <label for="txtRows">Filas</label>
+          <input id="txtRows" type="number" inputmode="numeric" min="1" value="10" />
+        </div>
+        <div class="field">
+          <label for="txtColumns">Columnas</label>
+          <input id="txtColumns" type="number" inputmode="numeric" min="1" value="10" />
+        </div>
+        <button id="btnGenerate" class="btn">Generar laberinto</button>
+
+        <div class="field field--toggle">
+          <span>Vista</span>
+          <div class="toggle" role="group" aria-label="Modo de visualización">
+            <button type="button" id="btnViewCanvas" class="toggle__option is-active">Plano</button>
+            <button type="button" id="btnViewAscii" class="toggle__option">ASCII</button>
+          </div>
+        </div>
+      </section>
+
+      <p id="errorMsg" class="error" role="alert" hidden></p>
+
+      <section class="board" aria-label="Laberinto generado">
+        <canvas id="mazeCanvas"></canvas>
+        <pre id="mazeAscii" hidden></pre>
+        <p id="emptyState" class="empty-state">Define filas y columnas, luego pulsa <strong>Generar laberinto</strong>.</p>
+      </section>
+
+      <p class="legend">
+        <span class="legend__chip legend__chip--start"></span> Entrada (S)
+        &nbsp;&nbsp;
+        <span class="legend__chip legend__chip--exit"></span> Salida (E)
+      </p>
+
+    </main>
+
+  </div>
+
+  <script type="module" src="js/view/app.js"></script>
+</body>
+</html>
