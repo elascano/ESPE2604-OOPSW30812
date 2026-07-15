@@ -1,0 +1,11 @@
+{
+  "name": "abstractfactory_js",
+  "version": "1.0.0",
+  "description": "Abstract Factory Pattern in JavaScript",
+  "main": "view/clientApp.js",
+  "scripts": {
+    "start": "node view/clientApp.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
