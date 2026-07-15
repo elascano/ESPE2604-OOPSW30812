@@ -1,0 +1,10 @@
+{
+  "name": "abstractfactoryjavascript",
+  "version": "1.0.0",
+  "description": "Abstract Factory Pattern in JavaScript with HTML",
+  "scripts": {
+    "start": "npx http-server -o"
+  },
+  "author": "",
+  "license": "ISC"
+}
