@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abstract Factory Simulator</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 50px; background-color: #f3f4f6; }
+        h3 { color: #333; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc; background-color: #fff; margin-bottom: 20px; }
+        #outputArea { width: 350px; height: 100px; border: 1px solid #bbb; background-color: #fff; padding: 15px; white-space: pre-line; font-family: monospace; font-size: 14px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h3>Abstract Factory Simulator</h3>
+    
+    <button id="generateBtn">Generate Widgets</button>
+    <div id="outputArea"></div>
+
+    <script src="./model/Button.js"></script>
+    <script src="./model/Menu.js"></script>
+    <script src="./model/WinButton.js"></script>
+    <script src="./model/LinuxButton.js"></script>
+    <script src="./model/WinMenu.js"></script>
+    <script src="./model/LinuxMenu.js"></script>
+    <script src="./model/GUIFactory.js"></script>
+    <script src="./model/WinFactory.js"></script>
+    <script src="./model/LinuxFactory.js"></script>
+    
+    <script src="./controller/WidgetController.js"></script>
+    <script src="./view/MainView.js"></script>
+
+    <script>
+        new MainView();
+    </script>
+
+</body>
+</html>

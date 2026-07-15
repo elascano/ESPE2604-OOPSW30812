@@ -1,0 +1,12 @@
+ec\edu\espe\widgets\model\LinuxFactory.class
+ec\edu\espe\widgets\model\Config.class
+ec\edu\espe\widgets\model\Button.class
+ec\edu\espe\widgets\model\Menu.class
+ec\edu\espe\widgets\model\GUIFactory.class
+ec\edu\espe\widgets\view\ClientApp.class
+ec\edu\espe\widgets\model\WinMenu.class
+ec\edu\espe\widgets\model\LinuxButton.class
+ec\edu\espe\widgets\model\WinButton.class
+ec\edu\espe\widgets\controller\ConfigReader.class
+ec\edu\espe\widgets\model\LinuxMenu.class
+ec\edu\espe\widgets\model\WinFactory.class
