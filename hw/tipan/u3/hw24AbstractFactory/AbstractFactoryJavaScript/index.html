@@ -1,0 +1,38 @@
+<script type="module">
+    console.log('Script cargado');
+    
+    import { WidgetController } from './controller/widgetController.js';
+    
+    console.log('WidgetController importado:', WidgetController);
+    
+    const generateBtn = document.getElementById('generateBtn');
+    const resultContainer = document.getElementById('resultContainer');
+    const placeholder = document.getElementById('placeholder');
+    const resultContent = document.getElementById('resultContent');
+
+    console.log('Botón encontrado:', generateBtn);
+
+    generateBtn.addEventListener('click', function() {
+        console.log('¡Botón clickeado!');
+        try {
+            const controller = new WidgetController();
+            console.log('Controller creado');
+            
+            const result = controller.generateWidgets();
+            console.log('Resultado:', result);
+            
+            placeholder.style.display = 'none';
+            resultContent.style.display = 'block';
+            resultContent.textContent = result;
+            resultContainer.classList.add('has-content');
+        } catch (error) {
+            console.error('Error:', error);
+            placeholder.style.display = 'none';
+            resultContent.style.display = 'block';
+            resultContent.textContent = '❌ Error: ' + error.message;
+            resultContainer.classList.add('has-content');
+        }
+    });
+
+    console.log('✅ Todo listo');
+</script>

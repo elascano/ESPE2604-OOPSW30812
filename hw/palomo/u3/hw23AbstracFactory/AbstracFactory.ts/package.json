@@ -1,0 +1,14 @@
+{
+  "name": "abstract-factory-ts",
+  "version": "1.0.0",
+  "description": "Ejemplo del patron Abstract Factory (GUI multiplataforma) en TypeScript.",
+  "main": "dist/view/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/view/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3"
+  }
+}
