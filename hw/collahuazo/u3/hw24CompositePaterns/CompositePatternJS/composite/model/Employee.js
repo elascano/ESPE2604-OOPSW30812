@@ -1,8 +1,3 @@
-/**
- * Componente abstracto del patron Composite.
- * Declara la interfaz comun para los objetos simples (hojas)
- * y los objetos compuestos (Supervisor y sus subclases).
- */
 class Employee {
   constructor() {
     if (new.target === Employee) {

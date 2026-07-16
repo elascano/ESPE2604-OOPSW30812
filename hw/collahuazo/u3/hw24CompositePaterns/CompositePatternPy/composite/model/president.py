@@ -3,15 +3,13 @@ from composite.model.supervisor import Supervisor
 
 class President(Supervisor):
 
-    _president = None  # instancia unica (singleton)
+    _president = None 
 
     def __init__(self):
-        # Constructor "privado" por convencion: usar get_president()
         super().__init__()
         self.title = "President"
 
     def state_name(self):
-        # Do processing special to presidential naming
         super().state_name()
 
     @classmethod

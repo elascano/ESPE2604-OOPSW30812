@@ -1,6 +1,5 @@
 from composite.model.employee import Employee
 
-
 class Supervisor(Employee):
 
     def __init__(self):
@@ -8,8 +7,8 @@ class Supervisor(Employee):
         self.direct_reports = []
 
     def state_name(self):
-        super().state_name()  # print name of this employee first
-        if len(self.direct_reports) > 0:  # be sure there are elements
+        super().state_name()  
+        if len(self.direct_reports) > 0:  
             for employee in self.direct_reports:
                 employee.state_name()
 

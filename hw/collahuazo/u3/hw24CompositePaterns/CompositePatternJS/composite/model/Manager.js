@@ -1,8 +1,4 @@
 const { Supervisor } = require("./Supervisor.js");
-
-/**
- * Compuesto concreto del patron Composite.
- */
 class Manager extends Supervisor {
   constructor(aName) {
     super();
@@ -11,7 +7,6 @@ class Manager extends Supervisor {
   }
 
   stateName() {
-    // do processing special to manager naming
     super.stateName();
   }
 }

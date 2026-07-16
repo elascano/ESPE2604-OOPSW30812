@@ -1,14 +1,5 @@
 const { Supervisor } = require("./Supervisor.js");
-
-// Bandera para emular el constructor privado de Java:
-// solo getPresident() puede crear la instancia.
 let allowConstruction = false;
-
-/**
- * Compuesto concreto del patron Composite.
- * Implementado ademas como Singleton: solo existe un President
- * en toda la aplicacion, igual que en la version Java original.
- */
 class President extends Supervisor {
   static #president = null;
 
@@ -21,7 +12,7 @@ class President extends Supervisor {
   }
 
   stateName() {
-    // Do processing special to presidential naming
+    
     super.stateName();
   }
 
