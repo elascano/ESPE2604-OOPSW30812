@@ -1,0 +1,11 @@
+{
+  "name": "composite-mvc-pattern",
+  "version": "1.0.0",
+  "description": "Composite and MVC pattern implementation in JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "ec.edu.espe",
+  "license": "ISC"
+}
