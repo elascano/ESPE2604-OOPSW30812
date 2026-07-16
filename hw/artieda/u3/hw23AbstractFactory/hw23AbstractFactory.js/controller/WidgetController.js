@@ -1,4 +1,4 @@
-// author Christopher Lomas, <CodeBros>, ESPE
+
 
 class WidgetController {
     generateWidgets() {
