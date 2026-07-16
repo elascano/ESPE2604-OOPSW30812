@@ -1,0 +1,14 @@
+{
+  "name": "composite-employee-ts",
+  "version": "1.0.0",
+  "description": "Ejemplo del patron Composite (jerarquia de empleados) en TypeScript.",
+  "main": "dist/view/setup.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node composite.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3"
+  }
+}
