@@ -18,7 +18,7 @@ public class MainView {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=== Abstract Factory - GUI Multiplataforma ===");
-        System.out.print("Ingrese el sistema operativo (windows/linux): ");
+        System.out.print("Enter the operating system (Windows/Linux): ");
         String os = sc.nextLine();
 
         try {
