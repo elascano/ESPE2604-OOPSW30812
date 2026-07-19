@@ -31,4 +31,3 @@ export class Setup {
     }
 }
 
-Setup.main();
