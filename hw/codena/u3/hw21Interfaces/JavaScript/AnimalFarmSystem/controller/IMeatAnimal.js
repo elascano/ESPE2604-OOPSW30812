@@ -1,3 +1,3 @@
-class IMeatAnimal{
+export default class IMeatAnimal{
     
 }

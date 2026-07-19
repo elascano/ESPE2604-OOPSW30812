@@ -1,0 +1,8 @@
+{
+  "name": "templatemethod",
+  "version": "1.0.0",
+  "main": "view/BeverageTest.js",
+  "scripts": {
+    "start": "node view/BeverageTest.js"
+  }
+}

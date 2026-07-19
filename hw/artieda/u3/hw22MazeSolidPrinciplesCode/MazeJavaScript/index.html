@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Visualizer - SOLID & MVC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px;
+            gap: 24px;
+        }
+
+        .sidebar {
+            flex: 0 0 350px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3b82f6;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .visualizer {
+            flex: 1;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            min-height: 500px;
+        }
+
+        canvas {
+            border-radius: 8px;
+            max-width: 100%;
+            max-height: 80vh;
+            background-color: #121218;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        pre {
+            width: 100%;
+            height: 100%;
+            max-height: 80vh;
+            overflow: auto;
+            background-color: #121218;
+            color: #38bdf8;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            line-height: 1.2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                flex: 1 1 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div>
+                <h1>Maze System</h1>
+                <p style="color: #64748b; font-size: 14px;">SOLID, MVC & Clean Code (JS)</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="widthInput">Width (Columns)</label>
+                <input type="number" id="widthInput" value="30" min="5" max="150">
+            </div>
+
+            <div class="form-group">
+                <label for="heightInput">Height (Rows)</label>
+                <input type="number" id="heightInput" value="30" min="5" max="150">
+            </div>
+
+            <div class="form-group">
+                <label for="rendererSelect">Renderer</label>
+                <select id="rendererSelect">
+                    <option value="canvas">HTML5 Canvas (Graphical)</option>
+                    <option value="ascii">Console (ASCII Text)</option>
+                </select>
+            </div>
+
+            <button id="generateBtn">Generate & Solve</button>
+        </div>
+
+        <div class="visualizer" id="visualizerContainer">
+            <canvas id="mazeCanvas"></canvas>
+            <pre id="mazeConsole" style="display: none;"></pre>
+        </div>
+    </div>
+
+    <script>
+        class Cell {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.wallNorth = true;
+                this.wallSouth = true;
+                this.wallEast = true;
+                this.wallWest = true;
+                this.visited = false;
+            }
+
+            isVisited() {
+                return this.visited;
+            }
+
+            markVisited() {
+                this.visited = true;
+            }
+
+            breakWall(dir) {
+                if (dir === 'NORTH') this.wallNorth = false;
+                else if (dir === 'SOUTH') this.wallSouth = false;
+                else if (dir === 'EAST') this.wallEast = false;
+                else if (dir === 'WEST') this.wallWest = false;
+            }
+
+            getX() {
+                return this.x;
+            }
+
+            getY() {
+                return this.y;
+            }
+
+            isWallNorth() {
+                return this.wallNorth;
+            }
+
+            isWallSouth() {
+                return this.wallSouth;
+            }
+
+            isWallEast() {
+                return this.wallEast;
+            }
+
+            isWallWest() {
+                return this.wallWest;
+            }
+        }
+
+        class Maze {
+            constructor(width, height) {
+                if (width <= 0 || height <= 0) {
+                    throw new Error();
+                }
+                this.width = width;
+                this.height = height;
+                this.grid = [];
+                for (let y = 0; y < height; y++) {
+                    this.grid[y] = [];
+                    for (let x = 0; x < width; x++) {
+                        this.grid[y][x] = new Cell(x, y);
+                    }
+                }
+                this.entrance = null;
+                this.exit = null;
+            }
+
+            getCell(x, y) {
+                if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+                    return null;
+                }
+                return this.grid[y][x];
+            }
+
+            configureEntranceExit(entrance, exit) {
+                this.entrance = entrance;
+                this.exit = exit;
+            }
+
+            getEntrance() {
+                return this.entrance;
+            }
+
+            getExit() {
+                return this.exit;
+            }
+
+            getWidth() {
+                return this.width;
+            }
+
+            getHeight() {
+                return this.height;
+            }
+
+            getGrid() {
+                return this.grid;
+            }
+        }
+
+        class DFSGenerator {
+            constructor() {
+                this.random = Math.random;
+            }
+
+            generate(maze) {
+                const width = maze.getWidth();
+                const height = maze.getHeight();
+                if (width <= 0 || height <= 0) return;
+
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        const cell = maze.getCell(x, y);
+                        if (cell) cell.visited = false;
+                    }
+                }
+
+                let current = maze.getCell(0, 0);
+                if (!current) return;
+                current.markVisited();
+                const stack = [];
+                stack.push(current);
+
+                while (stack.length > 0) {
+                    const next = this.getRandomUnvisitedNeighbor(current, maze);
+                    if (next) {
+                        this.breakWalls(current, next);
+                        next.markVisited();
+                        stack.push(current);
+                        current = next;
+                    } else {
+                        current = stack.pop();
+                    }
+                }
+
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        const cell = maze.getCell(x, y);
+                        if (cell) cell.visited = false;
+                    }
+                }
+
+                const entrance = maze.getCell(0, 0);
+                const exit = maze.getCell(width - 1, height - 1);
+                maze.configureEntranceExit(entrance, exit);
+            }
+
+            getRandomUnvisitedNeighbor(c, m) {
+                const unvisited = [];
+                const x = c.getX();
+                const y = c.getY();
+
+                if (y > 0) {
+                    const n = m.getCell(x, y - 1);
+                    if (n && !n.isVisited()) unvisited.push(n);
+                }
+                if (y < m.getHeight() - 1) {
+                    const n = m.getCell(x, y + 1);
+                    if (n && !n.isVisited()) unvisited.push(n);
+                }
+                if (x > 0) {
+                    const n = m.getCell(x - 1, y);
+                    if (n && !n.isVisited()) unvisited.push(n);
+                }
+                if (x < m.getWidth() - 1) {
+                    const n = m.getCell(x + 1, y);
+                    if (n && !n.isVisited()) unvisited.push(n);
+                }
+
+                if (unvisited.length === 0) return null;
+                return unvisited[Math.floor(this.random() * unvisited.length)];
+            }
+
+            breakWalls(current, next) {
+                if (next.getY() < current.getY()) {
+                    current.breakWall('NORTH');
+                    next.breakWall('SOUTH');
+                } else if (next.getY() > current.getY()) {
+                    current.breakWall('SOUTH');
+                    next.breakWall('NORTH');
+                } else if (next.getX() > current.getX()) {
+                    current.breakWall('EAST');
+                    next.breakWall('WEST');
+                } else if (next.getX() < current.getX()) {
+                    current.breakWall('WEST');
+                    next.breakWall('EAST');
+                }
+            }
+        }
+
+        class DFSSolver {
+            findPath(maze) {
+                const width = maze.getWidth();
+                const height = maze.getHeight();
+                if (width <= 0 || height <= 0) return [];
+
+                const entrance = maze.getEntrance();
+                const exit = maze.getExit();
+                if (!entrance || !exit) return [];
+
+                const visited = Array.from({ length: height }, () => Array(width).fill(false));
+                const parent = Array.from({ length: height }, () => Array(width).fill(null));
+
+                const stack = [];
+                stack.push(entrance);
+                visited[entrance.getY()][entrance.getX()] = true;
+
+                let found = false;
+                while (stack.length > 0) {
+                    const current = stack.pop();
+
+                    if (current === exit) {
+                        found = true;
+                        break;
+                    }
+
+                    const x = current.getX();
+                    const y = current.getY();
+
+                    if (!current.isWallNorth() && y > 0) {
+                        const next = maze.getCell(x, y - 1);
+                        if (next && !visited[next.getY()][next.getX()]) {
+                            visited[next.getY()][next.getX()] = true;
+                            parent[next.getY()][next.getX()] = current;
+                            stack.push(next);
+                        }
+                    }
+                    if (!current.isWallSouth() && y < height - 1) {
+                        const next = maze.getCell(x, y + 1);
+                        if (next && !visited[next.getY()][next.getX()]) {
+                            visited[next.getY()][next.getX()] = true;
+                            parent[next.getY()][next.getX()] = current;
+                            stack.push(next);
+                        }
+                    }
+                    if (!current.isWallEast() && x < width - 1) {
+                        const next = maze.getCell(x + 1, y);
+                        if (next && !visited[next.getY()][next.getX()]) {
+                            visited[next.getY()][next.getX()] = true;
+                            parent[next.getY()][next.getX()] = current;
+                            stack.push(next);
+                        }
+                    }
+                    if (!current.isWallWest() && x > 0) {
+                        const next = maze.getCell(x - 1, y);
+                        if (next && !visited[next.getY()][next.getX()]) {
+                            visited[next.getY()][next.getX()] = true;
+                            parent[next.getY()][next.getX()] = current;
+                            stack.push(next);
+                        }
+                    }
+                }
+
+                if (!found) return [];
+
+                const path = [];
+                let curr = exit;
+                while (curr !== null) {
+                    path.push(curr);
+                    curr = parent[curr.getY()][curr.getX()];
+                }
+                path.reverse();
+                return path;
+            }
+        }
+
+        class BaseRenderer {
+            draw(maze, path) {
+                if (!this.validateMaze(maze)) {
+                    throw new Error();
+                }
+            }
+
+            validateMaze(maze) {
+                return maze && maze.getWidth() > 0 && maze.getHeight() > 0 && maze.getGrid();
+            }
+        }
+
+        class ASCIIRenderer extends BaseRenderer {
+            constructor(outputElement) {
+                super();
+                this.outputElement = outputElement;
+            }
+
+            draw(maze, path) {
+                super.draw(maze, path);
+                const width = maze.getWidth();
+                const height = maze.getHeight();
+                const isPath = Array.from({ length: height }, () => Array(width).fill(false));
+                if (path) {
+                    for (const cell of path) {
+                        isPath[cell.getY()][cell.getX()] = true;
+                    }
+                }
+
+                let output = "";
+                for (let y = 0; y < height; y++) {
+                    let topLine = "";
+                    for (let x = 0; x < width; x++) {
+                        const cell = maze.getCell(x, y);
+                        topLine += cell.isWallNorth() ? "+---" : "+   ";
+                    }
+                    output += topLine + "+\n";
+
+                    let sideLine = "";
+                    for (let x = 0; x < width; x++) {
+                        const cell = maze.getCell(x, y);
+                        let character = " ";
+                        if (cell === maze.getEntrance()) character = "S";
+                        else if (cell === maze.getExit()) character = "E";
+                        else if (isPath[y][x]) character = "*";
+
+                        sideLine += cell.isWallWest() ? "| " + character + " " : "  " + character + " ";
+                    }
+                    output += sideLine + "|\n";
+                }
+
+                let bottomLine = "";
+                for (let x = 0; x < width; x++) {
+                    bottomLine += "+---";
+                }
+                output += bottomLine + "+\n";
+                this.outputElement.textContent = output;
+            }
+        }
+
+        class CanvasRenderer extends BaseRenderer {
+            constructor(canvas) {
+                super();
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+            }
+
+            draw(maze, path) {
+                super.draw(maze, path);
+                const width = maze.getWidth();
+                const height = maze.getHeight();
+
+                const maxDimension = Math.max(width, height);
+                const cellSize = Math.max(4, Math.floor(750 / maxDimension));
+                const margin = Math.floor(cellSize / 2);
+
+                this.canvas.width = width * cellSize + cellSize;
+                this.canvas.height = height * cellSize + cellSize;
+
+                this.ctx.fillStyle = '#1e293b';
+                this.ctx.fillRect(margin, margin, width * cellSize, height * cellSize);
+
+                const entrance = maze.getEntrance();
+                if (entrance) {
+                    this.ctx.fillStyle = '#22c55e';
+                    this.ctx.fillRect(margin + entrance.getX() * cellSize, margin + entrance.getY() * cellSize, cellSize, cellSize);
+                }
+
+                const exit = maze.getExit();
+                if (exit) {
+                    this.ctx.fillStyle = '#3b82f6';
+                    this.ctx.fillRect(margin + exit.getX() * cellSize, margin + exit.getY() * cellSize, cellSize, cellSize);
+                }
+
+                if (path && path.length > 0) {
+                    this.ctx.strokeStyle = '#ef4444';
+                    this.ctx.lineWidth = Math.max(2, cellSize / 4);
+                    this.ctx.lineCap = 'round';
+                    this.ctx.lineJoin = 'round';
+                    this.ctx.beginPath();
+                    for (let i = 0; i < path.length; i++) {
+                        const cell = path[i];
+                        const px = margin + cell.getX() * cellSize + cellSize / 2;
+                        const py = margin + cell.getY() * cellSize + cellSize / 2;
+                        if (i === 0) {
+                            this.ctx.moveTo(px, py);
+                        } else {
+                            this.ctx.lineTo(px, py);
+                        }
+                    }
+                    this.ctx.stroke();
+                }
+
+                this.ctx.strokeStyle = '#4a5568';
+                this.ctx.lineWidth = Math.max(1, cellSize / 10);
+                this.ctx.beginPath();
+
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        const cell = maze.getCell(x, y);
+                        if (!cell) continue;
+
+                        const cx = margin + x * cellSize;
+                        const cy = margin + y * cellSize;
+
+                        if (cell.isWallNorth()) {
+                            this.ctx.moveTo(cx, cy);
+                            this.ctx.lineTo(cx + cellSize, cy);
+                        }
+                        if (cell.isWallSouth()) {
+                            this.ctx.moveTo(cx, cy + cellSize);
+                            this.ctx.lineTo(cx + cellSize, cy + cellSize);
+                        }
+                        if (cell.isWallEast()) {
+                            this.ctx.moveTo(cx + cellSize, cy);
+                            this.ctx.lineTo(cx + cellSize, cy + cellSize);
+                        }
+                        if (cell.isWallWest()) {
+                            this.ctx.moveTo(cx, cy);
+                            this.ctx.lineTo(cx, cy + cellSize);
+                        }
+                    }
+                }
+                this.ctx.stroke();
+            }
+        }
+
+        class MazeController {
+            constructor(generator, solver, renderer) {
+                this.generator = generator;
+                this.solver = solver;
+                this.renderer = renderer;
+            }
+
+            createAndShowMaze(width, height) {
+                const maze = new Maze(width, height);
+                this.generator.generate(maze);
+                const path = this.solver.findPath(maze);
+                this.renderer.draw(maze, path);
+            }
+        }
+
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const width = parseInt(document.getElementById('widthInput').value);
+            const height = parseInt(document.getElementById('heightInput').value);
+            const rendererType = document.getElementById('rendererSelect').value;
+
+            const canvas = document.getElementById('mazeCanvas');
+            const pre = document.getElementById('mazeConsole');
+
+            let renderer;
+            if (rendererType === 'canvas') {
+                canvas.style.display = 'block';
+                pre.style.display = 'none';
+                renderer = new CanvasRenderer(canvas);
+            } else {
+                canvas.style.display = 'none';
+                pre.style.display = 'block';
+                renderer = new ASCIIRenderer(pre);
+            }
+
+            const controller = new MazeController(new DFSGenerator(), new DFSSolver(), renderer);
+            controller.createAndShowMaze(width, height);
+        });
+
+        document.getElementById('generateBtn').click();
+    </script>
+</body>
+</html>
