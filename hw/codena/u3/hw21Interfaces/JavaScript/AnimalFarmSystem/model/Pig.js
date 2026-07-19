@@ -1,4 +1,7 @@
-class Pig extends FarmAnimal {
+import FarmAnimal from "./FarmAnimal.js";
+import Cut from "./Cut.js"
+
+export default class Pig extends FarmAnimal {
     constructor(id, breed, bornOnDate, weight, slaughterHouse, product, cuts, idealWeight) {
         super(id, breed, bornOnDate, weight, slaughterHouse, product, cuts)
         this.idealWeight = idealWeight
