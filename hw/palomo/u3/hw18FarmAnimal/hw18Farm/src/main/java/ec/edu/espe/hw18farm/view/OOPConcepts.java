@@ -5,7 +5,7 @@
 
 package ec.edu.espe.hw18farm.view;
 
-import ec.edu.espe.oopconcepts.view.FrmMenu;
+import ec.edu.espe.hw18farm.view.FrmMenu;
 import javax.swing.UIManager;
 /**
  *
