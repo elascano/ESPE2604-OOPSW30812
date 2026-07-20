@@ -14,7 +14,6 @@ class Coffee(CaffeineBeverage):
 
     def wants_condiments(self) -> bool:
         answer = self._get_user_input(
-            "Would you like milk and sugar with your coffee (y/n)? "
         )
         return answer.lower().startswith("y")
 
