@@ -7,7 +7,6 @@ from abc import ABC, abstractmethod
 class CaffeineBeverage(ABC):
     
     def prepare_recipe(self) -> None:
-        """Template Method: no debe ser sobrescrito por las subclases."""
         self.boil_water()
         self.brew()
         self.pour_in_cup()
@@ -29,5 +28,4 @@ class CaffeineBeverage(ABC):
         ...
 
     def wants_condiments(self) -> bool:
-        """Hook: comportamiento por defecto que las subclases pueden sobrescribir."""
         return True
