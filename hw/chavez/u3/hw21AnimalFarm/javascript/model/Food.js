@@ -1,14 +1,9 @@
-class Food {
-
-    constructor(name, quantity) {
+export default class Food {
+    constructor(name) {
         this.name = name;
-        this.quantity = quantity;
     }
 
     toString() {
-        return `${this.quantity} kg of ${this.name}`;
+        return this.name;
     }
-
 }
-
-module.exports = Food;

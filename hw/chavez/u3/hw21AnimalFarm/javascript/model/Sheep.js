@@ -1,34 +1,10 @@
-const FarmAnimal = require("./FarmAnimal");
-const IProduce = require("../interfaces/IProduce");
-const IMeat = require("../interfaces/IMeat");
+import FarmAnimal from "./FarmAnimal.js";
+import Product from "./Product.js";
 
-class Sheep extends FarmAnimal {
-
-    constructor(id, breed, age, weight, woolWeight) {
-        super(id, breed, age, weight);
-        this.woolWeight = woolWeight;
-    }
+export default class Sheep extends FarmAnimal {
 
     produce() {
-        return `${this.woolWeight} kg of wool`;
+        const product = new Product("Wool");
+        console.log(`Sheep produced ${product}`);
     }
-
-    getCuts() {
-        return [
-            "Leg",
-            "Loin",
-            "Rack",
-            "Shoulder"
-        ];
-    }
-
-    bleat() {
-        console.log("Baa!");
-    }
-
 }
-
-Object.assign(Sheep.prototype, IProduce.prototype);
-Object.assign(Sheep.prototype, IMeat.prototype);
-
-module.exports = Sheep;
