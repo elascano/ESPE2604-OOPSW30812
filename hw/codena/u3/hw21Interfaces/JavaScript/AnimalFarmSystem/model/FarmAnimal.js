@@ -1,4 +1,4 @@
-class FarmAnimal {
+export default class FarmAnimal {
     constructor(id, breed, bornOnDate, weight, slaughterHouse, product, cuts) {
 
         if (new.target === FarmAnimal) {
@@ -40,3 +40,4 @@ class FarmAnimal {
 
 
 }
+

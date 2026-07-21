@@ -1,16 +1,20 @@
 {
-  "name": "javascript",
+  "name": "animal-farm-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Animal Farm System MVC using Node.js",
+  "type": "module",
+  "main": "view/AnimalFarmSystem.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node view/AnimalFarmSystem.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mvc",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "Odalys Chavez",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "mongodb": "^7.4.0"
+    "mongodb": "^6.17.0"
   }
 }

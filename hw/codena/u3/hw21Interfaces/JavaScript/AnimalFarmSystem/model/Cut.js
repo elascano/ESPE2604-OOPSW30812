@@ -1,4 +1,4 @@
-class Cut{
+export default class Cut{
     constructor(id, description, procedure, weight){
         this.id = id;
         this.description = description;
@@ -6,3 +6,4 @@ class Cut{
         this.weight =weight;
     }
 }
+
