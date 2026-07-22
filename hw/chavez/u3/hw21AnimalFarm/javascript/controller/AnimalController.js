@@ -1,55 +1,36 @@
-const MongoManager = require("../utils/MongoManager");
+import Pig from "../model/Pig.js";
+import Cow from "../model/Cow.js";
+import Chicken from "../model/Chicken.js";
+import Sheep from "../model/Sheep.js";
+import Food from "../model/Food.js";
 
-class AnimalController {
+export default class AnimalController {
 
-    constructor() {
-        this.mongo = new MongoManager();
-    }
+    static run() {
 
-    async saveAnimal(animal) {
-        const database = await this.mongo.connect();
-        const collection = database.collection("animals");
+        const food = new Food("Corn");
 
-        await collection.insertOne(animal);
+        console.log("\n----- PIG -----");
+        const pig = new Pig(1, "Yorkshire", "2025-01-15");
+        pig.feed(food);
+        pig.sendToSlaughterHouse("Juan");
+        pig.cut();
 
-        console.log("Animal saved successfully.");
-    }
+        console.log("\n----- COW -----");
+        const cow = new Cow(2, "Holstein", "2024-05-20");
+        cow.feed(food);
+        cow.sendToSlaughterHouse("Mario");
+        cow.cut();
 
-    async getAnimals() {
-        const database = await this.mongo.connect();
-        const collection = database.collection("animals");
+        console.log("\n----- CHICKEN -----");
+        const chicken = new Chicken(3, "Leghorn", "2025-02-10");
+        chicken.feed(food);
+        chicken.produce();
 
-        return await collection.find({}).toArray();
-    }
-
-    async findAnimal(id) {
-        const database = await this.mongo.connect();
-        const collection = database.collection("animals");
-
-        return await collection.findOne({ id: id });
-    }
-
-    async updateAnimal(id, animal) {
-        const database = await this.mongo.connect();
-        const collection = database.collection("animals");
-
-        await collection.updateOne(
-            { id: id },
-            { $set: animal }
-        );
-
-        console.log("Animal updated successfully.");
-    }
-
-    async deleteAnimal(id) {
-        const database = await this.mongo.connect();
-        const collection = database.collection("animals");
-
-        await collection.deleteOne({ id: id });
-
-        console.log("Animal deleted successfully.");
+        console.log("\n----- SHEEP -----");
+        const sheep = new Sheep(4, "Mar", "2024-09-18");
+        sheep.feed(food);
+        sheep.produce();
     }
 
 }
-
-module.exports = AnimalController;

@@ -1,34 +1,24 @@
-const FarmAnimal = require("./FarmAnimal");
-const IProduce = require("../interfaces/IProduce");
-const IMeat = require("../interfaces/IMeat");
+import FarmAnimal from "./FarmAnimal.js";
+import Cut from "./Cut.js";
+import SlaughterHouse from "./SlaughterHouse.js";
 
-class Cow extends FarmAnimal {
+export default class Cow extends FarmAnimal {
 
-    constructor(id, breed, age, weight, dailyMilk) {
-        super(id, breed, age, weight);
-        this.dailyMilk = dailyMilk;
-    }
+    cut() {
+        console.log("Cow has been cut");
 
-    produce() {
-        return `${this.dailyMilk} liters of milk`;
-    }
-
-    getCuts() {
-        return [
-            "Rib",
-            "Tenderloin",
-            "Sirloin",
-            "Brisket"
+        const cuts = [
+            new Cut("Brisket"),
+            new Cut("Rib"),
+            new Cut("Loin"),
+            new Cut("Chuck")
         ];
+
+        cuts.forEach(cut => console.log(cut.toString()));
     }
 
-    moo() {
-        console.log("Moo!");
+    sendToSlaughterHouse(name) {
+        const slaughterHouse = new SlaughterHouse(name);
+        slaughterHouse.slaughter(this);
     }
-
 }
-
-Object.assign(Cow.prototype, IProduce.prototype);
-Object.assign(Cow.prototype, IMeat.prototype);
-
-module.exports = Cow;

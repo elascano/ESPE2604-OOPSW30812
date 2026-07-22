@@ -18,7 +18,6 @@
 *.tar.gz
 *.rar
 
-=======
 node_modules/
 jspm_packages/
 web_modules/
@@ -27,7 +26,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
-HEAD
 /ws/aimacana/u2/ws18DataBase/mongodb/target/
 /hw/codena/u2/hw09Libraries/JavaScript/StoreApp/nbproject/private/
 /hw/codena/u2/hw11UnitTest/JavaScript/Calculator/nbproject/private/
@@ -35,7 +33,6 @@ HEAD
 /ws/palomo/u2/ws18GUISwing/shoppingCenter/target/
 /ws/palomo/u2/ws18GUISwing/ShoppingCenter_JS/nbproject/private/
 /ws/palomo/u2/ws18GUISwing/shoppingCenter_Java/target/
-4bd7b13947b86409cacd2260a76aa95f79a9444f
 /ws/palomo/u2/ws21/ShippingCenter/target/
 /exams/artieda/u2/CountryManager/nbproject/private/
 /exams/artieda/u2/CountryManager/nbproject/
@@ -51,24 +48,15 @@ HEAD
 /ws/aimacana/u3/Ws24/OOPConceptsZOO/target/
 /hw/aimacana/u3/ws26Interfaces/AinamalFarmSystem/build/
 /hw/artieda/u3/hw22MazeSolidPrinciplesCode/Maze/Maze/target/
-HEAD
 /hw/nase/u3/hw23AbstractFactory/AbstractFactory.java/hw23AbstractFactory/target/
 /hw/palomo/u3/hw22MazeDiagramClass/MazeApplicationV0.3/target/
-96b609d14ee99a405e5e227aae284a87e5f9ac1c
-HEAD
 /hw/aimacana/u3/hw25CompositePattern/java/Composite/target/
-HEAD
 /hw/nase/u3/hw24CompositePattern/CompossitePattern.java/Employee/target/
 /hw/palomo/u3/hw23AbstracFactory/AbstracFactory/target/
-<<<<<<< HEAD
->>>>>>> 7e9b68475f705b9b9a4f5874246969bc2ea29ac3
 /hw/nase/u3/hw25TemplateMethod/TemplateMethod.java/CaffeineBeverage/target/
 /hw/nase/u3/hw26Observer/Observer.java/Obvserver/target/
-=======
-HEAD
 /hw/palomo/u3/hw24CompositePattern/Composite/target/
-7e9b68475f705b9b9a4f5874246969bc2ea29ac3
-4e0b2c6e2fba661ed0a4d688f0ac6999fe8a3c50
-c21ae0aab3bce0f145035c41cb17dd2749cf1295
->>>>>>> 2ede296c227ef1d277a61933af6a5775bd608e85
 /hw/tipan/u3/hw27Strategy/StrategyJava/Strategy/target/
+/ws/palomo/u1/ws08Collections/AnimalFarm/target/
+/ws/palomo/u1/ws08Collections/TemplateMethod/target/
+/ws/palomo/u1/ws08Collections/Observer/target/
