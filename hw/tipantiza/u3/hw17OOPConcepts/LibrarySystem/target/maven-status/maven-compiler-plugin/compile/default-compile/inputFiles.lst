@@ -1,0 +1,9 @@
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\model\Person.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\model\interfaces\IManageable.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\model\Book.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\model\Loan.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\controller\LoanController.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\model\User.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\utils\MongoDBConnection.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\controller\LibraryController.java
+D:\POO-IIS\Java\LibrarySystem\src\main\java\ec\edu\espe\librarysystem\view\LibraryGUI.java

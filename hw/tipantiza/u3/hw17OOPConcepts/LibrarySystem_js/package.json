@@ -1,0 +1,12 @@
+{
+  "name": "LibrarySystem_js",
+  "version": "1.0.0",
+  "description": "Library Management System",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.21.0"
+  }
+}
