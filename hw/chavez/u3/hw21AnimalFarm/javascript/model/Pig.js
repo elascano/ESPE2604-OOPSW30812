@@ -1,27 +1,23 @@
-const FarmAnimal = require("./FarmAnimal");
-const IMeat = require("../interfaces/IMeat");
+import FarmAnimal from "./FarmAnimal.js";
+import Cut from "./Cut.js";
+import SlaughterHouse from "./SlaughterHouse.js";
 
-class Pig extends FarmAnimal {
+export default class Pig extends FarmAnimal {
 
-    constructor(id, breed, age, weight) {
-        super(id, breed, age, weight);
-    }
+    cut() {
+        console.log("Pig has been cut");
 
-    getCuts() {
-        return [
-            "Ham",
-            "Bacon",
-            "Loin",
-            "Shoulder"
+        const cuts = [
+            new Cut("Loin"),
+            new Cut("Belly"),
+            new Cut("Feet")
         ];
+
+        cuts.forEach(cut => console.log(cut.toString()));
     }
 
-    oink() {
-        console.log("Oink!");
+    sendToSlaughterHouse(name) {
+        const slaughterHouse = new SlaughterHouse(name);
+        slaughterHouse.slaughter(this);
     }
-
 }
-
-Object.assign(Pig.prototype, IMeat.prototype);
-
-module.exports = Pig;

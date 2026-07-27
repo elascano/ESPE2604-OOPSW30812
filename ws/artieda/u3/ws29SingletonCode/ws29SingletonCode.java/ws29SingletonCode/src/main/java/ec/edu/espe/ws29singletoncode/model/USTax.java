@@ -3,7 +3,7 @@ package model;
 public class USTax {
     private static USTax instance;
     
-    private USTax() {
+    public USTax() {
     }
     
     public static USTax getInstance() {

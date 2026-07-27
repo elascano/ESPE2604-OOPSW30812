@@ -1,23 +1,10 @@
-const FarmAnimal = require("./FarmAnimal");
-const IProduce = require("../interfaces/IProduce");
+import FarmAnimal from "./FarmAnimal.js";
+import Product from "./Product.js";
 
-class Chicken extends FarmAnimal {
-
-    constructor(id, breed, age, weight, eggsPerWeek) {
-        super(id, breed, age, weight);
-        this.eggsPerWeek = eggsPerWeek;
-    }
+export default class Chicken extends FarmAnimal {
 
     produce() {
-        return `${this.eggsPerWeek} eggs per week`;
+        const product = new Product("Eggs");
+        console.log(`Chicken produced ${product}`);
     }
-
-    cluck() {
-        console.log("Cluck! Cluck!");
-    }
-
 }
-
-Object.assign(Chicken.prototype, IProduce.prototype);
-
-module.exports = Chicken;

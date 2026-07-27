@@ -1,14 +1,9 @@
-class Cut {
-
-    constructor(name, weight) {
+export default class Cut {
+    constructor(name) {
         this.name = name;
-        this.weight = weight;
     }
 
     toString() {
-        return `${this.name} (${this.weight} kg)`;
+        return this.name;
     }
-
 }
-
-module.exports = Cut;

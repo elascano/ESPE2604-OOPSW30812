@@ -1,0 +1,10 @@
+{
+  "name": "template-method-js",
+  "version": "1.0.0",
+  "description": "Ejemplo del patron Template Method (CaffeineBeverage/Coffee/Tea) en JavaScript.",
+  "type": "module",
+  "main": "src/controller/BeverageTest.js",
+  "scripts": {
+    "start": "node src/controller/BeverageTest.js"
+  }
+}
