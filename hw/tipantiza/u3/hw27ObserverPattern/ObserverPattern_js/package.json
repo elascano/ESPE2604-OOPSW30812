@@ -1,0 +1,8 @@
+{
+  "name": "observerpattern",
+  "version": "1.0.0",
+  "main": "view/Application.js",
+  "scripts": {
+    "start": "node view/Application.js"
+  }
+}

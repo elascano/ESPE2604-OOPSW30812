@@ -1,0 +1,10 @@
+{
+  "name": "observer.js",
+  "version": "1.0.0",
+  "description": "Example observer pattern.",
+  "type": "module",
+  "main": "src/controller/StockController.js",
+  "scripts": {
+    "start": "node src/controller/StockController.js"
+  }
+}

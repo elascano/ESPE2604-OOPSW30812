@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPP Concepts Zoo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Farm System</h1>
+
+        <label>ID</label>
+        <input type="number" id="txtId">
+
+        <label>Breed</label>
+        <input type="text" id="txtBreed">
+
+        <label>Weight</label>
+        <input type="number" id="txtWeight">
+
+        <label>Born On</label>
+        <input type="text" id="txtBornOn">
+
+        <label>Animal</label>
+
+        <select id="cmbAnimal">
+            <option>Cow</option>
+            <option>Pig</option>
+            <option>Chicken</option>
+            <option>Sheep</option>
+        </select>
+
+        <button onclick="saveAnimal()">Save</button>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Breed</th>
+                    <th>Animal</th>
+                    <th>Weight</th>
+                    <th>Born On</th>
+                </tr>
+            </thead>
+
+            <tbody id="tblAnimals">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

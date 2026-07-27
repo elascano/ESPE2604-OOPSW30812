@@ -5,7 +5,7 @@
   "main": "dist/view/setup.js",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node composite.ts"
+    "start": "npm run build && node dist/view/setup.js"
   },
   "devDependencies": {
     "@types/node": "^20.19.43",

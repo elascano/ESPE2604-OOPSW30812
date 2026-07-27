@@ -1,4 +1,6 @@
-class Chicken extends FarmAnimal {
+import FarmAnimal from "./FarmAnimal.js";
+
+export default class Chicken extends FarmAnimal {
     constructor(id, breed, bornOnDate, weight, slaughterHouse, product, cuts, isMolting, numberOfEggs) {
         super(id, breed, bornOnDate, weight, slaughterHouse, product, cuts)
         this.isMolting = isMolting

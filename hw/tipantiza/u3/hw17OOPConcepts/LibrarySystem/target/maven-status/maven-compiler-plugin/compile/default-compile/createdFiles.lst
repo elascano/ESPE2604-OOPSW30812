@@ -1,0 +1,12 @@
+ec\edu\espe\librarysystem\model\interfaces\IManageable.class
+ec\edu\espe\librarysystem\model\Book.class
+ec\edu\espe\librarysystem\view\LibraryGUI$2.class
+ec\edu\espe\librarysystem\utils\MongoDBConnection.class
+ec\edu\espe\librarysystem\view\LibraryGUI.class
+ec\edu\espe\librarysystem\controller\LibraryController.class
+ec\edu\espe\librarysystem\model\Loan.class
+ec\edu\espe\librarysystem\model\User.class
+ec\edu\espe\librarysystem\view\LibraryGUI$3.class
+ec\edu\espe\librarysystem\controller\LoanController.class
+ec\edu\espe\librarysystem\model\Person.class
+ec\edu\espe\librarysystem\view\LibraryGUI$1.class

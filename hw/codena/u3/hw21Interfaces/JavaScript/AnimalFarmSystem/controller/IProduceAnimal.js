@@ -1,3 +1,3 @@
-class IProduceAnimal{
+export default class IProduceAnimal{
     
 }

@@ -1,4 +1,6 @@
-class Sheep extends FarmAnimal {
+import FarmAnimal from "./FarmAnimal.js";
+
+export default class Sheep extends FarmAnimal {
     constructor(id, breed, bornOnDate, weight, slaughterHouse, product, cuts, lastShearing, quantityOfWool) {
         super(id, breed, bornOnDate, weight, slaughterHouse, product, cuts)
         this.lastShearing = lastShearing;

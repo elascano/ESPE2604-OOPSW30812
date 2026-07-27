@@ -1,4 +1,4 @@
-class SlaughterHouse{
+export default class SlaughterHouse{
     constructor(id, name, address, cellphoneNumber){
         this.id = id;
         this.name = name;
