@@ -3,7 +3,7 @@ from sorting_context import SortingContext
 class SortApp:
     @staticmethod
     def main():
-        data = [3, 6, 4, 6, 7, 8, 5, 6, 7, 5, 3, 3]
+        data = [6]
         sc = SortingContext()
         sorted_list = sc.sort(data)
 
