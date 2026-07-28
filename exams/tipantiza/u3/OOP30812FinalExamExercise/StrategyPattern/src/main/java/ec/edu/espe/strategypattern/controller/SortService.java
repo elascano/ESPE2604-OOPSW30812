@@ -1,6 +1,6 @@
-
 package ec.edu.espe.strategypattern.controller;
-import ec.edu.espe.strategypattern.model.*;
+
+import ec.edu.espe.strategypattern.model.SortingStrategy;
 import ec.edu.espe.strategypattern.utils.MongoDBConnection;
 import org.bson.Document;
 
@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
  *
  * @author Alexander Tipantiza, CodeBreakers, @ESPE
  */
-
-
 
 public class SortService {
     private final SortingContext sortingContext;
@@ -40,6 +38,7 @@ public class SortService {
         String sortedFormatted = formatArrayToString(sortedNumbers);
         String selectedAlgorithm = sortingContext.getSortStrategy().getClass().getSimpleName();
 
+        // Persistir en MongoDB con manejo de errores
         persistSortResult(unsortedFormatted, size, selectedAlgorithm, sortedFormatted);
 
         return buildOutputSummary(selectedAlgorithm, size, unsortedFormatted, sortedFormatted);
@@ -53,21 +52,31 @@ public class SortService {
     }
 
     private void selectStrategyByRules(int size) {
+        System.out.println("Seleccionando estrategia para " + size + " elementos");
         if (size >= 2 && size <= 6) {
             sortingContext.setSortStrategy(new BubbleSort());
+            System.out.println("Estrategia seleccionada: BubbleSort");
         } else if (size >= 7 && size <= 10) {
             sortingContext.setSortStrategy(new InsertionSort());
+            System.out.println("Estrategia seleccionada: InsertionSort");
         } else {
             sortingContext.setSortStrategy(new QuickSort());
+            System.out.println("Estrategia seleccionada: QuickSort");
         }
     }
 
     private void persistSortResult(String unsorted, int size, String algorithm, String sorted) {
-        Document doc = new Document("unsorted", unsorted)
-                .append("size", size)
-                .append("sort algorithm", algorithm)
-                .append("sorted", sorted);
-        MongoDBConnection.insertRecord(doc);
+        try {
+            Document doc = new Document("unsorted", unsorted)
+                    .append("size", size)
+                    .append("sort algorithm", algorithm)
+                    .append("sorted", sorted)
+                    .append("timestamp", System.currentTimeMillis());
+            MongoDBConnection.insertRecord(doc);
+        } catch (Exception e) {
+            System.err.println("Error al persistir en MongoDB: " + e.getMessage());
+            // No lanzamos excepción para que el programa continúe
+        }
     }
 
     private String formatArrayToString(int[] array) {

@@ -1,12 +1,14 @@
 
-package ec.edu.espe.strategypattern.model;
+package ec.edu.espe.strategypattern.controller;
+
+import ec.edu.espe.strategypattern.model.SortingStrategy;
 
 /**
  *
  * @author Alexander Tipantiza, CodeBreakers, @ESPE
  */
 
-public class BubbleSort implements SortingStrategy {
+public class BubbleSort extends SortingStrategy {
     @Override
     public int[] sort(int[] numbers) {
         int[] array = numbers.clone();

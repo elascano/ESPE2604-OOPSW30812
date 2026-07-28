@@ -1,5 +1,6 @@
+package ec.edu.espe.strategypattern.controller;
 
-package ec.edu.espe.strategypattern.model;
+import ec.edu.espe.strategypattern.model.SortingStrategy;
 
 /**
  *
@@ -9,14 +10,13 @@ package ec.edu.espe.strategypattern.model;
 public class SortingContext {
     private SortingStrategy sortStrategy;
 
-    public SortingContext() {}
+    public SortingContext() {
+        // Estrategia por defecto
+        this.sortStrategy = new QuickSort();
+    }
 
     public SortingContext(SortingStrategy sortStrategy) {
         this.sortStrategy = sortStrategy;
-    }
-
-    public int[] sort(int[] numbers) {
-        return sortStrategy.sort(numbers);
     }
 
     public SortingStrategy getSortStrategy() {
@@ -25,5 +25,12 @@ public class SortingContext {
 
     public void setSortStrategy(SortingStrategy sortStrategy) {
         this.sortStrategy = sortStrategy;
+    }
+
+    public int[] sort(int[] numbers) {
+        if (sortStrategy == null) {
+            throw new IllegalStateException("Strategy is not set.");
+        }
+        return sortStrategy.sort(numbers);
     }
 }

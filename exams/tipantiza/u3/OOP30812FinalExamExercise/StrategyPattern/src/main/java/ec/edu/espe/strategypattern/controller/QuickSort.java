@@ -1,12 +1,14 @@
 
-package ec.edu.espe.strategypattern.model;
+package ec.edu.espe.strategypattern.controller;
+
+import ec.edu.espe.strategypattern.model.SortingStrategy;
 
 /**
  *
  * @author Alexander Tipantiza, CodeBreakers, @ESPE
  */
 
-public class QuickSort implements SortingStrategy {
+public class QuickSort extends SortingStrategy {
     @Override
     public int[] sort(int[] numbers) {
         int[] array = numbers.clone();
@@ -24,7 +26,7 @@ public class QuickSort implements SortingStrategy {
 
     private int partition(int[] array, int low, int high) {
         int pivot = array[high];
-        int i = (low - 1);
+        int i = low - 1;
         for (int j = low; j < high; j++) {
             if (array[j] < pivot) {
                 i++;

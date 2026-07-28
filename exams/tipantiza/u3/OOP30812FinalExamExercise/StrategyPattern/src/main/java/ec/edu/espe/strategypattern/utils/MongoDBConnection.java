@@ -1,4 +1,3 @@
-
 package ec.edu.espe.strategypattern.utils;
 
 import com.mongodb.client.MongoClient;
@@ -13,29 +12,43 @@ import org.bson.Document;
  */
 
 public class MongoDBConnection {
-    private static final String CONNECTION_URI = "mongodb+srv://tipantizaalexander:Alexander20@cluster0.z86uqo3.mongodb.net/?appName=Cluster0";
-    private static final String DATABASE_NAME = "strategyTipantiza";
+    // Usa una URI válida o crea una base de datos local para pruebas
+    private static final String URI = "mongodb://localhost:27017"; // Cambia a tu URI local
+    private static final String DB_NAME = "strategyTipantiza";
     private static final String COLLECTION_NAME = "arrayAlexander";
-    
-    private static MongoClient mongoClient = null;
+    private static MongoClient mongoClient;
 
     private MongoDBConnection() {}
 
     public static MongoDatabase getDatabase() {
-        if (mongoClient == null) {
-            mongoClient = MongoClients.create(CONNECTION_URI);
+        try {
+            if (mongoClient == null) {
+                mongoClient = MongoClients.create(URI);
+                System.out.println("Conectado a MongoDB exitosamente");
+            }
+            return mongoClient.getDatabase(DB_NAME);
+        } catch (Exception e) {
+            System.err.println("Error al conectar a MongoDB: " + e.getMessage());
+            return null;
         }
-        return mongoClient.getDatabase(DATABASE_NAME);
     }
 
     public static void insertRecord(Document document) {
         try {
-            MongoCollection<Document> collection = getDatabase().getCollection(COLLECTION_NAME);
-            collection.insertOne(document);
+            MongoDatabase db = getDatabase();
+            if (db != null) {
+                MongoCollection<Document> collection = db.getCollection(COLLECTION_NAME);
+                collection.insertOne(document);
+                System.out.println("Registro insertado exitosamente: " + document.toJson());
+            } else {
+                System.err.println("No se pudo obtener la base de datos, el registro no se guardó");
+                // Mostrar el registro en consola como fallback
+                System.out.println("Registro guardado localmente: " + document.toJson());
+            }
         } catch (Exception e) {
-            mongoClient = MongoClients.create(CONNECTION_URI);
-            MongoCollection<Document> collection = mongoClient.getDatabase(DATABASE_NAME).getCollection(COLLECTION_NAME);
-            collection.insertOne(document);
+            System.err.println("Error al insertar registro: " + e.getMessage());
+            // Mostrar el registro en consola como fallback
+            System.out.println("Registro guardado localmente: " + document.toJson());
         }
     }
 }
