@@ -1,0 +1,16 @@
+[
+{
+  "unsorted": "100, 1, 2, 0, -1, 10000, 3, 8, 1, 15, 42, -5",
+  "size": 12,
+  "sort algorithm": "QuickSort",
+  "sortAlgorithm": "QuickSort",
+  "sorted": "-5, -1, 0, 1, 1, 2, 3, 8, 15, 42, 100, 10000"
+},
+{
+  "unsorted": "2332, 12, -3, 23, 3, 9, 34",
+  "size": 7,
+  "sort algorithm": "InsertionSort",
+  "sortAlgorithm": "InsertionSort",
+  "sorted": "-3, 3, 9, 12, 23, 34, 2332"
+}
+]
