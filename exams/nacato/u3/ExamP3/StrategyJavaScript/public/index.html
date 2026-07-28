@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Strategy - Code Fest</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 95%; padding: 10px; margin-bottom: 10px; }
+        button { width: 100%; padding: 10px; background: #0056b3; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 4px;}
+        button:hover { background: #003d82; }
+        .error { color: red; margin-bottom: 10px; text-align: center; font-weight: bold;}
+        #results { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; background: #e9ecef; border-radius: 4px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sorting Strategy App</h2>
+        <p>Enter elements separated by commas (e.g. 5, 8, 7, 2):</p>
+        
+        <input type="text" id="arrayInput" placeholder="Enter numbers...">
+        <button onclick="processArray()">Sort and Save</button>
+        
+        <div id="errorMsg" class="error"></div>
+
+        <div id="results">
+            <p><strong>Unsorted:</strong> <span id="resUnsorted"></span></p>
+            <p><strong>Size:</strong> <span id="resSize"></span></p>
+            <p><strong>Algorithm Used:</strong> <span id="resAlgo"></span></p>
+            <p><strong>Sorted:</strong> <span id="resSorted"></span></p>
+        </div>
+    </div>
+
+    <script>
+        async function processArray() {
+            const input = document.getElementById('arrayInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const resultsDiv = document.getElementById('results');
+            
+            errorMsg.innerText = "";
+            resultsDiv.style.display = "none";
+
+            try {
+                const response = await fetch('/api/sort', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ input })
+                });
+                
+                const data = await response.json();
+
+                if (!response.ok) {
+                    errorMsg.innerText = data.error;
+                    return;
+                }
+
+                document.getElementById('resUnsorted').innerText = data.unsorted;
+                document.getElementById('resSize').innerText = data.size;
+                document.getElementById('resAlgo').innerText = data['sort algorithm'];
+                document.getElementById('resSorted').innerText = data.sorted;
+                
+                resultsDiv.style.display = "block";
+            } catch (err) {
+                errorMsg.innerText = "Error connecting to the server.";
+            }
+        }
+    </script>
+</body>
+</html>
