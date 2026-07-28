@@ -1,0 +1,12 @@
+{
+  "name": "ws30customer",
+  "version": "1.0.0",
+  "description": "Customer Servies ",
+  "license": "ISC",
+  "author": "Cristian palomo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

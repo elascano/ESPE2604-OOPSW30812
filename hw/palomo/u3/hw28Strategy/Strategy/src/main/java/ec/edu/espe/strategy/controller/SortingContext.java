@@ -1,0 +1,34 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+package ec.edu.espe.strategy.controller;
+
+import ec.edu.espe.strategy.model.*;
+/**
+ *
+ * @author Cristian Palomo, Error 404, @ESPE
+ */
+public class SortingContext {
+    
+    private SortingStrategy sortingStrategy;
+
+    public int[] sort(int[] data) {
+        sortingStrategy = setSortStrategy(data.length);
+        return sortingStrategy.sort(data);
+    }
+
+    public SortingStrategy setSortStrategy(int size) {
+
+        if (size > 0 && size < 30) {
+            sortingStrategy = (SortingStrategy) new BubbleSort();
+        } else if (size >= 30 && size < 100) {
+            sortingStrategy = (SortingStrategy) new InsertionSort();
+        } else {
+            sortingStrategy = (SortingStrategy) new QuickSort();
+        }
+
+        return sortingStrategy;
+    }
+}
