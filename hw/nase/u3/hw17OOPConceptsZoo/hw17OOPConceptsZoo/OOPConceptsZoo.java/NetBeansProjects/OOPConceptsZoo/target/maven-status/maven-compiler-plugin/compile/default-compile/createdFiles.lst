@@ -1,0 +1,16 @@
+espe\edu\ec\conceptszoo\model\SlaughterHouse.class
+espe\edu\ec\conceptszoo\model\Food.class
+espe\edu\ec\conceptszoo\model\Sheep.class
+espe\edu\ec\conceptszoo\controller\FarmBusinessLogic.class
+espe\edu\ec\conceptszoo\model\Pig.class
+espe\edu\ec\conceptszoo\model\FarmAnimal.class
+espe\edu\ec\conceptszoo\controller\IMeatAnimal.class
+espe\edu\ec\conceptszoo\model\Cow.class
+espe\edu\ec\conceptszoo\view\PigFrame.class
+espe\edu\ec\conceptszoo\model\Chicken.class
+espe\edu\ec\conceptszoo\model\Cut.class
+espe\edu\ec\conceptszoo\controller\MongoConnection.class
+espe\edu\ec\conceptszoo\view\CowFrame.class
+espe\edu\ec\conceptszoo\view\SheepFrame.class
+espe\edu\ec\conceptszoo\view\MenuFrame.class
+espe\edu\ec\conceptszoo\view\ChickenFrame.class
