@@ -2,25 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ec.edu.espe</groupId>
-    <artifactId>AnimalFarm</artifactId>
+    <artifactId>SingletonPattern</artifactId>
     <version>1</version>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>bson</artifactId>
-            <version>5.5.1</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>26</maven.compiler.release>
-        <exec.mainClass>ec.edu.espe.animalfarm.AnimalFarm</exec.mainClass>
+        <exec.mainClass>ec.edu.espe.singletonpattern.SingletonPattern</exec.mainClass>
     </properties>
 </project>
-<dependency>
-    <groupId>org.mongodb</groupId>
-    <artifactId>mongodb-driver-core</artifactId>
-    <version>5.9.0</version>
-</dependency>

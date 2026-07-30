@@ -1,0 +1,8 @@
+ec\edu\espe\controller\JsonManager.class
+ec\edu\espe\controller\PhoneController.class
+ec\edu\espe\model\Screen.class
+ec\edu\espe\model\SIMCard.class
+ec\edu\espe\view\Main.class
+ec\edu\espe\model\CellPhone.class
+ec\edu\espe\model\Battery.class
+ec\edu\espe\model\Device.class

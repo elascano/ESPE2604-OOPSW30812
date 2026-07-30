@@ -1,0 +1,9 @@
+ec\espe\edu\farmanimalsystem\model\FarmAnimal.class
+ec\espe\edu\farmanimalsystem\controller\IMeatAnimal.class
+ec\espe\edu\farmanimalsystem\model\Cow.class
+ec\espe\edu\farmanimalsystem\model\Pig.class
+ec\espe\edu\farmanimalsystem\model\Food.class
+ec\espe\edu\farmanimalsystem\controller\IProduceAnimal.class
+ec\espe\edu\farmanimalsystem\model\Cut.class
+ec\espe\edu\farmanimalsystem\model\Product.class
+ec\espe\edu\farmanimalsystem\model\SlaughterHouse.class
